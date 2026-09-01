@@ -1,3 +1,24 @@
+@import "tailwindcss";
+
+/*
+ * Binds Tailwind utilities to the tokens already defined in
+ * src/styles/tokens.css (colors) and src/styles/grid.css (spacing).
+ * No new values are introduced here — this only exposes the existing
+ * Figma-sourced custom properties as Tailwind classes (e.g. bg-accent,
+ * text-text-secondary, border-border-subtle).
+ */
+@theme inline {
+  --color-background: var(--color-background);
+  --color-text-primary: var(--color-text-primary);
+  --color-text-secondary: var(--color-text-secondary);
+  --color-accent: var(--color-accent);
+  --color-border-subtle: var(--color-border-subtle);
+  --color-surface-subtle: var(--color-surface-subtle);
+  --color-surface-muted: var(--color-surface-muted);
+  --color-surface-accent-subtle: var(--color-surface-accent-subtle);
+  --font-sans: var(--font-family-base), sans-serif;
+}
+
 html {
   height: 100%;
 }

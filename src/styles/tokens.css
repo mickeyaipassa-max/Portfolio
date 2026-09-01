@@ -32,6 +32,9 @@
   --font-size-button-secondary: 14px;
   /* --font-size-hero and --font-size-nav-link are intentionally unset
      below 900px: both are hidden on S/XS by design. */
+
+  /* Navigation logo size — from the Navigatie component (Size4/5/6) */
+  --nav-logo-size: 60px;
 }
 
 @media (min-width: 600px) {
@@ -39,13 +42,14 @@
     --font-size-heading-primary: 32px;
     --font-size-body: 14px;
     --font-size-button-primary: 14px;
+    --nav-logo-size: 84px;
   }
 }
 
 @media (min-width: 900px) {
   :root {
     --font-size-hero: 80px;
-    --font-size-nav-link: 18px;
+    --font-size-nav-link: 14px;
     --font-size-heading-primary: 40px;
     --font-size-subheading: 16px;
     --font-size-button-primary: 16px;
@@ -58,14 +62,24 @@
     --font-size-hero: 100px;
     --font-size-heading-secondary: 18px;
     --font-size-subheading: 24px;
+    --nav-logo-size: 88px;
   }
 }
 
 @media (min-width: 1440px) {
   :root {
     --font-size-hero: 140px;
+    --font-size-nav-link: 16px;
     --font-size-heading-secondary: 20px;
     --font-size-subheading: 32px;
     --font-size-body: 16px;
+    --nav-logo-size: 112px;
+  }
+}
+
+@media (min-width: 1800px) {
+  :root {
+    --font-size-nav-link: 18px;
+    --nav-logo-size: 120px;
   }
 }
