@@ -17,6 +17,24 @@
  * Coordinates are measured relative to the grid-container's content
  * edge (Figma's raw x minus that breakpoint's own frame padding), so
  * .hero must be rendered as a direct child of .grid-container.
+ *
+ * The card's width is NOT content-hug: Figma's tagline text node has
+ * textAutoResize: HEIGHT (a fixed width that wraps to N lines) and
+ * layoutSizingHorizontal: FILL — the card's HUG width is really just
+ * "however wide that fixed-width, wrapped text is". So the card gets
+ * an explicit measured width per breakpoint and the tagline gets
+ * width:100% to reproduce the same wrap, instead of an intrinsic
+ * single-line paragraph forcing the "auto" card far too wide.
+ *
+ * The photo's Figma relativeTransform is [[-1,0,x],[0,1,y]] — an "a"
+ * of -1 is a horizontal flip, so it's mirrored via scaleX(-1).
+ *
+ * Because of that same flip, Figma's raw node.x for the photo is NOT
+ * its visible left edge — a flipped node's x anchors the pre-flip
+ * corner, so the true left edge is (x - width). Confirmed directly
+ * against absoluteBoundingBox: every --hero-photo-left value below is
+ * (raw x - photo width) at that breakpoint, relative to the content
+ * edge.
  */
 
 .hero {
@@ -32,7 +50,7 @@
   --hero-tagline-size: 14px;
   --hero-chip-size: 12px;
 
-  --hero-photo-left: 262.07px;
+  --hero-photo-left: 97.98px;
   --hero-photo-top: -12px;
   --hero-photo-width: 164.09px;
   --hero-photo-height: 215px;
@@ -44,7 +62,7 @@
     --hero-card-top: calc(207px + (100vw - 390px) * 0.385714);
     --hero-chip-size: calc(12px + (100vw - 390px) * 0.009524);
 
-    --hero-photo-left: calc(262.07px + (100vw - 390px) * 0.604619);
+    --hero-photo-left: calc(97.98px + (100vw - 390px) * 0.204857);
     --hero-photo-top: calc(-12px + (100vw - 390px) * -0.133333);
     --hero-photo-width: calc(164.09px + (100vw - 390px) * 0.399762);
     --hero-photo-height: calc(215px + (100vw - 390px) * 0.52381);
@@ -60,7 +78,7 @@
     --hero-tagline-size: calc(14px + (100vw - 600px) * 0.02);
     --hero-chip-size: 14px;
 
-    --hero-photo-left: calc(389.04px + (100vw - 600px) * 1.186667);
+    --hero-photo-left: calc(141px + (100vw - 600px) * 1.186667);
     --hero-photo-top: calc(-40px + (100vw - 600px) * 0.626667);
     --hero-photo-width: 248.04px;
     --hero-photo-height: 325px;
@@ -72,13 +90,13 @@
   .hero {
     --hero-card-left: calc(0px + (100vw - 900px) * 0.493333);
     --hero-card-top: calc(288px + (100vw - 900px) * -0.663333);
-    --hero-card-width: auto;
+    --hero-card-width: 475px;
     --hero-card-padding-block: 24px;
     --hero-card-padding-inline: 24px;
     --hero-card-radius: 16px;
     --hero-tagline-size: 20px;
 
-    --hero-photo-left: calc(745.04px + (100vw - 900px) * 0.42);
+    --hero-photo-left: calc(497px + (100vw - 900px) * 0.42);
     --hero-photo-top: calc(148px + (100vw - 900px) * -0.116667);
     --hero-photo-width: 248.04px;
     --hero-photo-height: 325px;
@@ -90,14 +108,14 @@
   .hero {
     --hero-card-left: calc(148px + (100vw - 1200px) * 0.020833);
     --hero-card-top: calc(89px + (100vw - 1200px) * 0.1);
-    --hero-card-width: auto;
+    --hero-card-width: calc(475px + (100vw - 1200px) * 0.283333);
     --hero-card-padding-block: calc(24px + (100vw - 1200px) * 0.066667);
     --hero-card-padding-inline: calc(24px + (100vw - 1200px) * 0.066667);
     --hero-card-radius: 16px;
     --hero-tagline-size: calc(20px + (100vw - 1200px) * 0.016667);
     --hero-chip-size: calc(14px + (100vw - 1200px) * 0.008333);
 
-    --hero-photo-left: calc(871.04px + (100vw - 1200px) * 0.4665);
+    --hero-photo-left: calc(623px + (100vw - 1200px) * 0.304167);
     --hero-photo-top: 113px;
     --hero-photo-width: calc(248.04px + (100vw - 1200px) * 0.162333);
     --hero-photo-height: calc(325px + (100vw - 1200px) * 0.212667);
@@ -109,14 +127,14 @@
   .hero {
     --hero-card-left: calc(153px + (100vw - 1440px) * 0.672222);
     --hero-card-top: calc(113px + (100vw - 1440px) * 0.1225);
-    --hero-card-width: auto;
+    --hero-card-width: 543px;
     --hero-card-padding-block: 40px;
     --hero-card-padding-inline: 40px;
     --hero-card-radius: 16px;
     --hero-tagline-size: 24px;
     --hero-chip-size: 16px;
 
-    --hero-photo-left: calc(983px + (100vw - 1440px) * 0.701444);
+    --hero-photo-left: calc(696px + (100vw - 1440px) * 0.561111);
     --hero-photo-top: calc(113px + (100vw - 1440px) * 0.305556);
     --hero-photo-width: calc(287px + (100vw - 1440px) * 0.140333);
     --hero-photo-height: calc(376.04px + (100vw - 1440px) * 0.183889);
@@ -128,14 +146,14 @@
   .hero {
     --hero-card-left: 395px;
     --hero-card-top: 157.1px;
-    --hero-card-width: auto;
+    --hero-card-width: 543px;
     --hero-card-padding-block: 40px;
     --hero-card-padding-inline: 40px;
     --hero-card-radius: 16px;
     --hero-tagline-size: 24px;
     --hero-chip-size: 16px;
 
-    --hero-photo-left: 1235.52px;
+    --hero-photo-left: 898px;
     --hero-photo-top: 223px;
     --hero-photo-width: 337.52px;
     --hero-photo-height: 442.24px;
@@ -159,4 +177,5 @@
   top: var(--hero-photo-top);
   width: var(--hero-photo-width);
   height: var(--hero-photo-height);
+  transform: scaleX(-1);
 }
