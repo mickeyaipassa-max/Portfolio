@@ -1,0 +1,71 @@
+/*
+ * Design tokens — derived from Figma "Portfolio" page (Home section,
+ * 6 breakpoint frames: XS <599, S 600-899, M 900-1199, L 1200-1439,
+ * XL 1440-1799, XXL 1800+). No Figma variables/styles exist in the file;
+ * these are the literal values applied on canvas.
+ * --font-family-base is supplied by next/font (see layout.tsx).
+ */
+
+:root {
+  /* Color */
+  --color-background: #ffffff;
+  --color-text-primary: #000000;
+  --color-text-secondary: #595959;
+  --color-accent: #ff4d00;
+  --color-border-subtle: #c7c7c7;
+  --color-surface-subtle: #f9f9f9;
+  --color-surface-muted: #d4d4d4;
+  --color-surface-accent-subtle: #fff6f1;
+
+  /* Font weight */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-black: 900;
+
+  /* Type scale — base values = XS (<599px) */
+  --font-size-heading-primary: 24px;
+  --font-size-heading-secondary: 16px;
+  --font-size-subheading: 14px;
+  --font-size-body: 12px;
+  --font-size-button-primary: 16px;
+  --font-size-button-secondary: 14px;
+  /* --font-size-hero and --font-size-nav-link are intentionally unset
+     below 900px: both are hidden on S/XS by design. */
+}
+
+@media (min-width: 600px) {
+  :root {
+    --font-size-heading-primary: 32px;
+    --font-size-body: 14px;
+    --font-size-button-primary: 14px;
+  }
+}
+
+@media (min-width: 900px) {
+  :root {
+    --font-size-hero: 80px;
+    --font-size-nav-link: 18px;
+    --font-size-heading-primary: 40px;
+    --font-size-subheading: 16px;
+    --font-size-button-primary: 16px;
+    --font-size-button-secondary: 16px;
+  }
+}
+
+@media (min-width: 1200px) {
+  :root {
+    --font-size-hero: 100px;
+    --font-size-heading-secondary: 18px;
+    --font-size-subheading: 24px;
+  }
+}
+
+@media (min-width: 1440px) {
+  :root {
+    --font-size-hero: 140px;
+    --font-size-heading-secondary: 20px;
+    --font-size-subheading: 32px;
+    --font-size-body: 16px;
+  }
+}
