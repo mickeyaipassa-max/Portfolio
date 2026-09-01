@@ -1,4 +1,5 @@
 import { Navigation } from "@/components/Navigation/Navigation";
+import { Hero } from "@/components/Hero/Hero";
 
 export default function Home() {
   return (
@@ -14,10 +15,7 @@ export default function Home() {
         }}
         activeItem="about-me"
       />
-      <div
-        className="grid-container"
-        style={{ minHeight: "100vh", outline: "1px dashed rgba(0,0,0,0.3)" }}
-      />
+      <Hero />
     </>
   );
 }

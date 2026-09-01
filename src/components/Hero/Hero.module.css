@@ -1,0 +1,115 @@
+/*
+ * Positioning for Hero: the card and photo are absolutely positioned
+ * overlays on top of the wordmark, exactly as authored in Figma
+ * (layoutPositioning: ABSOLUTE on both). Below 900px the card's
+ * measured y-position falls outside the wordmark's own height, so it
+ * renders as a stacked block instead of an overlap — that is Figma's
+ * own layout, not a simplification made here.
+ *
+ * Coordinates are measured relative to the grid-container's content
+ * edge (Figma's raw x minus that breakpoint's own frame padding),
+ * so .hero must be rendered as a direct child of .grid-container.
+ */
+
+.hero {
+  position: relative;
+
+  --hero-card-left: calc(-1 * var(--grid-margin));
+  --hero-card-top: 207px;
+  --hero-card-width: calc(100% + 2 * var(--grid-margin));
+  --hero-card-padding-block: 16px;
+  --hero-card-padding-inline: 0px;
+  --hero-card-radius: 8px;
+  --hero-tagline-size: 14px;
+  --hero-chip-size: 12px;
+
+  --hero-photo-left: 262.07px;
+  --hero-photo-top: -12px;
+  --hero-photo-width: 164.09px;
+  --hero-photo-height: 215px;
+}
+
+@media (min-width: 600px) {
+  .hero {
+    --hero-card-top: 288px;
+    --hero-chip-size: 14px;
+
+    --hero-photo-left: 389.04px;
+    --hero-photo-top: -40px;
+    --hero-photo-width: 248.04px;
+    --hero-photo-height: 325px;
+  }
+}
+
+@media (min-width: 900px) {
+  .hero {
+    --hero-card-left: 0px;
+    --hero-card-top: 288px;
+    --hero-card-width: auto;
+    --hero-card-padding-block: 24px;
+    --hero-card-padding-inline: 24px;
+    --hero-card-radius: 16px;
+    --hero-tagline-size: 20px;
+
+    --hero-photo-left: 745.04px;
+    --hero-photo-top: 148px;
+    --hero-photo-width: 248.04px;
+    --hero-photo-height: 325px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .hero {
+    --hero-card-left: 148px;
+    --hero-card-top: 89px;
+
+    --hero-photo-left: 871.04px;
+    --hero-photo-top: 113px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .hero {
+    --hero-card-left: 153px;
+    --hero-card-top: 113px;
+    --hero-card-padding-block: 40px;
+    --hero-card-padding-inline: 40px;
+    --hero-tagline-size: 24px;
+    --hero-chip-size: 16px;
+
+    --hero-photo-left: 983px;
+    --hero-photo-width: 287px;
+    --hero-photo-height: 376.04px;
+  }
+}
+
+@media (min-width: 1800px) {
+  .hero {
+    --hero-card-left: 395px;
+    --hero-card-top: 157.1px;
+
+    --hero-photo-left: 1235.52px;
+    --hero-photo-top: 223px;
+    --hero-photo-width: 337.52px;
+    --hero-photo-height: 442.24px;
+  }
+}
+
+.card {
+  position: absolute;
+  left: var(--hero-card-left);
+  top: var(--hero-card-top);
+  width: var(--hero-card-width);
+  padding-block: var(--hero-card-padding-block);
+  padding-inline: var(--hero-card-padding-inline);
+  border-radius: var(--hero-card-radius);
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.photo {
+  position: absolute;
+  left: var(--hero-photo-left);
+  top: var(--hero-photo-top);
+  width: var(--hero-photo-width);
+  height: var(--hero-photo-height);
+}
