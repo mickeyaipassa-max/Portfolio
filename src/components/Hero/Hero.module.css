@@ -1,19 +1,28 @@
 /*
  * Positioning for Hero: the card and photo are absolutely positioned
- * overlays on top of the wordmark, exactly as authored in Figma
- * (layoutPositioning: ABSOLUTE on both). Below 900px the card's
- * measured y-position falls outside the wordmark's own height, so it
- * renders as a stacked block instead of an overlap — that is Figma's
- * own layout, not a simplification made here.
+ * overlays on top of the wordmark (layoutPositioning: ABSOLUTE in
+ * Figma). Below 900px the card's measured y-position falls outside
+ * the wordmark's own height, so it renders as a stacked block instead
+ * of an overlap — that is Figma's own layout, not a simplification.
+ *
+ * Every position/size below is linearly interpolated between the two
+ * nearest of Figma's 6 measured breakpoints (390/600/900/1200/1440/
+ * 1800px), using 100vw as the input. Figma only defines exact values
+ * AT those 6 reference widths; interpolating between them keeps the
+ * card and photo scaling continuously with the wordmark (which is
+ * already fluid via width:100%) instead of jumping in steps.
+ * Below 390px and above 1800px, values hold flat at the nearest
+ * measured breakpoint (no data exists beyond that to extrapolate).
  *
  * Coordinates are measured relative to the grid-container's content
- * edge (Figma's raw x minus that breakpoint's own frame padding),
- * so .hero must be rendered as a direct child of .grid-container.
+ * edge (Figma's raw x minus that breakpoint's own frame padding), so
+ * .hero must be rendered as a direct child of .grid-container.
  */
 
 .hero {
   position: relative;
 
+  /* below 390px: hold flat at the XS (390px) reference values */
   --hero-card-left: calc(-1 * var(--grid-margin));
   --hero-card-top: 207px;
   --hero-card-width: calc(100% + 2 * var(--grid-margin));
@@ -29,64 +38,102 @@
   --hero-photo-height: 215px;
 }
 
-@media (min-width: 600px) {
+/* 390–600px: interpolate XS -> S */
+@media (min-width: 390px) and (max-width: 599.98px) {
   .hero {
+    --hero-card-top: calc(207px + (100vw - 390px) * 0.385714);
+    --hero-chip-size: calc(12px + (100vw - 390px) * 0.009524);
+
+    --hero-photo-left: calc(262.07px + (100vw - 390px) * 0.604619);
+    --hero-photo-top: calc(-12px + (100vw - 390px) * -0.133333);
+    --hero-photo-width: calc(164.09px + (100vw - 390px) * 0.399762);
+    --hero-photo-height: calc(215px + (100vw - 390px) * 0.52381);
+  }
+}
+
+/* 600–900px: interpolate S -> M */
+@media (min-width: 600px) and (max-width: 899.98px) {
+  .hero {
+    --hero-card-left: calc(-1 * var(--grid-margin) + (100vw - 600px) * 0.106667);
     --hero-card-top: 288px;
+    --hero-card-radius: calc(8px + (100vw - 600px) * 0.026667);
+    --hero-tagline-size: calc(14px + (100vw - 600px) * 0.02);
     --hero-chip-size: 14px;
 
-    --hero-photo-left: 389.04px;
-    --hero-photo-top: -40px;
+    --hero-photo-left: calc(389.04px + (100vw - 600px) * 1.186667);
+    --hero-photo-top: calc(-40px + (100vw - 600px) * 0.626667);
     --hero-photo-width: 248.04px;
     --hero-photo-height: 325px;
   }
 }
 
-@media (min-width: 900px) {
+/* 900–1200px: interpolate M -> L */
+@media (min-width: 900px) and (max-width: 1199.98px) {
   .hero {
-    --hero-card-left: 0px;
-    --hero-card-top: 288px;
+    --hero-card-left: calc(0px + (100vw - 900px) * 0.493333);
+    --hero-card-top: calc(288px + (100vw - 900px) * -0.663333);
     --hero-card-width: auto;
     --hero-card-padding-block: 24px;
     --hero-card-padding-inline: 24px;
     --hero-card-radius: 16px;
     --hero-tagline-size: 20px;
 
-    --hero-photo-left: 745.04px;
-    --hero-photo-top: 148px;
+    --hero-photo-left: calc(745.04px + (100vw - 900px) * 0.42);
+    --hero-photo-top: calc(148px + (100vw - 900px) * -0.116667);
     --hero-photo-width: 248.04px;
     --hero-photo-height: 325px;
   }
 }
 
-@media (min-width: 1200px) {
+/* 1200–1440px: interpolate L -> XL */
+@media (min-width: 1200px) and (max-width: 1439.98px) {
   .hero {
-    --hero-card-left: 148px;
-    --hero-card-top: 89px;
+    --hero-card-left: calc(148px + (100vw - 1200px) * 0.020833);
+    --hero-card-top: calc(89px + (100vw - 1200px) * 0.1);
+    --hero-card-width: auto;
+    --hero-card-padding-block: calc(24px + (100vw - 1200px) * 0.066667);
+    --hero-card-padding-inline: calc(24px + (100vw - 1200px) * 0.066667);
+    --hero-card-radius: 16px;
+    --hero-tagline-size: calc(20px + (100vw - 1200px) * 0.016667);
+    --hero-chip-size: calc(14px + (100vw - 1200px) * 0.008333);
 
-    --hero-photo-left: 871.04px;
+    --hero-photo-left: calc(871.04px + (100vw - 1200px) * 0.4665);
     --hero-photo-top: 113px;
+    --hero-photo-width: calc(248.04px + (100vw - 1200px) * 0.162333);
+    --hero-photo-height: calc(325px + (100vw - 1200px) * 0.212667);
   }
 }
 
-@media (min-width: 1440px) {
+/* 1440–1800px: interpolate XL -> XXL */
+@media (min-width: 1440px) and (max-width: 1799.98px) {
   .hero {
-    --hero-card-left: 153px;
-    --hero-card-top: 113px;
+    --hero-card-left: calc(153px + (100vw - 1440px) * 0.672222);
+    --hero-card-top: calc(113px + (100vw - 1440px) * 0.1225);
+    --hero-card-width: auto;
     --hero-card-padding-block: 40px;
     --hero-card-padding-inline: 40px;
+    --hero-card-radius: 16px;
     --hero-tagline-size: 24px;
     --hero-chip-size: 16px;
 
-    --hero-photo-left: 983px;
-    --hero-photo-width: 287px;
-    --hero-photo-height: 376.04px;
+    --hero-photo-left: calc(983px + (100vw - 1440px) * 0.701444);
+    --hero-photo-top: calc(113px + (100vw - 1440px) * 0.305556);
+    --hero-photo-width: calc(287px + (100vw - 1440px) * 0.140333);
+    --hero-photo-height: calc(376.04px + (100vw - 1440px) * 0.183889);
   }
 }
 
+/* 1800px+: hold flat at the XXL reference values */
 @media (min-width: 1800px) {
   .hero {
     --hero-card-left: 395px;
     --hero-card-top: 157.1px;
+    --hero-card-width: auto;
+    --hero-card-padding-block: 40px;
+    --hero-card-padding-inline: 40px;
+    --hero-card-radius: 16px;
+    --hero-tagline-size: 24px;
+    --hero-chip-size: 16px;
 
     --hero-photo-left: 1235.52px;
     --hero-photo-top: 223px;
