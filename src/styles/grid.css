@@ -1,0 +1,48 @@
+/*
+ * Responsive grid foundation — derived from Figma "Grid & Marges" spec.
+ * Below 1200px: --content-max-width is unset, so the container is fluid
+ * (100% minus a fixed margin). At 1200px+, content caps at a fixed max
+ * width and centers, with the margin growing fluidly beyond its minimum.
+ */
+
+:root {
+  --grid-margin: 24px;
+}
+
+@media (min-width: 600px) {
+  :root {
+    --grid-margin: 32px;
+  }
+}
+
+@media (min-width: 900px) {
+  :root {
+    --grid-margin: 64px;
+  }
+}
+
+@media (min-width: 1200px) {
+  :root {
+    --grid-margin: 100px;
+    --content-max-width: 1000px;
+  }
+}
+
+@media (min-width: 1440px) {
+  :root {
+    --grid-margin: 120px;
+    --content-max-width: 1200px;
+  }
+}
+
+@media (min-width: 1800px) {
+  :root {
+    --grid-margin: 100px;
+    --content-max-width: 1600px;
+  }
+}
+
+.grid-container {
+  width: min(100% - (var(--grid-margin) * 2), var(--content-max-width, 9999px));
+  margin-inline: auto;
+}
