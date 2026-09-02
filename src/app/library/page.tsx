@@ -370,7 +370,7 @@ export default function LibraryPage() {
           bevestigde &lt;900px-gedrag doorgetrokken bij gebrek aan een eigen
           XS-variant). Rij van 3 kolommen zonder gap ≥900px, daaronder een
           verticale stapel. Elke Product Card gebruikt hier zijn eigen
-          "l"-tokens die per breakpoint lokaal worden overschreven, zodat
+          &ldquo;l&rdquo;-tokens die per breakpoint lokaal worden overschreven, zodat
           Product Card/Tag/Button ongewijzigd blijven.
         </p>
         <div className="flex flex-wrap gap-6">
@@ -394,7 +394,8 @@ export default function LibraryPage() {
           (zoals Hero of Product Card Group) maar een losse, handmatig per
           breakpoint opgebouwde layout — 4 kolommen bij 1800px+, 2 kolommen
           900–1799px, 1 kolom daaronder, telkens 16px gap. Card gebruikt
-          dezelfde "altijd size=l, lokaal overschreven"-techniek als Product
+          dezelfde &ldquo;altijd size=l, lokaal overschreven&rdquo;-techniek als
+          Product
           Card Group.
         </p>
         <div className="flex flex-wrap gap-6">
