@@ -1,6 +1,7 @@
 import { Button } from "@/components/Button/Button";
 import { Tag } from "@/components/Tag/Tag";
 import { Card } from "@/components/Card/Card";
+import { ProductCard } from "@/components/ProductCard/ProductCard";
 
 const BREAKPOINTS = [
   { label: "XXL — 1800px+", width: 1800, navHeight: 100, heroHeight: 700 },
@@ -73,6 +74,7 @@ const BUTTON_TYPES = ["primary", "secondary"] as const;
 const BUTTON_STATES = ["default", "hover", "pressed", "disabled"] as const;
 const TAG_TYPES = ["primary", "secondary"] as const;
 const SIZES = ["s", "m", "l"] as const;
+const PRODUCT_CARD_SIZES = ["xs", "s", "m", "l"] as const;
 
 export default function LibraryPage() {
   return (
@@ -282,6 +284,35 @@ export default function LibraryPage() {
                 title="Turning complexity into direction"
                 description="I translate user needs, business goals and data into clear opportunities. Through journeys, hypotheses and stakeholder alignment, I help teams focus on what matters."
                 skills="Product strategy · Customer journeys · Data & insights · Hypothesis building · Stakeholder management"
+              />
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Product Card — Size only (XS/S/M/L), no other states */}
+      <section className="flex flex-col gap-4">
+        <h2 className="text-xl font-semibold">Product Card</h2>
+        <p className="text-sm text-text-secondary">
+          4 varianten: Size (XS/S/M/L). Media-vlak is in Figma een lege
+          video-fill (placeholder zonder bronbestand) — hier vervangen door
+          een bestaande projectfoto ter demonstratie. Hergebruikt Tag
+          (Secondary) en Button (Primary).
+        </p>
+        <div className="flex flex-wrap items-start gap-6">
+          {PRODUCT_CARD_SIZES.map((size) => (
+            <div key={size} className="flex flex-col gap-2">
+              <p className="text-sm font-medium text-text-secondary uppercase">
+                {size}
+              </p>
+              <ProductCard
+                size={size}
+                client="a.s.r. Nederland"
+                title="Service & Contact"
+                discipline="Ux & Ui Design"
+                href="#"
+                mediaSrc="/hero/photo.png"
+                mediaAlt="Placeholder projectafbeelding"
               />
             </div>
           ))}

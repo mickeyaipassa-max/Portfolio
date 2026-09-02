@@ -78,6 +78,23 @@
   --font-size-card-body-m: 16px;
   --font-size-card-body-l: 18px;
 
+  /* Product Card component: Size is an explicit prop (S/M/L/XS).
+     Media area is a fixed 448px square at every size — only the
+     eyebrow/title text and the nested Tag/Button size scale down.
+     Measured directly from the "Product Card" component set. */
+  --product-card-width: 448px;
+  --product-card-gap: 56px;
+  --product-card-padding-block: 24px;
+  --product-card-inner-gap: 16px;
+  --font-size-product-card-eyebrow-xs: 16px;
+  --font-size-product-card-eyebrow-s: 20px;
+  --font-size-product-card-eyebrow-m: 20px;
+  --font-size-product-card-eyebrow-l: 24px;
+  --font-size-product-card-title-xs: 20px;
+  --font-size-product-card-title-s: 24px;
+  --font-size-product-card-title-m: 28px;
+  --font-size-product-card-title-l: 32px;
+
   /* Navigation logo size — from the Navigatie component (Size4/5/6) */
   --nav-logo-size: 60px;
 }
