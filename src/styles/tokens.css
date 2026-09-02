@@ -16,6 +16,7 @@
   --color-accent-pressed: #d44000;
   --color-disabled-bg: #c1c1c1;
   --color-disabled-text: #636363;
+  --color-brand-black: #1d1d1d;
   --color-border-subtle: #c7c7c7;
   --color-surface-subtle: #f9f9f9;
   --color-surface-muted: #d4d4d4;
@@ -47,6 +48,19 @@
   --button-padding-block-l: 16px;
   --button-padding-inline: 40px;
   --button-radius: 8px;
+
+  /* Tag component: also an explicit S/M/L prop, measured directly from
+     the "Tag" component set. Numerically coincides with the Button
+     scale but kept separate — Figma has no shared variable tying them
+     together, so this isn't assumed to be one system. */
+  --font-size-tag-s: 14px;
+  --font-size-tag-m: 16px;
+  --font-size-tag-l: 18px;
+  --tag-padding-block: 8px;
+  --tag-padding-inline-s: 16px;
+  --tag-padding-inline-m: 24px;
+  --tag-padding-inline-l: 24px;
+  --tag-radius: 90px;
 
   /* Navigation logo size — from the Navigatie component (Size4/5/6) */
   --nav-logo-size: 60px;

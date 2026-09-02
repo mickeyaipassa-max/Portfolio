@@ -1,4 +1,5 @@
 import { Button } from "@/components/Button/Button";
+import { Tag } from "@/components/Tag/Tag";
 
 const BREAKPOINTS = [
   { label: "XXL — 1800px+", width: 1800, navHeight: 100, heroHeight: 700 },
@@ -69,7 +70,8 @@ function NavItemDemo({
 
 const BUTTON_TYPES = ["primary", "secondary"] as const;
 const BUTTON_STATES = ["default", "hover", "pressed", "disabled"] as const;
-const BUTTON_SIZES = ["s", "m", "l"] as const;
+const TAG_TYPES = ["primary", "secondary"] as const;
+const SIZES = ["s", "m", "l"] as const;
 
 export default function LibraryPage() {
   return (
@@ -97,7 +99,7 @@ export default function LibraryPage() {
                 <th className="p-3 text-left text-sm text-text-secondary">
                   State \ Size
                 </th>
-                {BUTTON_SIZES.map((size) => (
+                {SIZES.map((size) => (
                   <th
                     key={size}
                     className="p-3 text-left text-sm text-text-secondary uppercase"
@@ -111,7 +113,7 @@ export default function LibraryPage() {
               {(["default", "hover", "active"] as const).map((state) => (
                 <tr key={state} className="border-t border-border-subtle">
                   <td className="p-3 text-sm font-medium capitalize">{state}</td>
-                  {BUTTON_SIZES.map((size) => (
+                  {SIZES.map((size) => (
                     <td key={size} className="p-3">
                       <NavItemDemo size={size} state={state} />
                     </td>
@@ -186,7 +188,7 @@ export default function LibraryPage() {
                     <th className="p-3 text-left text-sm text-text-secondary">
                       State \ Size
                     </th>
-                    {BUTTON_SIZES.map((size) => (
+                    {SIZES.map((size) => (
                       <th
                         key={size}
                         className="p-3 text-left text-sm text-text-secondary uppercase"
@@ -202,7 +204,7 @@ export default function LibraryPage() {
                       <td className="p-3 text-sm font-medium capitalize">
                         {state}
                       </td>
-                      {BUTTON_SIZES.map((size) => (
+                      {SIZES.map((size) => (
                         <td key={size} className="p-3">
                           <Button type={type} size={size} forceState={state}>
                             View project
@@ -216,6 +218,48 @@ export default function LibraryPage() {
             </div>
           </div>
         ))}
+      </section>
+
+      {/* Tag — Type × Size, no states */}
+      <section className="flex flex-col gap-4">
+        <h2 className="text-xl font-semibold">Tag</h2>
+        <p className="text-sm text-text-secondary">
+          6 varianten: Type (Primary/Secondary) × Size (S/M/L). Geen states —
+          dit is een statisch label.
+        </p>
+        <div className="overflow-x-auto">
+          <table className="border-collapse">
+            <thead>
+              <tr>
+                <th className="p-3 text-left text-sm text-text-secondary">
+                  Type \ Size
+                </th>
+                {SIZES.map((size) => (
+                  <th
+                    key={size}
+                    className="p-3 text-left text-sm text-text-secondary uppercase"
+                  >
+                    {size}
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {TAG_TYPES.map((type) => (
+                <tr key={type} className="border-t border-border-subtle">
+                  <td className="p-3 text-sm font-medium capitalize">{type}</td>
+                  {SIZES.map((size) => (
+                    <td key={size} className="p-3">
+                      <Tag type={type} size={size}>
+                        Strategy
+                      </Tag>
+                    </td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </section>
     </div>
   );
