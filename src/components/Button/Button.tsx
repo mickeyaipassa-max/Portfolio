@@ -47,6 +47,27 @@ const PADDING_BLOCK_VAR: Record<ButtonSize, string> = {
   l: "var(--button-padding-block-l)",
 };
 
+// Live (non-forced) color + interaction classes, fully static so
+// Tailwind's scanner can see every one of them. Colors can't be set
+// via inline `style` here: an inline style always wins the cascade
+// over a class, including hover:/active: classes, which would make
+// hover impossible to ever show. `:enabled`/`:disabled` only ever
+// match real form controls, never <a>, so the link variant drops that
+// guard entirely and has no disabled state (a disabled Button never
+// renders as a link — see isLink below).
+const LIVE_CLASSES: Record<ButtonType, { link: string; button: string }> = {
+  primary: {
+    link: "bg-[var(--color-accent)] text-white border-transparent hover:bg-[var(--color-accent-hover)] active:bg-[var(--color-accent-pressed)]",
+    button:
+      "bg-[var(--color-accent)] text-white border-transparent enabled:hover:bg-[var(--color-accent-hover)] enabled:active:bg-[var(--color-accent-pressed)] disabled:bg-[var(--color-disabled-bg)] disabled:text-[var(--color-disabled-text)]",
+  },
+  secondary: {
+    link: "bg-transparent text-text-primary border-[var(--color-accent)] hover:border-[var(--color-accent-hover)] hover:text-[var(--color-accent)] active:border-[var(--color-accent-pressed)] active:text-text-primary",
+    button:
+      "bg-transparent text-text-primary border-[var(--color-accent)] enabled:hover:border-[var(--color-accent-hover)] enabled:hover:text-[var(--color-accent)] enabled:active:border-[var(--color-accent-pressed)] enabled:active:text-text-primary disabled:border-[var(--color-disabled-bg)] disabled:text-[var(--color-disabled-text)]",
+  },
+};
+
 type ButtonProps = {
   type: ButtonType;
   size: ButtonSize;
@@ -74,27 +95,30 @@ export function Button({
 }: ButtonProps) {
   const isForced = forceState !== undefined;
   const effectiveState: ButtonState = forceState ?? (disabled ? "disabled" : "default");
-  const colors = COLORS[type][effectiveState];
+  const isLink = Boolean(href) && effectiveState !== "disabled";
 
-  const baseStyle: React.CSSProperties = {
-    backgroundColor: colors.bg,
-    borderColor: colors.border,
-    color: colors.text,
+  const sizeStyle: React.CSSProperties = {
     fontSize: FONT_SIZE_VAR[size],
     paddingBlock: PADDING_BLOCK_VAR[size],
   };
 
-  const interactiveClassName = isForced
+  const colorClassName = isForced
     ? ""
-    : type === "primary"
-      ? "enabled:hover:bg-[var(--color-accent-hover)] enabled:active:bg-[var(--color-accent-pressed)] disabled:bg-[var(--color-disabled-bg)] disabled:text-[var(--color-disabled-text)]"
-      : "enabled:hover:border-[var(--color-accent-hover)] enabled:hover:text-[var(--color-accent)] enabled:active:border-[var(--color-accent-pressed)] enabled:active:text-[var(--color-text-primary)] disabled:border-[var(--color-disabled-bg)] disabled:text-[var(--color-disabled-text)]";
+    : LIVE_CLASSES[type][isLink ? "link" : "button"];
 
-  const className = `inline-flex items-center justify-center rounded-[var(--button-radius)] border border-solid px-[var(--button-padding-inline)] font-medium whitespace-nowrap transition-colors ${interactiveClassName}`;
+  const colorStyle: React.CSSProperties = isForced
+    ? (() => {
+        const colors = COLORS[type][effectiveState];
+        return { backgroundColor: colors.bg, borderColor: colors.border, color: colors.text };
+      })()
+    : {};
 
-  if (href && effectiveState !== "disabled") {
+  const className = `inline-flex items-center justify-center rounded-[var(--button-radius)] border border-solid px-[var(--button-padding-inline)] font-medium whitespace-nowrap transition-colors ${colorClassName}`;
+  const style = { ...sizeStyle, ...colorStyle };
+
+  if (isLink) {
     return (
-      <a href={href} className={className} style={baseStyle} onClick={onClick}>
+      <a href={href} className={className} style={style} onClick={onClick}>
         {children}
       </a>
     );
@@ -104,7 +128,7 @@ export function Button({
     <button
       type="button"
       className={className}
-      style={baseStyle}
+      style={style}
       onClick={onClick}
       disabled={effectiveState === "disabled"}
     >

@@ -24,7 +24,7 @@ export function Tag({ type, size, children }: TagProps) {
 
   return (
     <span
-      className="inline-flex items-center justify-center whitespace-nowrap rounded-[var(--tag-radius)] border border-solid border-accent font-medium"
+      className="inline-flex w-fit shrink-0 items-center justify-center whitespace-nowrap rounded-[var(--tag-radius)] border border-solid border-accent font-medium"
       style={{
         backgroundColor: isPrimary ? "var(--color-accent)" : "transparent",
         color: isPrimary ? "#ffffff" : "var(--color-brand-black)",
