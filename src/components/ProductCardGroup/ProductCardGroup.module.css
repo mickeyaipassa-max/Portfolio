@@ -1,0 +1,79 @@
+/*
+ * Product Card Group: a 3-column row of Product Cards below 900px it
+ * stacks vertically. Card "Size" changes with the group's own width
+ * (L at 1440+, M at 1200-1439, S at 900-1199, XS below 900) — measured
+ * from Figma's 5 breakpoint variants (no dedicated <600px variant;
+ * below 600px this extrapolates the confirmed <900px behavior).
+ *
+ * Each ProductCard/Tag/Button below is always rendered with size="l",
+ * then the underlying --font-size-*-l / --*-padding-*-l custom
+ * properties are locally overridden here per breakpoint. Those
+ * components already read their size via var(--..-l) lookups, so
+ * shadowing the variable in this scope changes what they render
+ * without touching their own code — the same technique Hero uses for
+ * fluid values, applied here as discrete per-tier overrides instead.
+ */
+
+.group {
+  position: relative;
+  width: 100%;
+  background: var(--color-background);
+  box-shadow: var(--product-card-group-shadow);
+  padding: var(--product-card-group-padding);
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--product-card-group-stack-gap);
+
+  /* base (<900px): Card size XS */
+  --font-size-product-card-eyebrow-l: 16px;
+  --font-size-product-card-title-l: 20px;
+  --font-size-tag-l: 14px;
+  --tag-padding-inline-l: 16px;
+  --font-size-button-l: 14px;
+  --button-padding-block-l: 12px;
+}
+
+@media (min-width: 900px) {
+  .group {
+    flex-direction: row;
+    gap: 0;
+
+    /* Card size S */
+    --font-size-product-card-eyebrow-l: 20px;
+    --font-size-product-card-title-l: 24px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .group {
+    /* Card size M */
+    --font-size-product-card-title-l: 28px;
+    --font-size-tag-l: 16px;
+    --tag-padding-inline-l: 24px;
+    --font-size-button-l: 16px;
+    --button-padding-block-l: 16px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .group {
+    /* Card size L */
+    --font-size-product-card-eyebrow-l: 24px;
+    --font-size-product-card-title-l: 32px;
+    --font-size-tag-l: 18px;
+    --font-size-button-l: 18px;
+  }
+}
+
+.item {
+  width: 100%;
+}
+
+@media (min-width: 900px) {
+  .item {
+    width: auto;
+    flex: 1 1 0;
+    min-width: 0;
+  }
+}

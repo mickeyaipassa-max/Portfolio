@@ -34,6 +34,13 @@ type ProductCardProps = {
   href: string;
   mediaSrc: string;
   mediaAlt: string;
+  /**
+   * Fills the width of its parent instead of Figma's default fixed
+   * 448px — used inside Product Card Group, where the parent grid
+   * controls each card's width (equal columns, or full width when
+   * stacked).
+   */
+  fill?: boolean;
 };
 
 export function ProductCard({
@@ -44,12 +51,13 @@ export function ProductCard({
   href,
   mediaSrc,
   mediaAlt,
+  fill = false,
 }: ProductCardProps) {
   const tagButtonSize = TAG_BUTTON_SIZE[size];
 
   return (
     <div
-      className="flex w-[var(--product-card-width)] flex-col items-center bg-surface-subtle"
+      className={`flex ${fill ? "w-full" : "w-[var(--product-card-width)]"} flex-col items-center bg-surface-subtle`}
       style={{
         gap: "var(--product-card-gap)",
         paddingBlock: "var(--product-card-padding-block)",

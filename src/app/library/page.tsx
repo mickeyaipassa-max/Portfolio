@@ -4,12 +4,48 @@ import { Card } from "@/components/Card/Card";
 import { ProductCard } from "@/components/ProductCard/ProductCard";
 
 const BREAKPOINTS = [
-  { label: "XXL — 1800px+", width: 1800, navHeight: 100, heroHeight: 700 },
-  { label: "XL — 1440–1799px", width: 1440, navHeight: 100, heroHeight: 600 },
-  { label: "L — 1200–1439px", width: 1200, navHeight: 100, heroHeight: 550 },
-  { label: "M — 900–1199px", width: 900, navHeight: 100, heroHeight: 550 },
-  { label: "S — 600–899px", width: 600, navHeight: 100, heroHeight: 500 },
-  { label: "XS — <600px", width: 390, navHeight: 100, heroHeight: 450 },
+  {
+    label: "XXL — 1800px+",
+    width: 1800,
+    navHeight: 100,
+    heroHeight: 700,
+    productCardGroupHeight: 950,
+  },
+  {
+    label: "XL — 1440–1799px",
+    width: 1440,
+    navHeight: 100,
+    heroHeight: 600,
+    productCardGroupHeight: 800,
+  },
+  {
+    label: "L — 1200–1439px",
+    width: 1200,
+    navHeight: 100,
+    heroHeight: 550,
+    productCardGroupHeight: 720,
+  },
+  {
+    label: "M — 900–1199px",
+    width: 900,
+    navHeight: 100,
+    heroHeight: 550,
+    productCardGroupHeight: 640,
+  },
+  {
+    label: "S — 600–899px",
+    width: 600,
+    navHeight: 100,
+    heroHeight: 500,
+    productCardGroupHeight: 2550,
+  },
+  {
+    label: "XS — <600px",
+    width: 390,
+    navHeight: 100,
+    heroHeight: 450,
+    productCardGroupHeight: 2550,
+  },
 ];
 
 function BreakpointFrame({
@@ -315,6 +351,30 @@ export default function LibraryPage() {
                 mediaAlt="Placeholder projectafbeelding"
               />
             </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Product Card Group — 3-column row that stacks below 900px */}
+      <section className="flex flex-col gap-4">
+        <h2 className="text-xl font-semibold">Product Card Group</h2>
+        <p className="text-sm text-text-secondary">
+          6 breakpoint-varianten (Figma definieert er 5; onder 600px is het
+          bevestigde &lt;900px-gedrag doorgetrokken bij gebrek aan een eigen
+          XS-variant). Rij van 3 kolommen zonder gap ≥900px, daaronder een
+          verticale stapel. Elke Product Card gebruikt hier zijn eigen
+          "l"-tokens die per breakpoint lokaal worden overschreven, zodat
+          Product Card/Tag/Button ongewijzigd blijven.
+        </p>
+        <div className="flex flex-wrap gap-6">
+          {BREAKPOINTS.map((bp) => (
+            <BreakpointFrame
+              key={bp.label}
+              src="/library/preview/product-card-group"
+              width={bp.width}
+              height={bp.productCardGroupHeight}
+              label={bp.label}
+            />
           ))}
         </div>
       </section>

@@ -95,6 +95,17 @@
   --font-size-product-card-title-m: 28px;
   --font-size-product-card-title-l: 32px;
 
+  /* Product Card Group: a 3-column row of Product Cards (no gap —
+     each card's own bg-surface-subtle provides the visual separation)
+     that stacks vertically below 900px. Measured from the "Product
+     Card Group" component set, which only defines 5 of our 6
+     breakpoints (no dedicated <600px variant) — below 600px this
+     extrapolates the same stacked layout, which is the closest
+     confirmed behavior. */
+  --product-card-group-padding: 16px;
+  --product-card-group-shadow: 0 0 12.9px rgba(0, 0, 0, 0.15);
+  --product-card-group-stack-gap: 16px;
+
   /* Navigation logo size — from the Navigatie component (Size4/5/6) */
   --nav-logo-size: 60px;
 }
