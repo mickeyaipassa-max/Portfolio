@@ -1,0 +1,55 @@
+/*
+ * CardGrid: a responsive grid of Card instances — 1 column below
+ * 900px, 2 columns 900–1799px, 4 columns at 1800px+. Measured
+ * directly from the Home page's raw per-breakpoint layout (this
+ * grouping isn't a Figma component/variant set like Hero or Product
+ * Card Group — it's a plain frame manually laid out per breakpoint),
+ * gap is a constant 16px at every tier in both directions.
+ *
+ * Card size also changes with the grid (L at 1440+, M at 900-1439, S
+ * below 900). Every Card below is always rendered with size="l", then
+ * the underlying --font-size-card-*-l / --card-padding-l / Tag's
+ * --font-size-tag-l / --tag-padding-inline-l are locally overridden
+ * here per breakpoint (with their literal Size=S/M/L values) — the
+ * same technique used in ProductCardGroup.module.css.
+ */
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  width: 100%;
+
+  /* base (<900px): Card size S */
+  --font-size-card-title-l: 16px;
+  --font-size-card-body-l: 14px;
+  --card-padding-l: 24px 16px;
+  --font-size-tag-l: 14px;
+  --tag-padding-inline-l: 16px;
+}
+
+@media (min-width: 900px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+
+    /* Card size M */
+    --font-size-card-title-l: 18px;
+    --font-size-card-body-l: 16px;
+    --card-padding-l: 32px 24px;
+    --font-size-tag-l: 16px;
+    --tag-padding-inline-l: 24px;
+  }
+}
+
+@media (min-width: 1800px) {
+  .grid {
+    grid-template-columns: repeat(4, 1fr);
+
+    /* Card size L */
+    --font-size-card-title-l: 20px;
+    --font-size-card-body-l: 18px;
+    --card-padding-l: 40px 24px;
+    --font-size-tag-l: 18px;
+    --tag-padding-inline-l: 24px;
+  }
+}

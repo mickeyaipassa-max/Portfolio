@@ -2,6 +2,7 @@ import { Button } from "@/components/Button/Button";
 import { Tag } from "@/components/Tag/Tag";
 import { Card } from "@/components/Card/Card";
 import { ProductCard } from "@/components/ProductCard/ProductCard";
+import { SectionHeading } from "@/components/SectionHeading/SectionHeading";
 
 const BREAKPOINTS = [
   {
@@ -10,6 +11,7 @@ const BREAKPOINTS = [
     navHeight: 100,
     heroHeight: 700,
     productCardGroupHeight: 950,
+    cardGridHeight: 450,
   },
   {
     label: "XL — 1440–1799px",
@@ -17,6 +19,7 @@ const BREAKPOINTS = [
     navHeight: 100,
     heroHeight: 600,
     productCardGroupHeight: 800,
+    cardGridHeight: 700,
   },
   {
     label: "L — 1200–1439px",
@@ -24,6 +27,7 @@ const BREAKPOINTS = [
     navHeight: 100,
     heroHeight: 550,
     productCardGroupHeight: 720,
+    cardGridHeight: 650,
   },
   {
     label: "M — 900–1199px",
@@ -31,6 +35,7 @@ const BREAKPOINTS = [
     navHeight: 100,
     heroHeight: 550,
     productCardGroupHeight: 640,
+    cardGridHeight: 750,
   },
   {
     label: "S — 600–899px",
@@ -38,6 +43,7 @@ const BREAKPOINTS = [
     navHeight: 100,
     heroHeight: 500,
     productCardGroupHeight: 2550,
+    cardGridHeight: 1050,
   },
   {
     label: "XS — <600px",
@@ -45,6 +51,7 @@ const BREAKPOINTS = [
     navHeight: 100,
     heroHeight: 450,
     productCardGroupHeight: 2550,
+    cardGridHeight: 1200,
   },
 ];
 
@@ -377,6 +384,41 @@ export default function LibraryPage() {
             />
           ))}
         </div>
+      </section>
+
+      {/* Card Grid — responsive 4/2/1-column grid of Card, per breakpoint */}
+      <section className="flex flex-col gap-4">
+        <h2 className="text-xl font-semibold">Card Grid</h2>
+        <p className="text-sm text-text-secondary">
+          6 breakpoint-varianten. Dit is geen Figma component/variant-set
+          (zoals Hero of Product Card Group) maar een losse, handmatig per
+          breakpoint opgebouwde layout — 4 kolommen bij 1800px+, 2 kolommen
+          900–1799px, 1 kolom daaronder, telkens 16px gap. Card gebruikt
+          dezelfde "altijd size=l, lokaal overschreven"-techniek als Product
+          Card Group.
+        </p>
+        <div className="flex flex-wrap gap-6">
+          {BREAKPOINTS.map((bp) => (
+            <BreakpointFrame
+              key={bp.label}
+              src="/library/preview/card-grid"
+              width={bp.width}
+              height={bp.cardGridHeight}
+              label={bp.label}
+            />
+          ))}
+        </div>
+      </section>
+
+      {/* Section Heading — constant across all breakpoints */}
+      <section className="flex flex-col gap-4">
+        <h2 className="text-xl font-semibold">Section Heading</h2>
+        <p className="text-sm text-text-secondary">
+          Gemeten als een constante 40px Semi Bold, gecentreerd, op alle 6
+          breakpoints — volgt niet de responsive schaal van
+          --font-size-heading-primary, dus als eigen token bewaard.
+        </p>
+        <SectionHeading>Latest work...</SectionHeading>
       </section>
     </div>
   );

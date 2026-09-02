@@ -26,12 +26,25 @@ type CardProps = {
   title: string;
   description: string;
   skills: string;
+  /**
+   * Fills the width of its parent instead of Figma's default fixed
+   * 388px — used inside a card grid, where the parent controls each
+   * card's column width.
+   */
+  fill?: boolean;
 };
 
-export function Card({ size, tag, title, description, skills }: CardProps) {
+export function Card({
+  size,
+  tag,
+  title,
+  description,
+  skills,
+  fill = false,
+}: CardProps) {
   return (
     <div
-      className="flex w-[var(--card-width)] flex-col gap-[var(--card-gap)] rounded-[var(--card-radius)] border border-solid border-border-subtle bg-background"
+      className={`flex ${fill ? "w-full" : "w-[var(--card-width)]"} flex-col gap-[var(--card-gap)] rounded-[var(--card-radius)] border border-solid border-border-subtle bg-background`}
       style={{ padding: PADDING_VAR[size] }}
     >
       <Tag type="primary" size={size}>

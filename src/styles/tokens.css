@@ -106,6 +106,13 @@
   --product-card-group-shadow: 0 0 12.9px rgba(0, 0, 0, 0.15);
   --product-card-group-stack-gap: 16px;
 
+  /* Section heading (e.g. "Latest work..."): measured as a constant
+     40px Semi Bold at all 6 breakpoints on the Home page — does NOT
+     follow --font-size-heading-primary's responsive scale (24/32/40),
+     so kept as its own token rather than assumed to be the same
+     token the designer just forgot to update. */
+  --font-size-section-heading: 40px;
+
   /* Navigation logo size — from the Navigatie component (Size4/5/6) */
   --nav-logo-size: 60px;
 }
