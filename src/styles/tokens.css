@@ -62,6 +62,22 @@
   --tag-padding-inline-l: 24px;
   --tag-radius: 90px;
 
+  /* Card component: Size is an explicit prop (S/M/L). Width is fixed
+     at 388px in Figma (layoutSizingHorizontal: FIXED); height is HUG
+     (content-driven), so no height token is needed. */
+  --card-width: 388px;
+  --card-radius: 16px;
+  --card-gap: 10px;
+  --card-padding-s: 24px 16px;
+  --card-padding-m: 32px 24px;
+  --card-padding-l: 40px 24px;
+  --font-size-card-title-s: 16px;
+  --font-size-card-title-m: 18px;
+  --font-size-card-title-l: 20px;
+  --font-size-card-body-s: 14px;
+  --font-size-card-body-m: 16px;
+  --font-size-card-body-l: 18px;
+
   /* Navigation logo size — from the Navigatie component (Size4/5/6) */
   --nav-logo-size: 60px;
 }

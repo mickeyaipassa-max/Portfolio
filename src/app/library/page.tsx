@@ -1,5 +1,6 @@
 import { Button } from "@/components/Button/Button";
 import { Tag } from "@/components/Tag/Tag";
+import { Card } from "@/components/Card/Card";
 
 const BREAKPOINTS = [
   { label: "XXL — 1800px+", width: 1800, navHeight: 100, heroHeight: 700 },
@@ -259,6 +260,31 @@ export default function LibraryPage() {
               ))}
             </tbody>
           </table>
+        </div>
+      </section>
+
+      {/* Card — Size only (S/M/L), no other states */}
+      <section className="flex flex-col gap-4">
+        <h2 className="text-xl font-semibold">Card</h2>
+        <p className="text-sm text-text-secondary">
+          3 varianten: Size (S/M/L). Vaste breedte (388px) in Figma, hoogte is
+          content-driven.
+        </p>
+        <div className="flex flex-wrap items-start gap-6">
+          {SIZES.map((size) => (
+            <div key={size} className="flex flex-col gap-2">
+              <p className="text-sm font-medium text-text-secondary uppercase">
+                {size}
+              </p>
+              <Card
+                size={size}
+                tag="Strategy"
+                title="Turning complexity into direction"
+                description="I translate user needs, business goals and data into clear opportunities. Through journeys, hypotheses and stakeholder alignment, I help teams focus on what matters."
+                skills="Product strategy · Customer journeys · Data & insights · Hypothesis building · Stakeholder management"
+              />
+            </div>
+          ))}
         </div>
       </section>
     </div>
