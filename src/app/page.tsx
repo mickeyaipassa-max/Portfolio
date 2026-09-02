@@ -94,7 +94,8 @@ export default function Home() {
         <SectionHeading>Latest work...</SectionHeading>
       </div>
 
-      <div className="grid-container mt-6">
+      <div className="grid-container relative isolate mt-6">
+        <div className={styles.orangeBackdrop} aria-hidden="true" />
         <ProductCardGroup projects={PROJECTS} />
       </div>
     </>

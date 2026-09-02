@@ -69,7 +69,7 @@ export function ProductCard({
       >
         <p
           className="text-center font-semibold text-text-primary"
-          style={{ fontSize: EYEBROW_SIZE_VAR[size] }}
+          style={{ fontSize: EYEBROW_SIZE_VAR[size], lineHeight: "normal" }}
         >
           {client}
         </p>
@@ -84,7 +84,7 @@ export function ProductCard({
       >
         <p
           className="text-center font-medium text-text-primary"
-          style={{ fontSize: TITLE_SIZE_VAR[size] }}
+          style={{ fontSize: TITLE_SIZE_VAR[size], lineHeight: "normal" }}
         >
           {title}
         </p>

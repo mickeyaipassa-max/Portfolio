@@ -42,3 +42,36 @@
     margin-top: 113px;
   }
 }
+
+/*
+ * Orange backdrop behind the Product Card Group — a full-bleed
+ * (edge-to-edge, ignoring the grid margin) band that peeks out in the
+ * margins beside it. Figma only defines this at L/1200, XL/1440 and
+ * XXL/1800 (Rectangle 6/8/7) — no M/S/XS variant exists, so it's
+ * absent below 1200px entirely, per confirmed scope.
+ *
+ * Positioned as top/bottom offsets from the Product Card Group
+ * wrapper's own edges (64px from the top, 92px before the bottom)
+ * rather than a hardcoded height per breakpoint — measured as
+ * near-identical constants across all 3 Figma breakpoints (offsets:
+ * 64/63/64px and 92/94/91px), and this derives the correct height
+ * (753/620/545px) directly from the actual rendered Product Card
+ * Group height instead of duplicating it as a separate value that
+ * could drift out of sync.
+ */
+.orangeBackdrop {
+  display: none;
+}
+
+@media (min-width: 1200px) {
+  .orangeBackdrop {
+    display: block;
+    position: absolute;
+    z-index: -1;
+    top: 64px;
+    bottom: 92px;
+    left: calc(-1 * var(--grid-margin));
+    width: calc(100% + 2 * var(--grid-margin));
+    background: var(--color-accent);
+  }
+}

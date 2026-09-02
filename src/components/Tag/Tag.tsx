@@ -29,6 +29,7 @@ export function Tag({ type, size, children }: TagProps) {
         backgroundColor: isPrimary ? "var(--color-accent)" : "transparent",
         color: isPrimary ? "#ffffff" : "var(--color-brand-black)",
         fontSize: FONT_SIZE_VAR[size],
+        lineHeight: 1.4,
         paddingBlock: "var(--tag-padding-block)",
         paddingInline: PADDING_INLINE_VAR[size],
       }}

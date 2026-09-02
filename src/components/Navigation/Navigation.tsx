@@ -40,7 +40,7 @@ function NavItem({
       <img src={icon} alt="" aria-hidden="true" className="size-6 shrink-0" />
       <span className="flex items-center justify-center p-[10px]">
         <span
-          className={`text-[length:var(--font-size-nav-link)] font-medium whitespace-nowrap ${
+          className={`text-[length:var(--font-size-nav-link)] leading-[normal] font-medium whitespace-nowrap ${
             isActive ? "underline" : ""
           }`}
         >

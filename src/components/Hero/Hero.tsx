@@ -17,7 +17,7 @@ export function Hero() {
       <div className={`${styles.card} bg-background flex flex-col gap-[10px]`}>
         <p
           className="font-medium text-text-primary"
-          style={{ fontSize: "var(--hero-tagline-size)" }}
+          style={{ fontSize: "var(--hero-tagline-size)", lineHeight: 1.4 }}
         >
           &ldquo;I design digital products from complex journeys to validated
           experiences.&rdquo;
@@ -27,7 +27,7 @@ export function Hero() {
             <li
               key={skill}
               className="rounded-[90px] border border-accent bg-background px-6 py-2 font-normal text-text-primary whitespace-nowrap"
-              style={{ fontSize: "var(--hero-chip-size)" }}
+              style={{ fontSize: "var(--hero-chip-size)", lineHeight: 1.4 }}
             >
               {skill}
             </li>

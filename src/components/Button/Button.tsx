@@ -99,6 +99,7 @@ export function Button({
 
   const sizeStyle: React.CSSProperties = {
     fontSize: FONT_SIZE_VAR[size],
+    lineHeight: "normal",
     paddingBlock: PADDING_BLOCK_VAR[size],
   };
 

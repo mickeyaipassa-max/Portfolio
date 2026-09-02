@@ -6,7 +6,7 @@ export function SectionHeading({ children }: SectionHeadingProps) {
   return (
     <h2
       className="text-center font-semibold text-text-primary"
-      style={{ fontSize: "var(--font-size-section-heading)", lineHeight: 1.2 }}
+      style={{ fontSize: "var(--font-size-section-heading)", lineHeight: "normal" }}
     >
       {children}
     </h2>
