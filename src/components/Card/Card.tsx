@@ -25,7 +25,11 @@ type CardProps = {
   tag: string;
   title: string;
   description: string;
-  skills: string;
+  /**
+   * Optional — some Card usages (e.g. "How I work") omit this line
+   * entirely rather than leaving it empty, per Figma.
+   */
+  skills?: string;
   /**
    * Fills the width of its parent instead of Figma's default fixed
    * 388px — used inside a card grid, where the parent controls each
@@ -62,10 +66,12 @@ export function Card({
       >
         {description}
       </p>
-      <p className="italic" style={{ fontSize: BODY_SIZE_VAR[size], lineHeight: 1.5 }}>
-        <span className="font-semibold text-accent">Skills: </span>
-        <span className="text-text-primary">{skills}</span>
-      </p>
+      {skills && (
+        <p className="italic" style={{ fontSize: BODY_SIZE_VAR[size], lineHeight: 1.5 }}>
+          <span className="font-semibold text-accent">Skills: </span>
+          <span className="text-text-primary">{skills}</span>
+        </p>
+      )}
     </div>
   );
 }

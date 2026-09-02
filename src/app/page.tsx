@@ -43,6 +43,33 @@ const SERVICES: [Service, Service, Service, Service] = [
   },
 ];
 
+const HOW_I_WORK: [Service, Service, Service, Service] = [
+  {
+    tag: "Understand",
+    title: "Start with the right problem",
+    description:
+      "I combine user needs, business goals and data to understand the bigger picture and identify where design can make the most impact.",
+  },
+  {
+    tag: "Explore",
+    title: "Turn insights into possibilities",
+    description:
+      "I translate insights into journeys, concepts and prototypes. I explore quickly, challenge assumptions and use AI where it helps accelerate the process.",
+  },
+  {
+    tag: "Validate",
+    title: "Learn before scaling",
+    description:
+      "I turn assumptions into hypotheses and validate ideas through user feedback, data and experimentation iterating based on what we learn.",
+  },
+  {
+    tag: "Align & Deliver",
+    title: "Bring people along",
+    description:
+      "I collaborate closely with product, tech and stakeholders to create alignment, make decisions and turn ideas into polished, scalable experiences.",
+  },
+];
+
 const PROJECTS: [Project, Project, Project] = [
   {
     client: "a.s.r. Nederland",
@@ -97,6 +124,14 @@ export default function Home() {
       <div className="grid-container relative isolate mt-6">
         <div className={styles.orangeBackdrop} aria-hidden="true" />
         <ProductCardGroup projects={PROJECTS} />
+      </div>
+
+      <div className={`grid-container ${styles.pcgToHowIWorkHeading}`}>
+        <SectionHeading>How I work</SectionHeading>
+      </div>
+
+      <div className={`grid-container ${styles.howIWorkHeadingToCards}`}>
+        <CardGrid services={HOW_I_WORK} />
       </div>
     </>
   );

@@ -5,7 +5,7 @@ export type Service = {
   tag: string;
   title: string;
   description: string;
-  skills: string;
+  skills?: string;
 };
 
 type CardGridProps = {

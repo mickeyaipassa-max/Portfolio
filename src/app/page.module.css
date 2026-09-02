@@ -75,3 +75,51 @@
     background: var(--color-accent);
   }
 }
+
+/*
+ * Gaps for the "How I work" section: Product Card Group bottom -> its
+ * heading top, and that heading -> its Card Grid. Measured separately
+ * from the "Latest work" section's own gaps above — neither is a
+ * constant across breakpoints here, and they don't match each other,
+ * so each gets its own per-breakpoint values rather than being
+ * assumed to share a token.
+ */
+.pcgToHowIWorkHeading {
+  margin-top: 40px;
+}
+
+.howIWorkHeadingToCards {
+  margin-top: 16px;
+}
+
+@media (min-width: 600px) {
+  .pcgToHowIWorkHeading {
+    margin-top: 10px;
+  }
+
+  .howIWorkHeadingToCards {
+    margin-top: 8px;
+  }
+}
+
+@media (min-width: 900px) {
+  .pcgToHowIWorkHeading {
+    margin-top: 56px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .pcgToHowIWorkHeading {
+    margin-top: 72px;
+  }
+
+  .howIWorkHeadingToCards {
+    margin-top: 24px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .pcgToHowIWorkHeading {
+    margin-top: 100px;
+  }
+}
