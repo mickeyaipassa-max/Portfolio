@@ -12,6 +12,10 @@
   --color-text-primary: #000000;
   --color-text-secondary: #595959;
   --color-accent: #ff4d00;
+  --color-accent-hover: #ff8000;
+  --color-accent-pressed: #d44000;
+  --color-disabled-bg: #c1c1c1;
+  --color-disabled-text: #636363;
   --color-border-subtle: #c7c7c7;
   --color-surface-subtle: #f9f9f9;
   --color-surface-muted: #d4d4d4;
@@ -28,10 +32,21 @@
   --font-size-heading-secondary: 16px;
   --font-size-subheading: 14px;
   --font-size-body: 12px;
-  --font-size-button-primary: 16px;
-  --font-size-button-secondary: 14px;
   /* --font-size-hero and --font-size-nav-link are intentionally unset
      below 900px: both are hidden on S/XS by design. */
+
+  /* Button component: Size is an explicit prop (S/M/L), not
+     viewport-driven — Figma defines it as 3 fixed component variants
+     with no confirmed breakpoint mapping, unlike nav-link/hero.
+     Measured directly from the "Button" component set. */
+  --font-size-button-s: 14px;
+  --font-size-button-m: 16px;
+  --font-size-button-l: 18px;
+  --button-padding-block-s: 12px;
+  --button-padding-block-m: 16px;
+  --button-padding-block-l: 16px;
+  --button-padding-inline: 40px;
+  --button-radius: 8px;
 
   /* Navigation logo size — from the Navigatie component (Size4/5/6) */
   --nav-logo-size: 60px;
@@ -41,7 +56,6 @@
   :root {
     --font-size-heading-primary: 32px;
     --font-size-body: 14px;
-    --font-size-button-primary: 14px;
     --nav-logo-size: 84px;
   }
 }
@@ -52,8 +66,6 @@
     --font-size-nav-link: 14px;
     --font-size-heading-primary: 40px;
     --font-size-subheading: 16px;
-    --font-size-button-primary: 16px;
-    --font-size-button-secondary: 16px;
   }
 }
 
