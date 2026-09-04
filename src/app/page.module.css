@@ -1,44 +1,68 @@
 /*
  * Vertical gaps between the Home page's sections — measured directly
  * from the Figma "Home" page at each of its 6 breakpoint frames
- * (Hero bottom -> Cards top, Cards bottom -> heading top). Below
- * 1200px both gaps drop to a constant 10px; at 1200px+ they take
- * distinct (non-monotonic) measured values per breakpoint rather than
- * a smooth scale — reproduced as measured, not smoothed out.
+ * (Hero bottom -> I Heart To top, I Heart To bottom -> heading top).
+ * Non-monotonic, reproduced as measured rather than smoothed out.
  * Heading -> Product Card Group is a constant 24px at every
  * breakpoint, so it's a plain utility class instead of a token here.
+ *
+ * I Heart To replaced what used to be a plain Card Grid directly
+ * under Hero — these gap values changed with it (previously a flat
+ * 10px below 1200px; I Heart To's own height shifts M and XS to
+ * 56px/40px instead), so this isn't the original Card Grid's gap
+ * reused under a new name.
  */
 
-.heroToCards {
-  margin-top: 10px;
+.heroToIlto {
+  margin-top: 40px;
 }
 
-.cardsToHeading {
-  margin-top: 10px;
+.iltoToHeading {
+  margin-top: 40px;
+}
+
+@media (min-width: 600px) {
+  .heroToIlto {
+    margin-top: 10px;
+  }
+
+  .iltoToHeading {
+    margin-top: 10px;
+  }
+}
+
+@media (min-width: 900px) {
+  .heroToIlto {
+    margin-top: 56px;
+  }
+
+  .iltoToHeading {
+    margin-top: 56px;
+  }
 }
 
 @media (min-width: 1200px) {
-  .heroToCards {
+  .heroToIlto {
     margin-top: 97px;
   }
 
-  .cardsToHeading {
+  .iltoToHeading {
     margin-top: 72px;
   }
 }
 
 @media (min-width: 1440px) {
-  .heroToCards {
+  .heroToIlto {
     margin-top: 82px;
   }
 
-  .cardsToHeading {
+  .iltoToHeading {
     margin-top: 100px;
   }
 }
 
 @media (min-width: 1800px) {
-  .heroToCards {
+  .heroToIlto {
     margin-top: 113px;
   }
 }

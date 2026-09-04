@@ -1,5 +1,6 @@
 import { Navigation } from "@/components/Navigation/Navigation";
 import { Hero } from "@/components/Hero/Hero";
+import { IHeartTo } from "@/components/IHeartTo/IHeartTo";
 import { CardGrid, type Service } from "@/components/CardGrid/CardGrid";
 import { SectionHeading } from "@/components/SectionHeading/SectionHeading";
 import {
@@ -8,41 +9,6 @@ import {
 } from "@/components/ProductCardGroup/ProductCardGroup";
 import { LogoCarousel } from "@/components/LogoCarousel/LogoCarousel";
 import styles from "./page.module.css";
-
-const SERVICES: [Service, Service, Service, Service] = [
-  {
-    tag: "Strategy",
-    title: "Turning complexity into direction",
-    description:
-      "I translate user needs, business goals and data into clear opportunities. Through journeys, hypotheses and stakeholder alignment, I help teams focus on what matters.",
-    skills:
-      "Product strategy · Customer journeys · Data & insights · Hypothesis building · Stakeholder management",
-  },
-  {
-    tag: "Experience",
-    title: "Designing experiences that work",
-    description:
-      "I turn insights into intuitive end-to-end experiences. From early flows and concepts to prototypes, testing and continuous optimisation.",
-    skills:
-      "UX design · User flows · Prototyping · Validation · Optimisation · Figma",
-  },
-  {
-    tag: "UI & Systems",
-    title: "Creating scalable experiences",
-    description:
-      "I craft polished interfaces and build design systems that create consistency, strengthen brands and help teams design and develop faster.",
-    skills:
-      "UI design · Design systems · Components · Figma · Branding · Visual identity",
-  },
-  {
-    tag: "AI driven",
-    title: "Exploring what AI makes possible",
-    description:
-      "I use AI throughout the design process to explore, prototype and validate faster, while designing new AI-powered experiences around real user needs.",
-    skills:
-      "AI prototyping · AI workflows · Concepting · Experimentation · AI experiences",
-  },
-];
 
 const HOW_I_WORK: [Service, Service, Service, Service] = [
   {
@@ -114,11 +80,11 @@ export default function Home() {
       />
       <Hero />
 
-      <div className={`grid-container ${styles.heroToCards}`}>
-        <CardGrid services={SERVICES} />
+      <div className={`grid-container ${styles.heroToIlto}`}>
+        <IHeartTo />
       </div>
 
-      <div className={`grid-container ${styles.cardsToHeading}`}>
+      <div className={`grid-container ${styles.iltoToHeading}`}>
         <SectionHeading>Latest work...</SectionHeading>
       </div>
 
