@@ -6,6 +6,7 @@ import {
   ProductCardGroup,
   type Project,
 } from "@/components/ProductCardGroup/ProductCardGroup";
+import { LogoCarousel } from "@/components/LogoCarousel/LogoCarousel";
 import styles from "./page.module.css";
 
 const SERVICES: [Service, Service, Service, Service] = [
@@ -132,6 +133,10 @@ export default function Home() {
 
       <div className={`grid-container ${styles.howIWorkHeadingToCards}`}>
         <CardGrid services={HOW_I_WORK} />
+      </div>
+
+      <div className={`grid-container ${styles.howIWorkToLogoCarousel}`}>
+        <LogoCarousel />
       </div>
     </>
   );

@@ -123,3 +123,38 @@
     margin-top: 100px;
   }
 }
+
+/*
+ * How I work's Card Grid bottom -> Logo Carousel top. Numerically
+ * identical to .pcgToHowIWorkHeading at every breakpoint (100/100/72/
+ * 56/10/40), but kept as its own class per this file's convention:
+ * each measured transition gets its own value even when two happen
+ * to coincide, since Figma has no shared token tying them together.
+ */
+.howIWorkToLogoCarousel {
+  margin-top: 40px;
+}
+
+@media (min-width: 600px) {
+  .howIWorkToLogoCarousel {
+    margin-top: 10px;
+  }
+}
+
+@media (min-width: 900px) {
+  .howIWorkToLogoCarousel {
+    margin-top: 56px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .howIWorkToLogoCarousel {
+    margin-top: 72px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .howIWorkToLogoCarousel {
+    margin-top: 100px;
+  }
+}
