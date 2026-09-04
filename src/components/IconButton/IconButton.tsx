@@ -16,9 +16,16 @@ const FORCE_COLOR: Record<IconButtonState, string> = {
 // Live (non-forced) colors go through static Tailwind classes rather
 // than inline style — an inline background color would always beat
 // hover:/active: classes in the cascade, making hover impossible to
-// ever show (see Button.tsx for the same fix).
-const LIVE_CLASSES =
-  "bg-[var(--color-accent)] enabled:hover:bg-[var(--color-accent-hover)] enabled:active:bg-[var(--color-accent-pressed)]";
+// ever show (see Button.tsx for the same fix). Separate link/button
+// variants because :enabled/:disabled only ever match real form
+// controls, never <a> — with href, this always renders as <a>, so
+// the enabled: guard there would never match and hover/pressed would
+// never show at all.
+const LIVE_CLASSES = {
+  link: "bg-[var(--color-accent)] hover:bg-[var(--color-accent-hover)] active:bg-[var(--color-accent-pressed)]",
+  button:
+    "bg-[var(--color-accent)] enabled:hover:bg-[var(--color-accent-hover)] enabled:active:bg-[var(--color-accent-pressed)]",
+};
 
 type IconButtonProps = {
   size: IconButtonSize;
@@ -53,7 +60,7 @@ export function IconButton({
   };
 
   const className = `inline-flex shrink-0 items-center justify-center rounded-full transition-colors ${
-    isForced ? "" : LIVE_CLASSES
+    isForced ? "" : LIVE_CLASSES[href ? "link" : "button"]
   }`;
 
   const icon = (
