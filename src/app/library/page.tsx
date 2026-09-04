@@ -1,4 +1,5 @@
 import { Button } from "@/components/Button/Button";
+import { IconButton } from "@/components/IconButton/IconButton";
 import { Tag } from "@/components/Tag/Tag";
 import { Card } from "@/components/Card/Card";
 import { ProductCard } from "@/components/ProductCard/ProductCard";
@@ -276,6 +277,51 @@ export default function LibraryPage() {
             </div>
           </div>
         ))}
+      </section>
+
+      {/* Icon Button — State × Size, no Type/Disabled */}
+      <section className="flex flex-col gap-4">
+        <h2 className="text-xl font-semibold">Icon Button</h2>
+        <p className="text-sm text-text-secondary">
+          9 varianten: State (Default/Hover/Pressed) × Size (S/M/L). Circulaire
+          knop, geen Type- of Disabled-variant. Hover/Pressed zijn hier
+          statisch geforceerd ter demonstratie.
+        </p>
+        <div className="overflow-x-auto">
+          <table className="border-collapse">
+            <thead>
+              <tr>
+                <th className="p-3 text-left text-sm text-text-secondary">
+                  State \ Size
+                </th>
+                {SIZES.map((size) => (
+                  <th
+                    key={size}
+                    className="p-3 text-left text-sm text-text-secondary uppercase"
+                  >
+                    {size}
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {(["default", "hover", "pressed"] as const).map((state) => (
+                <tr key={state} className="border-t border-border-subtle">
+                  <td className="p-3 text-sm font-medium capitalize">{state}</td>
+                  {SIZES.map((size) => (
+                    <td key={size} className="p-3">
+                      <IconButton
+                        size={size}
+                        forceState={state}
+                        ariaLabel="Bekijk project"
+                      />
+                    </td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </section>
 
       {/* Tag — Type × Size, no states */}
