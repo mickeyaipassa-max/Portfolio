@@ -182,3 +182,62 @@
     margin-top: 100px;
   }
 }
+
+/*
+ * Logo Carousel -> About Intro ("Voorstellen") gap, measured the same
+ * way as the other section gaps above (Logo Carousel bottom ->
+ * Voorstellen top at each of the 6 Figma breakpoint frames).
+ */
+.logoCarouselToAboutIntro {
+  margin-top: 40px;
+}
+
+@media (min-width: 600px) {
+  .logoCarouselToAboutIntro {
+    margin-top: 10px;
+  }
+}
+
+@media (min-width: 900px) {
+  .logoCarouselToAboutIntro {
+    margin-top: 56px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .logoCarouselToAboutIntro {
+    margin-top: 72px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .logoCarouselToAboutIntro {
+    margin-top: 100px;
+  }
+}
+
+/*
+ * About Intro breaks out of the standard grid-container below 1200px —
+ * confirmed in Figma: the "Voorstellen" instance spans the frame's
+ * full width (x=0) at M/S/XS, ignoring --grid-margin entirely, while
+ * at L/XL it matches --content-max-width (1000/1200) exactly, same as
+ * every other grid-contained section. At XXL it reuses the XL variant
+ * (1200px) centered within the page's 1600px grid, rather than
+ * stretching to fill it like the other sections do.
+ */
+.aboutIntroWrap {
+  width: 100%;
+}
+
+@media (min-width: 1200px) {
+  .aboutIntroWrap {
+    width: min(100% - (var(--grid-margin) * 2), var(--content-max-width));
+    margin-inline: auto;
+  }
+}
+
+@media (min-width: 1800px) {
+  .aboutIntroWrap {
+    max-width: 1200px;
+  }
+}

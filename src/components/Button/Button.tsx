@@ -82,6 +82,8 @@ type ButtonProps = {
    * :hover/:active/:disabled.
    */
   forceState?: ButtonState;
+  /** Fills the width of its parent instead of hugging its own content. */
+  fill?: boolean;
 };
 
 export function Button({
@@ -92,6 +94,7 @@ export function Button({
   onClick,
   disabled,
   forceState,
+  fill = false,
 }: ButtonProps) {
   const isForced = forceState !== undefined;
   const effectiveState: ButtonState = forceState ?? (disabled ? "disabled" : "default");
@@ -114,7 +117,7 @@ export function Button({
       })()
     : {};
 
-  const className = `inline-flex items-center justify-center rounded-[var(--button-radius)] border border-solid px-[var(--button-padding-inline)] font-medium whitespace-nowrap transition-colors ${colorClassName}`;
+  const className = `${fill ? "flex w-full" : "inline-flex"} items-center justify-center rounded-[var(--button-radius)] border border-solid px-[var(--button-padding-inline)] font-medium whitespace-nowrap transition-colors ${colorClassName}`;
   const style = { ...sizeStyle, ...colorStyle };
 
   if (isLink) {

@@ -1,6 +1,7 @@
 import { Navigation } from "@/components/Navigation/Navigation";
 import { Hero } from "@/components/Hero/Hero";
 import { IHeartTo } from "@/components/IHeartTo/IHeartTo";
+import { AboutIntro } from "@/components/AboutIntro/AboutIntro";
 import { CardGrid, type Service } from "@/components/CardGrid/CardGrid";
 import { SectionHeading } from "@/components/SectionHeading/SectionHeading";
 import {
@@ -103,6 +104,10 @@ export default function Home() {
 
       <div className={`grid-container ${styles.howIWorkToLogoCarousel}`}>
         <LogoCarousel />
+      </div>
+
+      <div className={`${styles.aboutIntroWrap} ${styles.logoCarouselToAboutIntro}`}>
+        <AboutIntro />
       </div>
     </>
   );

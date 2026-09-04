@@ -1,0 +1,211 @@
+/*
+ * "Voorstellen" — an About Me intro: wordmark + circular photo beside
+ * a bio and 2 CTAs. Three genuinely different structural layouts
+ * (not just restyles), measured at 5 Figma breakpoints (no XXL
+ * variant — extrapolated by continuing XL's values, the closest
+ * confirmed behavior, same as other components missing a top tier):
+ *
+ * >=1200px (L/XL, extrapolated to XXL): photo+wordmark in a left
+ * column beside a right column of bio+buttons, side by side.
+ * 600-1199px (S/M): photo+wordmark in a row on top, bio+buttons
+ * stacked below it.
+ * <600px (XS): everything stacked and centered; buttons go full-width
+ * and vertical instead of side by side.
+ *
+ * All three blocks always render, toggled with display — same
+ * technique as Navigation/Logo Carousel/I Heart To, since the DOMs
+ * genuinely differ (different wordmark asset per layout, structure).
+ *
+ * The bio's two paragraphs are one Figma text node with an explicit
+ * *blank* paragraph between them, sized independently of its
+ * neighbours (measured per breakpoint) purely to control the gap
+ * between the lede and the body. Reproduced as a margin-top on the
+ * body paragraph (blankSize * lineHeight) rather than an empty
+ * paragraph in the DOM, since a sighted-only spacer line has no
+ * business reaching assistive tech.
+ */
+
+.row {
+  display: none;
+}
+
+.stackedRows {
+  display: none;
+  flex-direction: column;
+  gap: 24px;
+
+  --intro-photo-size: 97px;
+  --intro-wordmark-w: 503px;
+  --intro-wordmark-h: 51.5px;
+  --intro-lede-size: 14px;
+  --intro-body-size: 14px;
+  --intro-line-height: 1.6;
+  --intro-spacer-gap: 22px;
+}
+
+.fullyStacked {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+
+  --intro-lede-size: 14px;
+  --intro-body-size: 14px;
+  --intro-line-height: 1.6;
+  --intro-spacer-gap: 22px;
+}
+
+@media (min-width: 600px) {
+  .fullyStacked {
+    display: none;
+  }
+
+  .stackedRows {
+    display: flex;
+  }
+}
+
+@media (min-width: 1200px) {
+  .stackedRows {
+    display: none;
+  }
+
+  .row {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+
+    --intro-photo-size: 128px;
+    --intro-wordmark-w: 407px;
+    --intro-wordmark-h: 176px;
+    --intro-photo-offset-x: -17px;
+    --intro-photo-offset-y: -35px;
+    --intro-lede-size: 20px;
+    --intro-body-size: 16px;
+    --intro-line-height: 1.4;
+    --intro-spacer-gap: 25px;
+  }
+}
+
+@media (min-width: 900px) and (max-width: 1199.98px) {
+  .stackedRows {
+    --intro-photo-size: 128px;
+    --intro-wordmark-w: 701px;
+    --intro-wordmark-h: 75px;
+    --intro-lede-size: 16px;
+    --intro-body-size: 16px;
+    --intro-line-height: 1.4;
+    --intro-spacer-gap: 25px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .row {
+    --intro-photo-size: 166px;
+    --intro-wordmark-w: 564px;
+    --intro-wordmark-h: 243px;
+    --intro-photo-offset-x: -16.5px;
+    --intro-photo-offset-y: -41px;
+    --intro-body-size: 18px;
+  }
+}
+
+/* Row layout: left image column */
+.rowImageCol {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.rowWordmark {
+  width: var(--intro-wordmark-w);
+  height: var(--intro-wordmark-h);
+  display: block;
+}
+
+.rowPhotoWrap {
+  position: absolute;
+  left: var(--intro-photo-offset-x);
+  top: var(--intro-photo-offset-y);
+  width: var(--intro-photo-size);
+  height: var(--intro-photo-size);
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.rowContent {
+  display: flex;
+  flex: 1 0 0;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-self: stretch;
+  gap: 24px;
+}
+
+/* Stacked-rows layout (M/S): photo + single-line wordmark side by side */
+.stackedTopRow {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.stackedPhotoWrap {
+  position: relative;
+  width: var(--intro-photo-size);
+  height: var(--intro-photo-size);
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.stackedWordmark {
+  width: var(--intro-wordmark-w);
+  height: var(--intro-wordmark-h);
+  max-width: none;
+}
+
+/* Fully-stacked layout (XS) */
+.xsPhotoWrap {
+  position: relative;
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.xsWordmark {
+  width: 100%;
+  margin-top: 16px;
+}
+
+/* Shared bio + buttons, driven by the active block's custom properties */
+.bio {
+  width: 100%;
+}
+
+.lede {
+  font-size: var(--intro-lede-size);
+  line-height: var(--intro-line-height);
+}
+
+.body {
+  font-size: var(--intro-body-size);
+  line-height: var(--intro-line-height);
+  margin-top: var(--intro-spacer-gap);
+}
+
+.buttonsRow {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.buttonsCol {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 16px;
+}
