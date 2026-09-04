@@ -2,16 +2,26 @@
  * "ILTO" ("I ❤ To") — measured from the "ILTO" component set. Two
  * structurally different layouts, not just restyled at a breakpoint:
  *
- * >=900px (XXL/XL/L/M): horizontal — an image column (the "I ❤ To"
- * graphic stacked above a cropped photo) beside a list of 4 items.
- * <900px (S/XS): vertical stack — a horizontal "I ❤ To" graphic
- * above item 1, then items 2-4 below. No photo at all at this range
- * (confirmed absent in Figma, not a simplification).
+ * >=900px (XXL/XL/L/M): horizontal — an image column (just the
+ * "I ❤ To" graphic — the photo that used to sit below it was removed
+ * in Figma) beside a list of 4 items. <900px (S/XS): vertical stack —
+ * a horizontal "I ❤ To" graphic above item 1, then items 2-4 below.
  *
  * Both blocks always render; each is toggled with display via the
  * same min-width pattern used by Navigation/Logo Carousel, since the
- * two DOMs genuinely differ (different graphic asset, presence of the
- * photo) rather than just being a restyle of shared markup.
+ * two DOMs genuinely differ (different graphic asset) rather than
+ * just being a restyle of shared markup.
+ *
+ * Now that the photo is gone, the image column is far shorter than
+ * the list (confirmed in Figma: the "ILTO" wrapper frame is stretched
+ * to the list's full height at M, vector pinned to its top, with a
+ * lot of empty space below — a static tool's only way to represent
+ * "this graphic should stay put while the list scrolls past it").
+ * Reproduced as an actual sticky element: the image column stretches
+ * to the list's height, and the graphic sticks centered on the
+ * viewport within it — released back into flow once its container's
+ * top/bottom is reached. Per explicit instruction, this only applies
+ * >=900px; S/XS keep their own plain top-of-stack graphic.
  */
 
 .wide {
@@ -29,7 +39,7 @@
 @media (min-width: 900px) {
   .wide {
     display: flex;
-    align-items: flex-end;
+    align-items: stretch;
     background: var(--color-surface-subtle);
     border-radius: 16px;
 
@@ -41,11 +51,9 @@
     --font-size-ilto-title: 16px;
     --font-size-ilto-desc: 16px;
     --font-size-ilto-skills: 16px;
-    --ilto-photo-w: 212px;
-    --ilto-photo-h: 496px;
     --ilto-vector-w: 160px;
     --ilto-vector-h: 208px;
-    --ilto-photo-object-position: 65% 100%;
+    --ilto-image-column-align: flex-start;
 
     gap: var(--ilto-outer-gap);
     padding-right: var(--ilto-outer-padding-right);
@@ -62,8 +70,6 @@
     --ilto-outer-padding-right: 0px;
     --ilto-item-padding: 24px;
     --font-size-ilto-title: 20px;
-    --ilto-photo-w: 269px;
-    --ilto-photo-h: 631px;
     --ilto-vector-w: 189px;
     --ilto-vector-h: 243px;
   }
@@ -73,8 +79,6 @@
   .wide {
     --ilto-icon-size: 64px;
     --font-size-ilto-desc: 18px;
-    --ilto-photo-w: 293px;
-    --ilto-photo-h: 687px;
     --ilto-vector-w: 224px;
     --ilto-vector-h: 289px;
   }
@@ -84,33 +88,27 @@
   .wide {
     --ilto-outer-gap: 80px;
     --ilto-list-gap: 24px;
-    --ilto-photo-w: 435px;
-    --ilto-photo-h: 673px;
     --ilto-vector-w: 301px;
     --ilto-vector-h: 388px;
-    --ilto-photo-object-position: 45% 100%;
+    --ilto-image-column-align: center;
   }
 }
 
 .imageColumn {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: var(--ilto-image-column-align, flex-start);
   flex-shrink: 0;
-  padding-top: 40px;
+  padding-block: 40px;
 }
 
 .vector {
   width: var(--ilto-vector-w);
   height: var(--ilto-vector-h);
   flex-shrink: 0;
-}
-
-.photoWrap {
-  position: relative;
-  width: var(--ilto-photo-w);
-  height: var(--ilto-photo-h);
-  flex-shrink: 0;
+  position: sticky;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .list {

@@ -1,4 +1,3 @@
-import Image from "next/image";
 import styles from "./IHeartTo.module.css";
 
 type Item = {
@@ -91,16 +90,6 @@ export function IHeartTo() {
             alt="I love to"
             className={styles.vector}
           />
-          <div className={styles.photoWrap}>
-            <Image
-              src="/ilto/photo.png"
-              alt="Portret van Mickey Aipassa"
-              fill
-              sizes="450px"
-              className="object-cover"
-              style={{ objectPosition: "var(--ilto-photo-object-position)" }}
-            />
-          </div>
         </div>
 
         <div className={styles.list}>
