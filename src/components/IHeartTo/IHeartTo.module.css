@@ -1,0 +1,138 @@
+/*
+ * "ILTO" ("I ❤ To") — measured from the "ILTO" component set. Two
+ * structurally different layouts, not just restyled at a breakpoint:
+ *
+ * >=900px (XXL/XL/L/M): horizontal — an image column (the "I ❤ To"
+ * graphic stacked above a cropped photo) beside a list of 4 items.
+ * <900px (S/XS): vertical stack — a horizontal "I ❤ To" graphic
+ * above item 1, then items 2-4 below. No photo at all at this range
+ * (confirmed absent in Figma, not a simplification).
+ *
+ * Both blocks always render; each is toggled with display via the
+ * same min-width pattern used by Navigation/Logo Carousel, since the
+ * two DOMs genuinely differ (different graphic asset, presence of the
+ * photo) rather than just being a restyle of shared markup.
+ */
+
+.wide {
+  display: none;
+}
+
+.narrow {
+  display: flex;
+  flex-direction: column;
+  background: var(--color-surface-subtle);
+  border-radius: 8px;
+  padding: 24px;
+}
+
+@media (min-width: 900px) {
+  .wide {
+    display: flex;
+    align-items: flex-end;
+    background: var(--color-surface-subtle);
+    border-radius: 16px;
+
+    --ilto-outer-gap: 8px;
+    --ilto-outer-padding-right: 32px;
+    --ilto-list-gap: 0px;
+    --ilto-item-padding: 24px 0;
+    --ilto-icon-size: 32px;
+    --font-size-ilto-title: 16px;
+    --font-size-ilto-desc: 16px;
+    --font-size-ilto-skills: 16px;
+    --ilto-photo-w: 212px;
+    --ilto-photo-h: 496px;
+    --ilto-vector-w: 160px;
+    --ilto-vector-h: 208px;
+    --ilto-photo-object-position: 65% 100%;
+
+    gap: var(--ilto-outer-gap);
+    padding-right: var(--ilto-outer-padding-right);
+  }
+
+  .narrow {
+    display: none;
+  }
+}
+
+@media (min-width: 1200px) {
+  .wide {
+    --ilto-outer-gap: 24px;
+    --ilto-outer-padding-right: 0px;
+    --ilto-item-padding: 24px;
+    --font-size-ilto-title: 20px;
+    --ilto-photo-w: 269px;
+    --ilto-photo-h: 631px;
+    --ilto-vector-w: 189px;
+    --ilto-vector-h: 243px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .wide {
+    --ilto-icon-size: 64px;
+    --font-size-ilto-desc: 18px;
+    --ilto-photo-w: 293px;
+    --ilto-photo-h: 687px;
+    --ilto-vector-w: 224px;
+    --ilto-vector-h: 289px;
+  }
+}
+
+@media (min-width: 1800px) {
+  .wide {
+    --ilto-outer-gap: 80px;
+    --ilto-list-gap: 24px;
+    --ilto-photo-w: 435px;
+    --ilto-photo-h: 673px;
+    --ilto-vector-w: 301px;
+    --ilto-vector-h: 388px;
+    --ilto-photo-object-position: 45% 100%;
+  }
+}
+
+.imageColumn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+  padding-top: 40px;
+}
+
+.vector {
+  width: var(--ilto-vector-w);
+  height: var(--ilto-vector-h);
+  flex-shrink: 0;
+}
+
+.photoWrap {
+  position: relative;
+  width: var(--ilto-photo-w);
+  height: var(--ilto-photo-h);
+  flex-shrink: 0;
+}
+
+.list {
+  display: flex;
+  flex: 1 0 0;
+  flex-direction: column;
+  gap: var(--ilto-list-gap);
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  border-radius: 16px;
+  padding: var(--ilto-item-padding, 16px 0);
+}
+
+.icon {
+  width: var(--ilto-icon-size, 32px);
+  height: var(--ilto-icon-size, 32px);
+  flex-shrink: 0;
+}

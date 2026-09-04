@@ -13,6 +13,7 @@ const BREAKPOINTS = [
     productCardGroupHeight: 950,
     cardGridHeight: 450,
     logoCarouselHeight: 250,
+    iHeartToHeight: 1150,
   },
   {
     label: "XL — 1440–1799px",
@@ -22,6 +23,7 @@ const BREAKPOINTS = [
     productCardGroupHeight: 800,
     cardGridHeight: 700,
     logoCarouselHeight: 250,
+    iHeartToHeight: 1080,
   },
   {
     label: "L — 1200–1439px",
@@ -31,6 +33,7 @@ const BREAKPOINTS = [
     productCardGroupHeight: 720,
     cardGridHeight: 650,
     logoCarouselHeight: 260,
+    iHeartToHeight: 970,
   },
   {
     label: "M — 900–1199px",
@@ -40,6 +43,7 @@ const BREAKPOINTS = [
     productCardGroupHeight: 640,
     cardGridHeight: 750,
     logoCarouselHeight: 260,
+    iHeartToHeight: 900,
   },
   {
     label: "S — 600–899px",
@@ -49,6 +53,7 @@ const BREAKPOINTS = [
     productCardGroupHeight: 2550,
     cardGridHeight: 1050,
     logoCarouselHeight: 260,
+    iHeartToHeight: 1400,
   },
   {
     label: "XS — <600px",
@@ -58,6 +63,7 @@ const BREAKPOINTS = [
     productCardGroupHeight: 2550,
     cardGridHeight: 1200,
     logoCarouselHeight: 250,
+    iHeartToHeight: 1400,
   },
 ];
 
@@ -447,6 +453,33 @@ export default function LibraryPage() {
               src="/library/preview/logo-carousel"
               width={bp.width}
               height={bp.logoCarouselHeight}
+              label={bp.label}
+            />
+          ))}
+        </div>
+      </section>
+
+      {/* ILTO ("I ❤ To") — image+list at >=900px, stacked marquee-free list below */}
+      <section className="flex flex-col gap-4">
+        <h2 className="text-xl font-semibold">I ❤ To</h2>
+        <p className="text-sm text-text-secondary">
+          6 breakpoint-varianten (Figma: &ldquo;ILTO&rdquo;). ≥900px: een
+          beeldkolom (het &ldquo;I ❤ To&rdquo;-grafiek gestapeld boven een
+          foto) naast een lijst van 4 items. &lt;900px: geen foto (bevestigd
+          afwezig in Figma) — een horizontale versie van het grafiek boven de
+          4 gestapelde items. Twee losse SVG-assets voor de twee
+          arrangementen, geen CSS-hertekening van hetzelfde bestand. De foto
+          gebruikt een object-position gemeten uit Figma&rsquo;s crop
+          (verticaal vast onderaan, horizontaal wisselend tussen XXL en
+          XL/L/M).
+        </p>
+        <div className="flex flex-wrap gap-6">
+          {BREAKPOINTS.map((bp) => (
+            <BreakpointFrame
+              key={bp.label}
+              src="/library/preview/i-heart-to"
+              width={bp.width}
+              height={bp.iHeartToHeight}
               label={bp.label}
             />
           ))}
