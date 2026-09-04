@@ -1,0 +1,33 @@
+/*
+ * Marquee for M/S/XS (<1200px). The track renders the logo sequence
+ * twice back to back and animates by exactly -50% of its own width
+ * (max-content, so that's exactly one full sequence) — since both
+ * halves are identical, the loop point is visually seamless with no
+ * jump or reset.
+ */
+
+.viewport {
+  overflow: hidden;
+}
+
+.track {
+  display: flex;
+  align-items: center;
+  width: max-content;
+  animation: marquee 30s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .track {
+    animation: none;
+  }
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}

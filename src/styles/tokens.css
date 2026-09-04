@@ -115,6 +115,33 @@
 
   /* Navigation logo size — from the Navigatie component (Size4/5/6) */
   --nav-logo-size: 60px;
+
+  /* Logo Carousel: measured from the "Logo Carousel" component set.
+     Container padding/radius/bg are constant at every breakpoint.
+     Heading size follows its own scale (24/32/40), breaking at 600px
+     and 1200px — not the same thresholds as --font-size-heading-primary
+     (600/900), so kept separate. Row gap has no clean pattern across
+     tiers, reproduced as measured. Each logo has two fixed sizes: the
+     "large" set (XXL/XL, 1440px+) and the "small" set used everywhere
+     below that, including inside the marquee — a real 2-tier scale
+     confirmed by identical values at L/M/S/XS, not fluid. */
+  --logo-carousel-radius: 16px;
+  --logo-carousel-padding-block: 40px;
+  --logo-carousel-gap: 40px;
+  --font-size-logo-carousel-heading: 24px;
+  --logo-carousel-row-gap: 24px;
+
+  --logo-om-size: 63px;
+  --logo-lotus-w: 123px;
+  --logo-lotus-h: 23px;
+  --logo-asr-w: 136px;
+  --logo-asr-h: 83px;
+  --logo-freshcotton-w: 132px;
+  --logo-freshcotton-h: 21.91px;
+  --logo-rocketsourcers-w: 183px;
+  --logo-rocketsourcers-h: 27px;
+  --logo-knaap-w: 121px;
+  --logo-knaap-h: 17px;
 }
 
 @media (min-width: 600px) {
@@ -122,6 +149,8 @@
     --font-size-heading-primary: 32px;
     --font-size-body: 14px;
     --nav-logo-size: 84px;
+    --font-size-logo-carousel-heading: 32px;
+    --logo-carousel-row-gap: 40px;
   }
 }
 
@@ -140,6 +169,8 @@
     --font-size-heading-secondary: 18px;
     --font-size-subheading: 24px;
     --nav-logo-size: 88px;
+    --font-size-logo-carousel-heading: 40px;
+    --logo-carousel-row-gap: 24px;
   }
 }
 
@@ -151,6 +182,18 @@
     --font-size-subheading: 32px;
     --font-size-body: 16px;
     --nav-logo-size: 112px;
+    --logo-carousel-row-gap: 32px;
+    --logo-om-size: 78px;
+    --logo-lotus-w: 147.52px;
+    --logo-lotus-h: 27.88px;
+    --logo-asr-w: 160px;
+    --logo-asr-h: 77px;
+    --logo-freshcotton-w: 190.99px;
+    --logo-freshcotton-h: 31.7px;
+    --logo-rocketsourcers-w: 217px;
+    --logo-rocketsourcers-h: 32px;
+    --logo-knaap-w: 161px;
+    --logo-knaap-h: 22px;
   }
 }
 
@@ -158,5 +201,6 @@
   :root {
     --font-size-nav-link: 18px;
     --nav-logo-size: 120px;
+    --logo-carousel-row-gap: 80px;
   }
 }

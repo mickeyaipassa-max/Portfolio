@@ -12,6 +12,7 @@ const BREAKPOINTS = [
     heroHeight: 700,
     productCardGroupHeight: 950,
     cardGridHeight: 450,
+    logoCarouselHeight: 250,
   },
   {
     label: "XL — 1440–1799px",
@@ -20,6 +21,7 @@ const BREAKPOINTS = [
     heroHeight: 600,
     productCardGroupHeight: 800,
     cardGridHeight: 700,
+    logoCarouselHeight: 250,
   },
   {
     label: "L — 1200–1439px",
@@ -28,6 +30,7 @@ const BREAKPOINTS = [
     heroHeight: 550,
     productCardGroupHeight: 720,
     cardGridHeight: 650,
+    logoCarouselHeight: 260,
   },
   {
     label: "M — 900–1199px",
@@ -36,6 +39,7 @@ const BREAKPOINTS = [
     heroHeight: 550,
     productCardGroupHeight: 640,
     cardGridHeight: 750,
+    logoCarouselHeight: 260,
   },
   {
     label: "S — 600–899px",
@@ -44,6 +48,7 @@ const BREAKPOINTS = [
     heroHeight: 500,
     productCardGroupHeight: 2550,
     cardGridHeight: 1050,
+    logoCarouselHeight: 260,
   },
   {
     label: "XS — <600px",
@@ -52,6 +57,7 @@ const BREAKPOINTS = [
     heroHeight: 450,
     productCardGroupHeight: 2550,
     cardGridHeight: 1200,
+    logoCarouselHeight: 250,
   },
 ];
 
@@ -420,6 +426,31 @@ export default function LibraryPage() {
           --font-size-heading-primary, dus als eigen token bewaard.
         </p>
         <SectionHeading>Latest work...</SectionHeading>
+      </section>
+
+      {/* Logo Carousel — static row >=1200px, infinite marquee below */}
+      <section className="flex flex-col gap-4">
+        <h2 className="text-xl font-semibold">Logo Carousel</h2>
+        <p className="text-sm text-text-secondary">
+          6 breakpoint-varianten. XXL/XL/L (≥1200px) tonen alle 6 logo&rsquo;s
+          statisch en volledig zichtbaar, zonder animatie. M/S/XS (&lt;1200px)
+          worden een oneindige, naadloze marquee (lineair, richting
+          rechts-naar-links) — de logo-reeks wordt daarvoor verdubbeld in de
+          track. Elk logo heeft twee vaste groottes in Figma (groot bij
+          XXL/XL, klein overal daaronder inclusief in de marquee) — geen
+          fluid schaal.
+        </p>
+        <div className="flex flex-wrap gap-6">
+          {BREAKPOINTS.map((bp) => (
+            <BreakpointFrame
+              key={bp.label}
+              src="/library/preview/logo-carousel"
+              width={bp.width}
+              height={bp.logoCarouselHeight}
+              label={bp.label}
+            />
+          ))}
+        </div>
       </section>
     </div>
   );
