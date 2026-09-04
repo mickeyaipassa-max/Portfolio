@@ -5,14 +5,16 @@
  * the wordmark's own height, so it renders as a stacked block instead
  * of an overlap — that is Figma's own layout, not a simplification.
  *
- * Every position/size below is linearly interpolated between the two
- * nearest of Figma's 6 measured breakpoints (390/600/900/1200/1440/
- * 1800px), using 100vw as the input. Figma only defines exact values
- * AT those 6 reference widths; interpolating between them keeps the
- * card and photo scaling continuously with the wordmark (which is
- * already fluid via width:100%) instead of jumping in steps.
- * Below 390px and above 1800px, values hold flat at the nearest
- * measured breakpoint (no data exists beyond that to extrapolate).
+ * Fixed per breakpoint, not interpolated: each of Figma's 6 measured
+ * breakpoints (390/600/900/1200/1440/1800px) has its own exact,
+ * constant values, matching every other component in this project
+ * (Button/Card/ILTO/etc. all jump at min-width boundaries rather than
+ * scaling continuously with the viewport). An earlier version of this
+ * file interpolated between breakpoints via calc(100vw...) formulas,
+ * which made the card and photo visibly drift on every resize instead
+ * of holding still within a tier — not how Figma (or the rest of this
+ * codebase) represents these breakpoints, so it's reverted to plain
+ * fixed values that hold flat until the next min-width.
  *
  * Coordinates are measured relative to the grid-container's content
  * edge (Figma's raw x minus that breakpoint's own frame padding), so
@@ -45,15 +47,14 @@
    * height (the "stacked" case documented above) — since it's
    * absolutely positioned, it doesn't contribute to .hero's box
    * height on its own, so a sibling placed right after .hero would
-   * overlap it. min-height is set to the card's measured
-   * top+height (bottom edge) at each breakpoint below 1200px, using
-   * the same interpolation technique as the rest of this file. At
-   * 1200px+ the card is fully contained within the wordmark's own
-   * height (confirmed: card bottom 241/311/355px vs wordmark height
+   * overlap it. min-height is set to the card's measured top+height
+   * (bottom edge) at each breakpoint below 1200px. At 1200px+ the
+   * card is fully contained within the wordmark's own height
+   * (confirmed: card bottom 241/311/355px vs wordmark height
    * ~345/415/553px at L/XL/XXL), so no override is needed there.
    */
 
-  /* below 390px: hold flat at the XS (390px) reference values */
+  /* XS: <600px */
   --hero-card-left: calc(-1 * var(--grid-margin));
   --hero-card-top: 207px;
   --hero-card-width: calc(100% + 2 * var(--grid-margin));
@@ -72,106 +73,72 @@
   min-height: var(--hero-min-height, 0px);
 }
 
-/* 390–600px: interpolate XS -> S */
-@media (min-width: 390px) and (max-width: 599.98px) {
+/* S: 600–899px */
+@media (min-width: 600px) {
   .hero {
-    --hero-card-top: calc(207px + (100vw - 390px) * 0.385714);
-    --hero-chip-size: calc(12px + (100vw - 390px) * 0.009524);
-    --hero-min-height: calc(324px + (100vw - 390px) * 0.380952);
-
-    --hero-photo-left: calc(97.98px + (100vw - 390px) * 0.204857);
-    --hero-photo-top: calc(-12px + (100vw - 390px) * -0.133333);
-    --hero-photo-width: calc(164.09px + (100vw - 390px) * 0.399762);
-    --hero-photo-height: calc(215px + (100vw - 390px) * 0.52381);
-  }
-}
-
-/* 600–900px: interpolate S -> M */
-@media (min-width: 600px) and (max-width: 899.98px) {
-  .hero {
-    --hero-card-left: calc(-1 * var(--grid-margin) + (100vw - 600px) * 0.106667);
     --hero-card-top: 288px;
-    --hero-min-height: calc(404px + (100vw - 600px) * 0.12);
-    --hero-card-radius: calc(8px + (100vw - 600px) * 0.026667);
-    --hero-tagline-size: calc(14px + (100vw - 600px) * 0.02);
-    --hero-chip-size: 14px;
+    --hero-min-height: 404px;
 
-    --hero-photo-left: calc(141px + (100vw - 600px) * 1.186667);
-    --hero-photo-top: calc(-40px + (100vw - 600px) * 0.626667);
+    --hero-photo-left: 141px;
+    --hero-photo-top: -40px;
     --hero-photo-width: 248.04px;
     --hero-photo-height: 325px;
   }
 }
 
-/* 900–1200px: interpolate M -> L */
-@media (min-width: 900px) and (max-width: 1199.98px) {
+/* M: 900–1199px */
+@media (min-width: 900px) {
   .hero {
-    --hero-card-left: calc(0px + (100vw - 900px) * 0.493333);
-    --hero-card-top: calc(288px + (100vw - 900px) * -0.663333);
-    --hero-min-height: calc(440px + (100vw - 900px) * -0.663333);
+    --hero-card-left: 0px;
+    --hero-card-top: 288px;
+    --hero-min-height: 440px;
     --hero-card-width: 475px;
     --hero-card-padding-block: 24px;
     --hero-card-padding-inline: 24px;
     --hero-card-radius: 16px;
     --hero-tagline-size: 20px;
+    --hero-chip-size: 14px;
 
-    --hero-photo-left: calc(497px + (100vw - 900px) * 0.42);
-    --hero-photo-top: calc(148px + (100vw - 900px) * -0.116667);
-    --hero-photo-width: 248.04px;
-    --hero-photo-height: 325px;
+    --hero-photo-left: 497px;
+    --hero-photo-top: 148px;
   }
 }
 
-/* 1200–1440px: interpolate L -> XL */
-@media (min-width: 1200px) and (max-width: 1439.98px) {
+/* L: 1200–1439px */
+@media (min-width: 1200px) {
   .hero {
-    --hero-card-left: calc(148px + (100vw - 1200px) * 0.020833);
-    --hero-card-top: calc(89px + (100vw - 1200px) * 0.1);
+    --hero-card-left: 148px;
+    --hero-card-top: 89px;
     --hero-min-height: 0px;
-    --hero-card-width: calc(475px + (100vw - 1200px) * 0.283333);
-    --hero-card-padding-block: calc(24px + (100vw - 1200px) * 0.066667);
-    --hero-card-padding-inline: calc(24px + (100vw - 1200px) * 0.066667);
-    --hero-card-radius: 16px;
-    --hero-tagline-size: calc(20px + (100vw - 1200px) * 0.016667);
-    --hero-chip-size: calc(14px + (100vw - 1200px) * 0.008333);
 
-    --hero-photo-left: calc(623px + (100vw - 1200px) * 0.304167);
+    --hero-photo-left: 623px;
     --hero-photo-top: 113px;
-    --hero-photo-width: calc(248.04px + (100vw - 1200px) * 0.162333);
-    --hero-photo-height: calc(325px + (100vw - 1200px) * 0.212667);
   }
 }
 
-/* 1440–1800px: interpolate XL -> XXL */
-@media (min-width: 1440px) and (max-width: 1799.98px) {
+/* XL: 1440–1799px */
+@media (min-width: 1440px) {
   .hero {
-    --hero-card-left: calc(153px + (100vw - 1440px) * 0.672222);
-    --hero-card-top: calc(113px + (100vw - 1440px) * 0.1225);
+    --hero-card-left: 153px;
+    --hero-card-top: 113px;
     --hero-card-width: 543px;
     --hero-card-padding-block: 40px;
     --hero-card-padding-inline: 40px;
-    --hero-card-radius: 16px;
     --hero-tagline-size: 24px;
     --hero-chip-size: 16px;
 
-    --hero-photo-left: calc(696px + (100vw - 1440px) * 0.561111);
-    --hero-photo-top: calc(113px + (100vw - 1440px) * 0.305556);
-    --hero-photo-width: calc(287px + (100vw - 1440px) * 0.140333);
-    --hero-photo-height: calc(376.04px + (100vw - 1440px) * 0.183889);
+    --hero-photo-left: 696px;
+    --hero-photo-top: 113px;
+    --hero-photo-width: 287px;
+    --hero-photo-height: 376.04px;
   }
 }
 
-/* 1800px+: hold flat at the XXL reference values */
+/* XXL: 1800px+ */
 @media (min-width: 1800px) {
   .hero {
     --hero-card-left: 395px;
     --hero-card-top: 157.1px;
-    --hero-card-width: 543px;
-    --hero-card-padding-block: 40px;
-    --hero-card-padding-inline: 40px;
-    --hero-card-radius: 16px;
-    --hero-tagline-size: 24px;
-    --hero-chip-size: 16px;
 
     --hero-photo-left: 898px;
     --hero-photo-top: 223px;

@@ -22,6 +22,24 @@
  * viewport within it — released back into flow once its container's
  * top/bottom is reached. Per explicit instruction, this only applies
  * >=900px; S/XS keep their own plain top-of-stack graphic.
+ *
+ * Re-measured directly from Figma's ILTO instances (2189:3976 M,
+ * 2189:3826 L, 2189:3751 XL, 2189:3387 XXL) after the sticky graphic
+ * was reported as starting outside the card and missing padding:
+ * - The image column has its own explicit width, wider than the
+ *   vector itself (212/269/269px at M/L/XL) — the vector is
+ *   horizontally CENTERED inside it (Figma: `justify-center` on the
+ *   inner wrapper at every one of these tiers, not left-aligned).
+ *   Without that width, the column collapsed to the vector's own
+ *   width, leaving no room to center it and starting the list column
+ *   too far left. At XXL there's no separate column — the graphic
+ *   node itself is 408x468 (not 301x388 as previously assumed).
+ * - The list column carries its own padding besides each item's own
+ *   p-24: 8px top/bottom at M (no left/right — the outer wrapper's
+ *   own pr-32 already provides the right inset), and 24px
+ *   top/right/bottom (no left — the gap to the image column already
+ *   separates it) at L/XL/XXL. This was previously 0, which is the
+ *   reported missing padding.
  */
 
 .wide {
@@ -46,14 +64,15 @@
     --ilto-outer-gap: 8px;
     --ilto-outer-padding-right: 32px;
     --ilto-list-gap: 0px;
+    --ilto-list-padding: 8px 0;
     --ilto-item-padding: 24px 0;
     --ilto-icon-size: 32px;
     --font-size-ilto-title: 16px;
     --font-size-ilto-desc: 16px;
     --font-size-ilto-skills: 16px;
+    --ilto-image-column-w: 212px;
     --ilto-vector-w: 160px;
     --ilto-vector-h: 208px;
-    --ilto-image-column-align: flex-start;
 
     gap: var(--ilto-outer-gap);
     padding-right: var(--ilto-outer-padding-right);
@@ -68,8 +87,10 @@
   .wide {
     --ilto-outer-gap: 24px;
     --ilto-outer-padding-right: 0px;
+    --ilto-list-padding: 24px 24px 24px 0;
     --ilto-item-padding: 24px;
     --font-size-ilto-title: 20px;
+    --ilto-image-column-w: 269px;
     --ilto-vector-w: 189px;
     --ilto-vector-h: 243px;
   }
@@ -88,17 +109,18 @@
   .wide {
     --ilto-outer-gap: 80px;
     --ilto-list-gap: 24px;
-    --ilto-vector-w: 301px;
-    --ilto-vector-h: 388px;
-    --ilto-image-column-align: center;
+    --ilto-image-column-w: 408px;
+    --ilto-vector-w: 408px;
+    --ilto-vector-h: 468px;
   }
 }
 
 .imageColumn {
   display: flex;
   flex-direction: column;
-  align-items: var(--ilto-image-column-align, flex-start);
+  align-items: center;
   flex-shrink: 0;
+  width: var(--ilto-image-column-w);
   padding-block: 40px;
 }
 
@@ -116,6 +138,7 @@
   flex: 1 0 0;
   flex-direction: column;
   gap: var(--ilto-list-gap);
+  padding: var(--ilto-list-padding, 0);
 }
 
 .item {
