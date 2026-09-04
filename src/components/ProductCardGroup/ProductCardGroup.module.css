@@ -5,13 +5,15 @@
  * from Figma's 5 breakpoint variants (no dedicated <600px variant;
  * below 600px this extrapolates the confirmed <900px behavior).
  *
- * Each ProductCard/Tag/Button below is always rendered with size="l",
- * then the underlying --font-size-*-l / --*-padding-*-l custom
- * properties are locally overridden here per breakpoint. Those
- * components already read their size via var(--..-l) lookups, so
- * shadowing the variable in this scope changes what they render
- * without touching their own code — the same technique Hero uses for
- * fluid values, applied here as discrete per-tier overrides instead.
+ * Each ProductCard/Tag below is always rendered with size="l", then
+ * the underlying --font-size-*-l / --*-padding-*-l custom properties
+ * are locally overridden here per breakpoint. Those components
+ * already read their size via var(--..-l) lookups, so shadowing the
+ * variable in this scope changes what they render without touching
+ * their own code — the same technique Hero uses for fluid values,
+ * applied here as discrete per-tier overrides instead. Product Card's
+ * CTA is an Icon Button, which Figma confirms is always Size=L
+ * regardless of card size — no override needed for it.
  */
 
 .group {
@@ -30,8 +32,6 @@
   --font-size-product-card-title-l: 20px;
   --font-size-tag-l: 14px;
   --tag-padding-inline-l: 16px;
-  --font-size-button-l: 14px;
-  --button-padding-block-l: 12px;
 }
 
 @media (min-width: 900px) {
@@ -51,8 +51,6 @@
     --font-size-product-card-title-l: 28px;
     --font-size-tag-l: 16px;
     --tag-padding-inline-l: 24px;
-    --font-size-button-l: 16px;
-    --button-padding-block-l: 16px;
   }
 }
 
@@ -62,7 +60,6 @@
     --font-size-product-card-eyebrow-l: 24px;
     --font-size-product-card-title-l: 32px;
     --font-size-tag-l: 18px;
-    --font-size-button-l: 18px;
   }
 }
 

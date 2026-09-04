@@ -1,11 +1,11 @@
 import Image from "next/image";
 import { Tag } from "@/components/Tag/Tag";
-import { Button } from "@/components/Button/Button";
+import { IconButton } from "@/components/IconButton/IconButton";
 
 type ProductCardSize = "xs" | "s" | "m" | "l";
-type TagButtonSize = "s" | "m" | "l";
+type TagSize = "s" | "m" | "l";
 
-const TAG_BUTTON_SIZE: Record<ProductCardSize, TagButtonSize> = {
+const TAG_SIZE: Record<ProductCardSize, TagSize> = {
   xs: "s",
   s: "s",
   m: "m",
@@ -53,7 +53,7 @@ export function ProductCard({
   mediaAlt,
   fill = false,
 }: ProductCardProps) {
-  const tagButtonSize = TAG_BUTTON_SIZE[size];
+  const tagSize = TAG_SIZE[size];
 
   return (
     <div
@@ -88,14 +88,12 @@ export function ProductCard({
         >
           {title}
         </p>
-        <Tag type="secondary" size={tagButtonSize}>
+        <Tag type="secondary" size={tagSize}>
           {discipline}
         </Tag>
       </div>
 
-      <Button type="primary" size={tagButtonSize} href={href}>
-        View project
-      </Button>
+      <IconButton size="l" href={href} ariaLabel={`View project: ${title}`} />
     </div>
   );
 }

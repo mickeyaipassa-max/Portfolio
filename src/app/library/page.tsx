@@ -398,7 +398,8 @@ export default function LibraryPage() {
           4 varianten: Size (XS/S/M/L). Media-vlak is in Figma een lege
           video-fill (placeholder zonder bronbestand) — hier vervangen door
           een bestaande projectfoto ter demonstratie. Hergebruikt Tag
-          (Secondary) en Button (Primary).
+          (Secondary) en Icon Button (altijd Size=L, ongeacht de kaartgrootte
+          — bevestigd in Figma).
         </p>
         <div className="flex flex-wrap items-start gap-6">
           {PRODUCT_CARD_SIZES.map((size) => (
@@ -429,7 +430,8 @@ export default function LibraryPage() {
           XS-variant). Rij van 3 kolommen zonder gap ≥900px, daaronder een
           verticale stapel. Elke Product Card gebruikt hier zijn eigen
           &ldquo;l&rdquo;-tokens die per breakpoint lokaal worden overschreven, zodat
-          Product Card/Tag/Button ongewijzigd blijven.
+          Product Card/Tag ongewijzigd blijven (de Icon Button-CTA is altijd
+          Size=L, dus die heeft geen overschrijving nodig).
         </p>
         <div className="flex flex-wrap gap-6">
           {BREAKPOINTS.map((bp) => (
