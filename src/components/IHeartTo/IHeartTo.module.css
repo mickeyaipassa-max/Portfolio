@@ -130,8 +130,19 @@
   height: var(--ilto-vector-h);
   flex-shrink: 0;
   position: sticky;
-  top: 50%;
-  transform: translateY(-50%);
+  /*
+   * Centering baked into `top` itself (half the vector's own height
+   * subtracted via calc) instead of `top: 50%; transform:
+   * translateY(-50%)`. `transform` on a sticky element applies
+   * unconditionally, including while the element is still in normal
+   * flow (not yet stuck) — that shifted the vector up by half its
+   * height at all times, poking it out above the card well before
+   * the card had even scrolled into view. `top` alone only affects
+   * the box once sticky actually engages, so baking the offset into
+   * it keeps the element flush in normal flow and correctly centered
+   * once stuck, with no escape in either state.
+   */
+  top: calc(50% - (var(--ilto-vector-h) / 2));
 }
 
 .list {
