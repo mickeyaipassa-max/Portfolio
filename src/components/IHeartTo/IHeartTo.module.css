@@ -27,19 +27,27 @@
  * 2189:3826 L, 2189:3751 XL, 2189:3387 XXL) after the sticky graphic
  * was reported as starting outside the card and missing padding:
  * - The image column has its own explicit width, wider than the
- *   vector itself (212/269/269px at M/L/XL) — the vector is
+ *   vector itself (212/269/269/408px at M/L/XL/XXL) — the vector is
  *   horizontally CENTERED inside it (Figma: `justify-center` on the
  *   inner wrapper at every one of these tiers, not left-aligned).
  *   Without that width, the column collapsed to the vector's own
  *   width, leaving no room to center it and starting the list column
- *   too far left. At XXL there's no separate column — the graphic
- *   node itself is 408x468 (not 301x388 as previously assumed).
+ *   too far left.
+ * - `get_design_context` flattens XXL's "ILTO" frame (it has no
+ *   auto-layout there, unlike M/L/XL) into a single 408x468 image,
+ *   which looks like a bare, unpadded node — but `get_metadata`'s raw
+ *   structure shows the actual "Vector" layer inside it is only
+ *   301x388 (matching this project's own downloaded asset file's
+ *   native size), inset by 40px top/bottom and 53.5px left/right.
+ *   Same padding-block:40px + centered pattern as M/L/XL, not a
+ *   bare/padding-less exception — treating it as one caused the first
+ *   attempt at this fix to stretch the vector edge-to-edge with no
+ *   breathing room, which is the "missing padding" being fixed here.
  * - The list column carries its own padding besides each item's own
  *   p-24: 8px top/bottom at M (no left/right — the outer wrapper's
  *   own pr-32 already provides the right inset), and 24px
  *   top/right/bottom (no left — the gap to the image column already
- *   separates it) at L/XL/XXL. This was previously 0, which is the
- *   reported missing padding.
+ *   separates it) at L/XL/XXL.
  */
 
 .wide {
@@ -110,9 +118,8 @@
     --ilto-outer-gap: 80px;
     --ilto-list-gap: 24px;
     --ilto-image-column-w: 408px;
-    --ilto-image-column-padding-block: 0px;
-    --ilto-vector-w: 408px;
-    --ilto-vector-h: 468px;
+    --ilto-vector-w: 301px;
+    --ilto-vector-h: 388px;
   }
 }
 
@@ -122,7 +129,7 @@
   align-items: center;
   flex-shrink: 0;
   width: var(--ilto-image-column-w);
-  padding-block: var(--ilto-image-column-padding-block, 40px);
+  padding-block: 40px;
 }
 
 .vector {
