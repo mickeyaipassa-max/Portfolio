@@ -110,6 +110,7 @@
     --ilto-outer-gap: 80px;
     --ilto-list-gap: 24px;
     --ilto-image-column-w: 408px;
+    --ilto-image-column-padding-block: 0px;
     --ilto-vector-w: 408px;
     --ilto-vector-h: 468px;
   }
@@ -121,7 +122,7 @@
   align-items: center;
   flex-shrink: 0;
   width: var(--ilto-image-column-w);
-  padding-block: 40px;
+  padding-block: var(--ilto-image-column-padding-block, 40px);
 }
 
 .vector {
