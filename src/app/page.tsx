@@ -2,6 +2,7 @@ import { Navigation } from "@/components/Navigation/Navigation";
 import { Hero } from "@/components/Hero/Hero";
 import { IHeartTo } from "@/components/IHeartTo/IHeartTo";
 import { AboutIntro } from "@/components/AboutIntro/AboutIntro";
+import { Contact } from "@/components/Contact/Contact";
 import { CardGrid, type Service } from "@/components/CardGrid/CardGrid";
 import { SectionHeading } from "@/components/SectionHeading/SectionHeading";
 import {
@@ -108,6 +109,10 @@ export default function Home() {
 
       <div className={`${styles.aboutIntroWrap} ${styles.logoCarouselToAboutIntro}`}>
         <AboutIntro />
+      </div>
+
+      <div className={`${styles.contactWrap} ${styles.aboutIntroToContact}`}>
+        <Contact />
       </div>
     </>
   );

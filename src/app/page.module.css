@@ -241,3 +241,58 @@
     max-width: 1200px;
   }
 }
+
+/*
+ * About Intro -> Contact gap, measured the same way as the other
+ * section gaps above. Numerically identical to howIWorkToLogoCarousel/
+ * logoCarouselToAboutIntro (40/10/56/72/100/100) — coincidence per
+ * this file's convention, not a shared token (Figma has none tying
+ * them together).
+ */
+.aboutIntroToContact {
+  margin-top: 40px;
+}
+
+@media (min-width: 600px) {
+  .aboutIntroToContact {
+    margin-top: 10px;
+  }
+}
+
+@media (min-width: 900px) {
+  .aboutIntroToContact {
+    margin-top: 56px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .aboutIntroToContact {
+    margin-top: 72px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .aboutIntroToContact {
+    margin-top: 100px;
+  }
+}
+
+/*
+ * Contact breaks out of the standard grid-container below 1200px, same
+ * technique as About Intro — confirmed in Figma: the "Contact"
+ * instance spans the frame's full width (x=0) at M/S/XS, ignoring
+ * --grid-margin, while at L/XL/XXL it matches the standard grid
+ * content width exactly (1000/1200/1600) with no extra cap at XXL —
+ * unlike About Intro, which caps to 1200px there instead of filling
+ * the full 1600px grid.
+ */
+.contactWrap {
+  width: 100%;
+}
+
+@media (min-width: 1200px) {
+  .contactWrap {
+    width: min(100% - (var(--grid-margin) * 2), var(--content-max-width));
+    margin-inline: auto;
+  }
+}
