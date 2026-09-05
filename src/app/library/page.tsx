@@ -16,6 +16,7 @@ const BREAKPOINTS = [
     logoCarouselHeight: 250,
     iHeartToHeight: 1150,
     aboutIntroHeight: 280,
+    contactHeight: 220,
   },
   {
     label: "XL — 1440–1799px",
@@ -27,6 +28,7 @@ const BREAKPOINTS = [
     logoCarouselHeight: 250,
     iHeartToHeight: 1080,
     aboutIntroHeight: 280,
+    contactHeight: 220,
   },
   {
     label: "L — 1200–1439px",
@@ -38,6 +40,7 @@ const BREAKPOINTS = [
     logoCarouselHeight: 260,
     iHeartToHeight: 970,
     aboutIntroHeight: 270,
+    contactHeight: 220,
   },
   {
     label: "M — 900–1199px",
@@ -49,6 +52,7 @@ const BREAKPOINTS = [
     logoCarouselHeight: 260,
     iHeartToHeight: 900,
     aboutIntroHeight: 380,
+    contactHeight: 340,
   },
   {
     label: "S — 600–899px",
@@ -60,6 +64,7 @@ const BREAKPOINTS = [
     logoCarouselHeight: 260,
     iHeartToHeight: 1400,
     aboutIntroHeight: 400,
+    contactHeight: 340,
   },
   {
     label: "XS — <600px",
@@ -71,6 +76,7 @@ const BREAKPOINTS = [
     logoCarouselHeight: 250,
     iHeartToHeight: 1400,
     aboutIntroHeight: 1350,
+    contactHeight: 400,
   },
 ];
 
@@ -561,6 +567,31 @@ export default function LibraryPage() {
               src="/library/preview/about-intro"
               width={bp.width}
               height={bp.aboutIntroHeight}
+              label={bp.label}
+            />
+          ))}
+        </div>
+      </section>
+
+      {/* Contact — two link cards, row above 1200px, stacked below it */}
+      <section className="flex flex-col gap-4">
+        <h2 className="text-xl font-semibold">Contact</h2>
+        <p className="text-sm text-text-secondary">
+          6 breakpoint-varianten. &ge;1200px (L/XL/XXL): &ldquo;Mail me&rdquo; en
+          &ldquo;Call me&rdquo; naast elkaar, allebei content-breed. 600&ndash;1199px
+          (S/M): gestapeld, allebei volle breedte bij S, bij M is alleen
+          &ldquo;Call me&rdquo; volle breedte (gelijk aan &ldquo;Mail me&rdquo;s
+          content-breedte — bevestigd in Figma). &lt;600px (XS): gestapeld met
+          de pil boven het icoon+tekst in plaats van ernaast. Beide kaarten
+          zijn <code>mailto:</code>/<code>tel:</code>-links.
+        </p>
+        <div className="flex flex-wrap gap-6">
+          {BREAKPOINTS.map((bp) => (
+            <BreakpointFrame
+              key={bp.label}
+              src="/library/preview/contact"
+              width={bp.width}
+              height={bp.contactHeight}
               label={bp.label}
             />
           ))}

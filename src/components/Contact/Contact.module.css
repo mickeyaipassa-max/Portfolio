@@ -1,0 +1,170 @@
+/*
+ * "Contact" — measured from the "Contact" component set (2239:2304
+ * XXL, 2239:2326 XL, 2239:2345 L, 2239:2383 M, 2239:2403 S, 2239:2422
+ * XS; a duplicate "Variant4" member also sits at 900px but is
+ * identical to M in every conditional branch, so it's treated as an
+ * unused leftover rather than a distinct variant).
+ *
+ * Card1 ("Mail me") always hugs its own content width. Card2
+ * ("Call me") only matches that width at exactly M (900-1199px) — at
+ * S/XS both cards are forced full width by their shared full-width
+ * group, and at L/XL/XXL both hug (row layout, no full-width anywhere).
+ * `.itemFill` on Card2 therefore only takes effect in that one
+ * min/max-width band; outside it, Card2 hugs like Card1 (a browser
+ * resolves a `width:100%` fill against a hug-sized flex-column parent
+ * using Card1's own hugged width, since the parent's own auto width
+ * is computed from its children's content size, not the percentage).
+ *
+ * Outer background is #fff6f2 in Figma — 1 hex unit off this
+ * project's existing --color-surface-accent-subtle (#fff6f1), likely
+ * float-rounding noise from Figma rather than a deliberate second
+ * color. Reused the existing token per this project's "no new values
+ * introduced" token convention instead of adding a near-duplicate.
+ */
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 40px 16px;
+  background: var(--color-surface-accent-subtle);
+  border-radius: 16px;
+}
+
+@media (min-width: 600px) {
+  .card {
+    padding: 40px;
+  }
+}
+
+@media (min-width: 900px) {
+  .card {
+    padding: 40px 0;
+  }
+}
+
+.group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  width: 100%;
+}
+
+@media (min-width: 900px) {
+  .group {
+    width: auto;
+  }
+}
+
+@media (min-width: 1200px) {
+  .group {
+    flex-direction: row;
+  }
+}
+
+@media (min-width: 1440px) {
+  .group {
+    gap: 24px;
+  }
+}
+
+@media (min-width: 1800px) {
+  .group {
+    gap: 40px;
+  }
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  width: 100%;
+  padding: 24px;
+  background: #ffffff;
+  border: 1px solid var(--color-border-subtle);
+  border-radius: 16px;
+}
+
+@media (min-width: 600px) {
+  .item {
+    flex-direction: row;
+    padding: 40px 24px;
+  }
+}
+
+@media (min-width: 900px) {
+  .item {
+    justify-content: flex-start;
+    width: auto;
+  }
+}
+
+@media (min-width: 900px) and (max-width: 1199.98px) {
+  .itemFill {
+    width: 100%;
+  }
+}
+
+.pill {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 24px;
+  border-radius: 90px;
+  background: var(--color-accent);
+  border: 1px solid var(--color-accent);
+  color: #ffffff;
+  font-weight: var(--font-weight-medium);
+  font-size: 14px;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+
+@media (min-width: 900px) {
+  .pill {
+    font-size: 18px;
+  }
+}
+
+.itemContent {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.icon {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+.itemText {
+  font-weight: var(--font-weight-semibold);
+  font-size: 14px;
+  line-height: 1.4;
+  color: var(--color-text-primary);
+  white-space: nowrap;
+}
+
+@media (min-width: 900px) and (max-width: 1199.98px) {
+  .itemText {
+    font-size: 16px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .itemText {
+    font-size: 18px;
+  }
+}
+
+@media (min-width: 1800px) {
+  .itemText {
+    font-size: 20px;
+  }
+}
