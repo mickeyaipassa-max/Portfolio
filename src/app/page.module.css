@@ -296,3 +296,38 @@
     margin-inline: auto;
   }
 }
+
+/*
+ * Contact -> Footer gap. Not itself measured in Figma (the Footer
+ * component was designed directly in Figma rather than placed on the
+ * Home canvas), so this continues the same 40/10/56/72/100/100
+ * progression every other section transition on this page already
+ * measures to, rather than guessing a new value.
+ */
+.contactToFooter {
+  margin-top: 40px;
+}
+
+@media (min-width: 600px) {
+  .contactToFooter {
+    margin-top: 10px;
+  }
+}
+
+@media (min-width: 900px) {
+  .contactToFooter {
+    margin-top: 56px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .contactToFooter {
+    margin-top: 72px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .contactToFooter {
+    margin-top: 100px;
+  }
+}

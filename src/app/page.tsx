@@ -3,6 +3,7 @@ import { Hero } from "@/components/Hero/Hero";
 import { IHeartTo } from "@/components/IHeartTo/IHeartTo";
 import { AboutIntro } from "@/components/AboutIntro/AboutIntro";
 import { Contact } from "@/components/Contact/Contact";
+import { Footer } from "@/components/Footer/Footer";
 import { CardGrid, type Service } from "@/components/CardGrid/CardGrid";
 import { SectionHeading } from "@/components/SectionHeading/SectionHeading";
 import {
@@ -113,6 +114,17 @@ export default function Home() {
 
       <div className={`${styles.contactWrap} ${styles.aboutIntroToContact}`}>
         <Contact />
+      </div>
+
+      <div className={`${styles.contactWrap} ${styles.contactToFooter}`}>
+        <Footer
+          hrefs={{
+            "latest-work": "#latest-work",
+            "about-me": "#about-me",
+            expertises: "#expertises",
+            contact: "#contact",
+          }}
+        />
       </div>
     </>
   );

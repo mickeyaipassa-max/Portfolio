@@ -17,6 +17,7 @@ const BREAKPOINTS = [
     iHeartToHeight: 1150,
     aboutIntroHeight: 280,
     contactHeight: 220,
+    footerHeight: 250,
   },
   {
     label: "XL — 1440–1799px",
@@ -29,6 +30,7 @@ const BREAKPOINTS = [
     iHeartToHeight: 1080,
     aboutIntroHeight: 280,
     contactHeight: 220,
+    footerHeight: 250,
   },
   {
     label: "L — 1200–1439px",
@@ -41,6 +43,7 @@ const BREAKPOINTS = [
     iHeartToHeight: 970,
     aboutIntroHeight: 270,
     contactHeight: 220,
+    footerHeight: 250,
   },
   {
     label: "M — 900–1199px",
@@ -53,6 +56,7 @@ const BREAKPOINTS = [
     iHeartToHeight: 900,
     aboutIntroHeight: 380,
     contactHeight: 340,
+    footerHeight: 300,
   },
   {
     label: "S — 600–899px",
@@ -65,6 +69,7 @@ const BREAKPOINTS = [
     iHeartToHeight: 1400,
     aboutIntroHeight: 400,
     contactHeight: 340,
+    footerHeight: 480,
   },
   {
     label: "XS — <600px",
@@ -77,6 +82,7 @@ const BREAKPOINTS = [
     iHeartToHeight: 1400,
     aboutIntroHeight: 1350,
     contactHeight: 400,
+    footerHeight: 480,
   },
 ];
 
@@ -592,6 +598,31 @@ export default function LibraryPage() {
               src="/library/preview/contact"
               width={bp.width}
               height={bp.contactHeight}
+              label={bp.label}
+            />
+          ))}
+        </div>
+      </section>
+
+      {/* Footer — logo + nav row above 1200px, centered stack below it */}
+      <section className="flex flex-col gap-4">
+        <h2 className="text-xl font-semibold">Footer</h2>
+        <p className="text-sm text-text-secondary">
+          6 breakpoint-varianten (Figma: &ldquo;Footer&rdquo;, ontworpen in Figma
+          zelf i.p.v. van een bestaande pagina afgeleid). &ge;1200px (L/XL/XXL):
+          logo en navlinks (hergebruikt van de Nav Item-instances uit de
+          hoofdnavigatie) op &eacute;&eacute;n rij, links uitgelijnd. &lt;1200px
+          (M/S/XS): alles gecentreerd gestapeld &mdash; navlinks op een rij bij
+          M, verticaal bij S/XS. Copyright-jaar is dynamisch (
+          <code>new Date().getFullYear()</code>).
+        </p>
+        <div className="flex flex-wrap gap-6">
+          {BREAKPOINTS.map((bp) => (
+            <BreakpointFrame
+              key={bp.label}
+              src="/library/preview/footer"
+              width={bp.width}
+              height={bp.footerHeight}
               label={bp.label}
             />
           ))}

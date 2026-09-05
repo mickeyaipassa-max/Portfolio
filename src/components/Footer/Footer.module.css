@@ -1,0 +1,169 @@
+/*
+ * "Footer" — designed and approved directly in Figma (no pre-existing
+ * source design elsewhere to measure from), reusing the same Nav Item
+ * icons/labels and Logo as the top Navigation, plus this project's
+ * existing surface/border/text-secondary tokens. Two structurally
+ * different layouts (not just a restyle), same technique as
+ * IHeartTo/AboutIntro — both blocks always render, toggled with
+ * display, since the wide layout shares a "row" (logo + flexible
+ * spacer + nav links) that the narrow layout has no equivalent for.
+ *
+ * >=1200px (L/XL/XXL): logo left, nav links right on the same row,
+ * divider, copyright — all left-aligned, gap 32px between the row/
+ * divider/copyright group.
+ * <1200px (M/S/XS): logo, nav links, divider, copyright all centered
+ * and stacked, gap 24px. Nav links are a horizontal row at M and a
+ * vertical column at S/XS. Outer horizontal padding is 16px at S/XS
+ * only — M and the row layout have none (their own width already
+ * matches the grid content area when placed on a page).
+ *
+ * Logo is a constant 84px and nav-link text a constant 18px at every
+ * breakpoint in Figma — unlike the top Navigation's own fluid
+ * --nav-logo-size/--font-size-nav-link scale, so this uses its own
+ * fixed values rather than those tokens.
+ */
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding-block: 40px;
+  background: var(--color-surface-subtle);
+  border-radius: 16px;
+}
+
+.wide {
+  display: none;
+}
+
+.narrow {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  width: 100%;
+  padding-inline: 16px;
+}
+
+@media (min-width: 900px) and (max-width: 1199.98px) {
+  .narrow {
+    padding-inline: 0;
+  }
+}
+
+@media (min-width: 1200px) {
+  .wide {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 32px;
+    width: 100%;
+  }
+
+  .narrow {
+    display: none;
+  }
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  width: 100%;
+}
+
+.spacer {
+  flex: 1 0 0;
+}
+
+.logo {
+  position: relative;
+  display: block;
+  width: 84px;
+  height: 84px;
+  flex-shrink: 0;
+}
+
+.navLinksWide {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+@media (min-width: 1440px) {
+  .navLinksWide {
+    gap: 24px;
+  }
+}
+
+@media (min-width: 1800px) {
+  .navLinksWide {
+    gap: 32px;
+  }
+}
+
+.navLinksNarrow {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+@media (min-width: 900px) and (max-width: 1199.98px) {
+  .navLinksNarrow {
+    flex-direction: row;
+    gap: 24px;
+  }
+}
+
+.link {
+  display: flex;
+  align-items: center;
+  height: 42px;
+  color: var(--color-text-primary);
+}
+
+.link:hover {
+  color: var(--color-accent);
+}
+
+.icon {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+.linkLabel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  font-size: 18px;
+  font-weight: var(--font-weight-medium);
+  white-space: nowrap;
+}
+
+.divider {
+  width: 100%;
+  height: 1px;
+  flex-shrink: 0;
+  background: var(--color-border-subtle);
+}
+
+.copyrightWide {
+  font-size: 14px;
+  color: var(--color-text-secondary);
+  white-space: nowrap;
+}
+
+.copyrightNarrow {
+  font-size: 14px;
+  color: var(--color-text-secondary);
+  text-align: center;
+}
+
+@media (min-width: 900px) and (max-width: 1199.98px) {
+  .copyrightNarrow {
+    white-space: nowrap;
+  }
+}
