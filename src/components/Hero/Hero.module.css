@@ -37,6 +37,40 @@
  * against absoluteBoundingBox: every --hero-photo-left value below is
  * (raw x - photo width) at that breakpoint, relative to the content
  * edge.
+ *
+ * Re-measured against the actual Home-canvas instances (not the
+ * master component's own 900/600/390px canvas, which is wider than
+ * what M/S/XS actually render at — 772/536/344px — and doesn't
+ * preserve the same relative offsets) after the user edited the Hero
+ * Home component: the photo moved right at every one of M/S/XS
+ * (+64/+32/+24px — exactly that tier's own grid-margin, at each), and
+ * XS's card no longer bleeds into the grid margin the way S's still
+ * does — it now sits flush at the content width (x=0, width=344,
+ * matching the container exactly) instead of overflowing edge-to-edge
+ * (x=-24, width=392). L/XL/XXL are unaffected: their master-component
+ * canvas width already equals what they render at on the real page.
+ *
+ * That XS card-width reduction also exposed a pre-existing inaccuracy:
+ * the skill chips used one constant padding/gap (24px/8px, via
+ * Tailwind's px-6/gap-2) at every breakpoint. That already matched
+ * Figma closely at S/M/L/XL/XXL (measured padding ~24-25px, gap 8px
+ * everywhere), but XS's own chips are genuinely smaller in Figma —
+ * previously masked by the wider 392px bleed card having enough slack
+ * to absorb the extra width, now visibly overflowing the card at the
+ * corrected 344px width. Chip padding-inline/gap are now their own
+ * breakpoint-driven custom properties (--hero-chip-padding-inline/
+ * --hero-chip-gap) instead of fixed Tailwind classes, matching how
+ * --hero-chip-size already varies font-size the same way.
+ *
+ * All of the above (card padding, chip font-size/padding) was first
+ * estimated from get_design_context's flattened bounding boxes, which
+ * turned out imprecise — re-measured by reading the real node
+ * properties directly (fontSize, paddingLeft/Right/Top/Bottom) via
+ * use_figma on the actual Home-canvas XS instance, not inferred from
+ * rendered widths/heights. Corrected: card padding is a uniform 16px
+ * on every side (not 16px block / 0px inline), chip text is 10px (not
+ * 12px), and chip padding-inline is 16px (not the ~17px estimated
+ * from dividing bounding-box width).
  */
 
 .hero {
@@ -54,18 +88,22 @@
    * ~345/415/553px at L/XL/XXL), so no override is needed there.
    */
 
-  /* XS: <600px */
-  --hero-card-left: calc(-1 * var(--grid-margin));
-  --hero-card-top: 207px;
-  --hero-card-width: calc(100% + 2 * var(--grid-margin));
+  /* XS: <600px — card no longer bleeds into the grid margin (re-measured
+     after the Home canvas edit: raw x=0, width=344 exactly matches the
+     344px content width, not the previous 392px margin-to-margin bleed) */
+  --hero-card-left: 0px;
+  --hero-card-top: 185.86px;
+  --hero-card-width: 100%;
   --hero-card-padding-block: 16px;
-  --hero-card-padding-inline: 0px;
+  --hero-card-padding-inline: 16px;
   --hero-card-radius: 8px;
   --hero-tagline-size: 14px;
-  --hero-chip-size: 12px;
-  --hero-min-height: 324px;
+  --hero-chip-size: 10px;
+  --hero-chip-padding-inline: 16px;
+  --hero-chip-gap: 4px;
+  --hero-min-height: 303px;
 
-  --hero-photo-left: 97.98px;
+  --hero-photo-left: 121.98px;
   --hero-photo-top: -12px;
   --hero-photo-width: 164.09px;
   --hero-photo-height: 215px;
@@ -73,13 +111,19 @@
   min-height: var(--hero-min-height, 0px);
 }
 
-/* S: 600–899px */
+/* S: 600–899px — card still bleeds edge-to-edge into the grid margin here
+   (raw x=-32/width=600 at S's 32px margin matches the bleed formula
+   exactly), unlike XS above */
 @media (min-width: 600px) {
   .hero {
+    --hero-card-left: calc(-1 * var(--grid-margin));
     --hero-card-top: 288px;
+    --hero-card-width: calc(100% + 2 * var(--grid-margin));
+    --hero-chip-padding-inline: 24px;
+    --hero-chip-gap: 8px;
     --hero-min-height: 404px;
 
-    --hero-photo-left: 141px;
+    --hero-photo-left: 173px;
     --hero-photo-top: -40px;
     --hero-photo-width: 248.04px;
     --hero-photo-height: 325px;
@@ -89,7 +133,7 @@
 /* M: 900–1199px */
 @media (min-width: 900px) {
   .hero {
-    --hero-card-left: 0px;
+    --hero-card-left: 64px;
     --hero-card-top: 288px;
     --hero-min-height: 440px;
     --hero-card-width: 475px;
@@ -99,7 +143,7 @@
     --hero-tagline-size: 20px;
     --hero-chip-size: 14px;
 
-    --hero-photo-left: 497px;
+    --hero-photo-left: 561px;
     --hero-photo-top: 148px;
   }
 }

@@ -22,12 +22,19 @@ export function Hero() {
           &ldquo;I design digital products from complex journeys to validated
           experiences.&rdquo;
         </p>
-        <ul className="flex items-center gap-2">
+        <ul
+          className="flex items-center"
+          style={{ gap: "var(--hero-chip-gap)" }}
+        >
           {SKILLS.map((skill) => (
             <li
               key={skill}
-              className="rounded-[90px] border border-accent bg-background px-6 py-2 font-normal text-text-primary whitespace-nowrap"
-              style={{ fontSize: "var(--hero-chip-size)", lineHeight: 1.4 }}
+              className="rounded-[90px] border border-accent bg-background py-2 font-normal text-text-primary whitespace-nowrap"
+              style={{
+                fontSize: "var(--hero-chip-size)",
+                lineHeight: 1.4,
+                paddingInline: "var(--hero-chip-padding-inline)",
+              }}
             >
               {skill}
             </li>
