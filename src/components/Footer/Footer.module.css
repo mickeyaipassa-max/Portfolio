@@ -28,7 +28,7 @@
   flex-direction: column;
   width: 100%;
   padding-block: 40px;
-  background: var(--color-surface-subtle);
+  background: var(--color-background);
   border-radius: 16px;
 }
 
