@@ -82,6 +82,20 @@
  * confirmed Figma breakpoints, and this derives the correct height
  * directly from the actual rendered Product Card Group height instead
  * of duplicating it as a separate value that could drift out of sync.
+ *
+ * Width uses the standard "break out to the viewport edge" trick
+ * (left: 50%; margin-left: -50vw; width: 100vw) instead of
+ * `calc(-1 * var(--grid-margin))` / `calc(100% + 2 * var(--grid-margin))`.
+ * That margin-based math only reaches the true viewport edge when the
+ * grid-container's width equals `100% - 2 * grid-margin` — true below
+ * 1200px, but false at L/XL/XXL for any viewport wider than exactly
+ * 1200/1440/1800px, where --content-max-width caps the container
+ * short of that. The container was then narrower than the formula
+ * assumed, leaving a visible gap on both sides at every in-between
+ * width in those tiers (reported: not shown edge-to-edge on some
+ * viewports). Sizing from the viewport itself instead of the
+ * container's (possibly capped) width fixes every width, not just the
+ * exact breakpoint values.
  */
 .orangeBackdrop {
   display: block;
@@ -89,8 +103,9 @@
   z-index: -1;
   top: 64px;
   bottom: 92px;
-  left: calc(-1 * var(--grid-margin));
-  width: calc(100% + 2 * var(--grid-margin));
+  left: 50%;
+  width: 100vw;
+  margin-left: -50vw;
   background: var(--color-accent);
 }
 
