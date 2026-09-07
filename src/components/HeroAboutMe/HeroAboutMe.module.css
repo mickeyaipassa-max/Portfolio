@@ -1,0 +1,277 @@
+/*
+ * "Hero About me" — measured from the "Hero About me" component set
+ * (2261:4173 XXL, 2261:4175 XL, 2261:4191 L, 2261:4207 M, 2261:4223 S,
+ * 2261:4239 XS). Two structurally different layouts, same
+ * toggle-by-display technique as IHeartTo/AboutIntro (both render,
+ * one hidden): row (wordmark+bio+buttons beside the photo) at
+ * >=900px (M/L/XL/XXL), stacked (photo below, everything centered) at
+ * <900px (S/XS) — a single row/column boundary confirmed directly via
+ * each variant's own layoutMode (HORIZONTAL at M and up, VERTICAL at
+ * S/XS).
+ *
+ * The gap between the [wordmark+bio+buttons] group and the photo is
+ * 0 at every breakpoint (confirmed via itemSpacing on the root, not
+ * estimated) — the visible breathing room between the two comes
+ * entirely from the photo being smaller than its own column and
+ * centered inside it, not from a gap value. Content width is fixed at
+ * M/S (482px, same value at both) and XXL (876px), and flexible
+ * (fills the remaining space after the photo's own fixed width) at
+ * L/XL — the inverse of XXL, where the photo column is the flexible
+ * one instead. XS's content is simply 100% (it's the only tier with
+ * no dedicated fixed-width photo column measurement to leave room
+ * for — everything is one full-width stack).
+ *
+ * Six separate wordmark exports (one per breakpoint, not a single
+ * asset reused at different sizes) sit as sibling <img> tags, each
+ * shown only in its own breakpoint band — same technique as
+ * AboutIntro's multiple wordmark assets. The photo reuses the Home
+ * Hero's existing /hero/photo.png (same source photo, confirmed by
+ * matching width/height aspect ratio at XXL — 540x707.53 here is
+ * exactly proportional to Home Hero's 337.52x442.24) rather than
+ * exporting six new crops, with per-breakpoint sizing and the same
+ * scaleX(-1) mirror Home Hero's photo already uses.
+ */
+
+.hero {
+  width: 100%;
+}
+
+.row {
+  display: none;
+}
+
+.stacked {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  width: 100%;
+}
+
+@media (min-width: 900px) {
+  .row {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    width: 100%;
+  }
+
+  .stacked {
+    display: none;
+  }
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 24px;
+  width: 100%;
+}
+
+/* XS: <600px */
+.content {
+  width: 100%;
+}
+
+/* S: 600-899px — fixed width, same as M, but still inside .stacked */
+@media (min-width: 600px) and (max-width: 899.98px) {
+  .content {
+    width: 482px;
+    align-items: start;
+  }
+}
+
+/* M: 900-1199px */
+@media (min-width: 900px) {
+  .content {
+    width: 482px;
+  }
+}
+
+/* L/XL: 1200-1799px — content fills the remaining space beside the
+   photo's own fixed width */
+@media (min-width: 1200px) {
+  .content {
+    width: auto;
+    flex: 1 0 0;
+    min-width: 0;
+  }
+}
+
+/* XXL: 1800px+ — content goes back to a fixed width, photo becomes
+   the flexible column instead */
+@media (min-width: 1800px) {
+  .content {
+    width: 876px;
+    flex: initial;
+  }
+}
+
+.bio {
+  width: 100%;
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+  line-height: 1.4;
+  font-size: 16px;
+  text-align: center;
+}
+
+@media (min-width: 900px) {
+  .bio {
+    font-size: 18px;
+    text-align: start;
+  }
+}
+
+@media (min-width: 1200px) {
+  .bio {
+    font-size: 20px;
+  }
+}
+
+.buttonsRow {
+  display: none;
+}
+
+.buttonsCol {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 16px;
+}
+
+@media (min-width: 600px) {
+  .buttonsRow {
+    display: flex;
+    align-items: start;
+    gap: 16px;
+  }
+
+  .buttonsCol {
+    display: none;
+  }
+}
+
+.photoCol {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 368px;
+  height: 441px;
+}
+
+@media (min-width: 900px) {
+  .photoCol {
+    width: 406px;
+    height: 487px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .photoCol {
+    width: 526px;
+    height: 503px;
+  }
+}
+
+@media (min-width: 1800px) {
+  .photoCol {
+    flex: 1 0 0;
+    width: auto;
+    height: 707.53px;
+  }
+}
+
+.photo {
+  position: relative;
+  flex-shrink: 0;
+  width: 308.97px;
+  height: 402.68px;
+}
+
+@media (min-width: 600px) {
+  .photo {
+    width: 292.25px;
+    height: 380.89px;
+  }
+}
+
+@media (min-width: 900px) {
+  .photo {
+    width: 338px;
+    height: 440.52px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .photo {
+    width: 344px;
+    height: 448.34px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .photo {
+    width: 378px;
+    height: 492.65px;
+  }
+}
+
+@media (min-width: 1800px) {
+  .photo {
+    width: 540px;
+    height: 707.53px;
+  }
+}
+
+/* Wordmark: six separate per-breakpoint assets, one visible at a time */
+.wordmarkXs,
+.wordmarkS,
+.wordmarkM,
+.wordmarkL,
+.wordmarkXl,
+.wordmarkXxl {
+  display: none;
+  width: 100%;
+  height: auto;
+}
+
+.wordmarkXs {
+  display: block;
+}
+
+@media (min-width: 600px) and (max-width: 899.98px) {
+  .wordmarkXs {
+    display: none;
+  }
+  .wordmarkS {
+    display: block;
+  }
+}
+
+@media (min-width: 900px) and (max-width: 1199.98px) {
+  .wordmarkM {
+    display: block;
+  }
+}
+
+@media (min-width: 1200px) and (max-width: 1439.98px) {
+  .wordmarkL {
+    display: block;
+  }
+}
+
+@media (min-width: 1440px) and (max-width: 1799.98px) {
+  .wordmarkXl {
+    display: block;
+  }
+}
+
+@media (min-width: 1800px) {
+  .wordmarkXxl {
+    display: block;
+  }
+}

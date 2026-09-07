@@ -18,6 +18,7 @@ const BREAKPOINTS = [
     aboutIntroHeight: 280,
     contactHeight: 220,
     footerHeight: 250,
+    heroAboutMeHeight: 750,
   },
   {
     label: "XL — 1440–1799px",
@@ -31,6 +32,7 @@ const BREAKPOINTS = [
     aboutIntroHeight: 280,
     contactHeight: 220,
     footerHeight: 250,
+    heroAboutMeHeight: 550,
   },
   {
     label: "L — 1200–1439px",
@@ -44,6 +46,7 @@ const BREAKPOINTS = [
     aboutIntroHeight: 270,
     contactHeight: 220,
     footerHeight: 250,
+    heroAboutMeHeight: 520,
   },
   {
     label: "M — 900–1199px",
@@ -57,6 +60,7 @@ const BREAKPOINTS = [
     aboutIntroHeight: 380,
     contactHeight: 340,
     footerHeight: 300,
+    heroAboutMeHeight: 520,
   },
   {
     label: "S — 600–899px",
@@ -70,6 +74,7 @@ const BREAKPOINTS = [
     aboutIntroHeight: 400,
     contactHeight: 340,
     footerHeight: 480,
+    heroAboutMeHeight: 830,
   },
   {
     label: "XS — <600px",
@@ -83,6 +88,7 @@ const BREAKPOINTS = [
     aboutIntroHeight: 1350,
     contactHeight: 400,
     footerHeight: 480,
+    heroAboutMeHeight: 880,
   },
 ];
 
@@ -623,6 +629,35 @@ export default function LibraryPage() {
               src="/library/preview/footer"
               width={bp.width}
               height={bp.footerHeight}
+              label={bp.label}
+            />
+          ))}
+        </div>
+      </section>
+
+      {/* Hero About Me — wordmark+bio+buttons beside the photo above 900px,
+          centered stack with the photo below it under that */}
+      <section className="flex flex-col gap-4">
+        <h2 className="text-xl font-semibold">Hero About Me</h2>
+        <p className="text-sm text-text-secondary">
+          6 breakpoint-varianten (Figma: &ldquo;Hero About me&rdquo;). &ge;900px
+          (M/L/XL/XXL): wordmark, bio en knoppen naast de foto &mdash;
+          content-breedte is vast bij M (482px) en XXL (876px), en vult de
+          resterende ruimte bij L/XL (de foto is daar vast, omgekeerd aan
+          XXL waar de foto juist de resterende ruimte vult).
+          &lt;900px (S/XS): alles gecentreerd gestapeld met de foto eronder,
+          knoppen op een rij bij S en vol-breedte gestapeld bij XS. Zes
+          losse wordmark-assets (&eacute;&eacute;n per breakpoint) en
+          hergebruikt de bestaande Home Hero-foto (zelfde bron, andere
+          afmetingen) en het Button-component (altijd Size=M).
+        </p>
+        <div className="flex flex-wrap gap-6">
+          {BREAKPOINTS.map((bp) => (
+            <BreakpointFrame
+              key={bp.label}
+              src="/library/preview/hero-about-me"
+              width={bp.width}
+              height={bp.heroAboutMeHeight}
               label={bp.label}
             />
           ))}
