@@ -114,6 +114,22 @@
   padding: 24px 24px 24px 0;
 }
 
+@media (min-width: 1800px) {
+  .rowContent {
+    /*
+     * At XXL specifically, Figma caps this column at a fixed 911px
+     * instead of filling the remaining row width (confirmed via the
+     * Plugin API: layoutSizingHorizontal "FIXED", not "FILL" — unlike
+     * M/L/XL, where the measured width exactly equals row width minus
+     * photo minus gap). The leftover space stays empty on the right,
+     * presumably to keep the bio's line length readable on a very wide
+     * card. Capping instead of resizing keeps the fill behavior for
+     * narrower viewports where it's genuinely still a fill.
+     */
+    flex: 0 0 911px;
+  }
+}
+
 .stackedContent {
   width: 100%;
   padding: 24px 24px 24px 0;
@@ -179,7 +195,7 @@
   }
 }
 
-@media (min-width: 1440px) {
+@media (min-width: 1800px) {
   .body {
     font-size: 18px;
   }
