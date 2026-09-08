@@ -78,6 +78,21 @@
   --font-size-card-body-m: 16px;
   --font-size-card-body-l: 18px;
 
+  /* Icon Card component: Size is an explicit prop (S/M/L). Padding
+     (40px block / 24px inline), radius and the icon's own 40x40 size
+     are constant across all three sizes — measured directly from the
+     "Icon Card" component set; only font sizes and the
+     description-to-Tag gap actually scale down. */
+  --font-size-icon-card-title-s: 16px;
+  --font-size-icon-card-title-m: 18px;
+  --font-size-icon-card-title-l: 20px;
+  --font-size-icon-card-body-s: 14px;
+  --font-size-icon-card-body-m: 16px;
+  --font-size-icon-card-body-l: 18px;
+  --icon-card-body-gap-s: 32px;
+  --icon-card-body-gap-m: 40px;
+  --icon-card-body-gap-l: 40px;
+
   /* Product Card component: Size is an explicit prop (S/M/L/XS).
      Media area is a fixed 448px square at every size — only the
      eyebrow/title text and the nested Tag/Button size scale down.

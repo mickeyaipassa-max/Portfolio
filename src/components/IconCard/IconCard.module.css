@@ -1,0 +1,48 @@
+/*
+ * "Icon Card" — measured from the Icon Card component set (2268:2406
+ * L, 2268:2408 M, 2268:2417 S). Icon, then title, then a description
+ * + Tag group below — the reverse order of the existing Card
+ * component (Tag first, then title/description), and with an icon
+ * Card doesn't have, so this is its own component rather than a Card
+ * variant despite the visual family resemblance.
+ *
+ * Padding (24px inline / 40px block), radius (16px), gap between icon
+ * and title (10px) and the icon's own size (40x40) are all constant
+ * across L/M/S — confirmed directly via the Plugin API (paddingLeft/
+ * Right/Top/Bottom, itemSpacing), not estimated from bounding boxes.
+ * Only the description-to-Tag gap actually varies by size (40px at
+ * L/M, 32px at S), along with the usual title/body font-size scale.
+ *
+ * A hidden "Skills: ..." text layer sits in the Figma node at every
+ * size (visible: false) — leftover from copy-pasting the original
+ * Card component, not part of this design, so it's not implemented.
+ *
+ * Width is fill-only (no fixed-width mode like Card's default 388px):
+ * Figma's own measured width (522.667px) is a hug-the-grid-column
+ * value from wherever it's placed, not a deliberate standalone size.
+ */
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  width: 100%;
+  padding: 40px 24px;
+  background: var(--color-background);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: 16px;
+}
+
+.icon {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+}

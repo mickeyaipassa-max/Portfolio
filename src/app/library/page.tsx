@@ -2,6 +2,7 @@ import { Button } from "@/components/Button/Button";
 import { IconButton } from "@/components/IconButton/IconButton";
 import { Tag } from "@/components/Tag/Tag";
 import { Card } from "@/components/Card/Card";
+import { IconCard } from "@/components/IconCard/IconCard";
 import { ProductCard } from "@/components/ProductCard/ProductCard";
 import { SectionHeading } from "@/components/SectionHeading/SectionHeading";
 
@@ -409,6 +410,35 @@ export default function LibraryPage() {
                 title="Turning complexity into direction"
                 description="I translate user needs, business goals and data into clear opportunities. Through journeys, hypotheses and stakeholder alignment, I help teams focus on what matters."
                 skills="Product strategy · Customer journeys · Data & insights · Hypothesis building · Stakeholder management"
+              />
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Icon Card — Size only (S/M/L), no other states */}
+      <section className="flex flex-col gap-4">
+        <h2 className="text-xl font-semibold">Icon Card</h2>
+        <p className="text-sm text-text-secondary">
+          3 varianten: Size (S/M/L). Padding, radius en icoongrootte
+          (40&times;40) zijn constant op elke size &mdash; alleen font-sizes
+          en de gap tussen beschrijving en Tag schalen mee. Breedte is
+          altijd vol (geen vaste-breedte modus zoals Card), hier getoond in
+          een vaste 388px-container ter demonstratie. Hergebruikt Tag
+          (Secondary).
+        </p>
+        <div className="flex flex-wrap items-start gap-6">
+          {SIZES.map((size) => (
+            <div key={size} className="flex w-[388px] flex-col gap-2">
+              <p className="text-sm font-medium text-text-secondary uppercase">
+                {size}
+              </p>
+              <IconCard
+                size={size}
+                icon="/icon-card/search.svg"
+                tag="Understand"
+                title="Start with why"
+                description="Before jumping into solutions, I want to understand the problem, context and what success looks like. A clear purpose creates better decisions later on."
               />
             </div>
           ))}
