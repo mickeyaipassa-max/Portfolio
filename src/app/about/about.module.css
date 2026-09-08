@@ -164,10 +164,52 @@
   grid-template-columns: 1fr;
   gap: 16px;
   width: 100%;
+
+  /*
+   * Figma's Icon Card varies its own Size variant by breakpoint — L
+   * only at XXL, M at L/XL, S at XS/S/M — rather than being genuinely
+   * responsive within a single variant (confirmed via the Plugin API:
+   * "Property 1=L" only on the 1800+ instances, "=M" on 1200-1799,
+   * "=S" below 1200). Every IconCard below is rendered once with
+   * size="l" (page.tsx) purely to select which set of tokens it reads;
+   * what actually changes per breakpoint is the value of the
+   * "-l"-suffixed tokens themselves, overridden here to match the S or
+   * M tokens below the L breakpoint. This keeps a single DOM render
+   * per card (no tripled title/description/tag text for assistive
+   * tech) and is scoped to this grid only, so it doesn't affect the
+   * Icon Card library demo or any other "l"-sized instance elsewhere.
+   */
+  --font-size-icon-card-title-l: var(--font-size-icon-card-title-s);
+  --font-size-icon-card-body-l: var(--font-size-icon-card-body-s);
+  --icon-card-body-gap-l: var(--icon-card-body-gap-s);
+  --font-size-tag-l: var(--font-size-tag-s);
+  --tag-padding-inline-l: var(--tag-padding-inline-s);
 }
 
 @media (min-width: 900px) {
   .howItWorkGrid {
     grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1200px) {
+  .howItWorkGrid {
+    --font-size-icon-card-title-l: var(--font-size-icon-card-title-m);
+    --font-size-icon-card-body-l: var(--font-size-icon-card-body-m);
+    --icon-card-body-gap-l: var(--icon-card-body-gap-m);
+    --font-size-tag-l: var(--font-size-tag-m);
+    --tag-padding-inline-l: var(--tag-padding-inline-m);
+  }
+}
+
+@media (min-width: 1800px) {
+  .howItWorkGrid {
+    /* Restores the true L tokens — needed explicitly since the
+       min-width: 1200px rule above also matches at this width. */
+    --font-size-icon-card-title-l: 20px;
+    --font-size-icon-card-body-l: 18px;
+    --icon-card-body-gap-l: 40px;
+    --font-size-tag-l: 18px;
+    --tag-padding-inline-l: 24px;
   }
 }
