@@ -1,4 +1,3 @@
-import Image from "next/image";
 import styles from "./MyStory.module.css";
 
 function MyStoryContent() {
@@ -41,13 +40,17 @@ function MyStoryContent() {
 function Photo({ className }: { className: string }) {
   return (
     <div className={className}>
-      <Image
+      {/* eslint-disable-next-line @next/next/no-img-element -- Figma's
+          crop (205.99% wide / 158.5% tall, shifted -52.74%/-58.5%) zooms
+          in further than object-fit: cover's minimal covering scale
+          would allow, so it can't be reproduced with next/image's
+          fill + object-fit/object-position. Replicating Figma's own
+          oversized, absolutely-positioned <img> is the only way to
+          match the exact zoom level. */}
+      <img
         src="/my-story/photo.png"
         alt="Portret van Mickey Aipassa"
-        fill
-        sizes="345px"
-        className="object-cover"
-        style={{ objectPosition: "center bottom" }}
+        className={styles.photoImg}
       />
     </div>
   );

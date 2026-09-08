@@ -83,6 +83,7 @@
 .rowPhoto {
   position: relative;
   flex-shrink: 0;
+  overflow: hidden;
   width: 244px;
   height: 422px;
 }
@@ -104,8 +105,27 @@
 .stackedPhoto {
   position: relative;
   flex-shrink: 0;
+  overflow: hidden;
   width: 168px;
   height: 290px;
+}
+
+.photoImg {
+  /*
+   * Figma's own crop for this image, identical at every breakpoint
+   * (confirmed via get_design_context on the XXL and S instances):
+   * an oversized image, absolutely positioned and shifted up-left, with
+   * its container clipping the overflow. This zooms in further than
+   * object-fit: cover's minimal covering scale would produce, which is
+   * why this can't be expressed as object-fit/object-position — it has
+   * to be this literal oversized + shifted element instead.
+   */
+  position: absolute;
+  max-width: none;
+  width: 205.99%;
+  height: 158.5%;
+  left: -52.74%;
+  top: -58.5%;
 }
 
 .rowContent {
