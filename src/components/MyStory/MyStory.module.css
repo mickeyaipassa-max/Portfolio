@@ -1,0 +1,190 @@
+/*
+ * "My Story" — measured from the About Me page's "ILTO"-named
+ * component instances (2265:4283 XXL, 2272:2565 XL, 2274:3338 L,
+ * 2275:3683 M, 2275:5233 S, 2275:5359 XS). Despite the Figma layer
+ * name, this isn't a reuse of the Home page's IHeartTo — it's a
+ * different composition (a portrait photo + a heading/subheading/bio
+ * text block) that happens to share IHeartTo's outer card treatment
+ * (surface-subtle background, rounded-16). Each instance has a
+ * hidden "ILTO" sub-frame containing the heart graphic (visible:
+ * false) — leftover from duplicating the original component, not
+ * part of this design, so it isn't implemented.
+ *
+ * Two structurally different layouts, same toggle-by-display
+ * technique as IHeartTo/AboutIntro/HeroAboutMe: row (photo beside the
+ * text, bottom-aligned) at >=900px (M/L/XL/XXL), stacked (text above,
+ * photo below, centered) at <900px (S/XS) — the same 900px boundary
+ * used throughout this project's row/stack components, confirmed via
+ * each variant's own flex-direction.
+ *
+ * The photo's Figma crop (`h-[158.5%] left-[-52.74%] top-[-58.5%]
+ * w-[205.99%]`, identical at every breakpoint) works out to a
+ * standard object-fit:cover with object-position "center bottom" —
+ * derived from the scale factors: both width and height scale by the
+ * same ~0.2346 factor from the source image's native 3024x4032, which
+ * confirms uniform cover scaling; the vertical offset resolves to
+ * exactly 100% (bottom), needed because the source PNG has a large
+ * transparent margin above the subject. All six photo containers
+ * share the same ~0.577 width:height ratio too, so one crop rule
+ * covers every breakpoint — only the explicit pixel size changes.
+ *
+ * The bio's paragraphs are one Figma text node with explicit *blank*
+ * paragraphs used as spacers (between paragraph 1 and 2, and between
+ * paragraph 3 and 4) — reproduced as margin-top on those paragraphs
+ * (bodyFontSize * 1.5 line-height, matching what a same-styled blank
+ * line would occupy) rather than empty paragraphs in the DOM, same
+ * technique and reasoning as AboutIntro's own bio spacer.
+ */
+
+.card {
+  width: 100%;
+  background: var(--color-surface-subtle);
+  border-radius: 16px;
+}
+
+.row {
+  display: none;
+}
+
+.stacked {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0;
+  width: 100%;
+}
+
+@media (min-width: 900px) {
+  .row {
+    display: flex;
+    align-items: flex-end;
+    gap: 0;
+    width: 100%;
+  }
+
+  .stacked {
+    display: none;
+  }
+}
+
+@media (min-width: 1200px) {
+  .row {
+    gap: 40px;
+  }
+}
+
+@media (min-width: 1800px) {
+  .row {
+    gap: 80px;
+  }
+}
+
+.rowPhoto {
+  position: relative;
+  flex-shrink: 0;
+  width: 244px;
+  height: 422px;
+}
+
+@media (min-width: 1440px) {
+  .rowPhoto {
+    width: 336px;
+    height: 582px;
+  }
+}
+
+@media (min-width: 1800px) {
+  .rowPhoto {
+    width: 344.51px;
+    height: 597px;
+  }
+}
+
+.stackedPhoto {
+  position: relative;
+  flex-shrink: 0;
+  width: 168px;
+  height: 290px;
+}
+
+.rowContent {
+  flex: 1 0 0;
+  min-width: 0;
+  padding: 24px 24px 24px 0;
+}
+
+.stackedContent {
+  width: 100%;
+  padding: 24px 24px 24px 0;
+}
+
+.textCard {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  width: 100%;
+  padding: 24px;
+}
+
+.heading {
+  width: 100%;
+  height: 48px;
+  font-weight: var(--font-weight-semibold);
+  font-size: 40px;
+  line-height: normal;
+  color: var(--color-text-primary);
+}
+
+.subheading {
+  width: 100%;
+  font-weight: var(--font-weight-semibold);
+  font-size: 16px;
+  line-height: 1.4;
+  color: var(--color-accent);
+  white-space: normal;
+}
+
+@media (min-width: 600px) {
+  .subheading {
+    font-size: 20px;
+    white-space: nowrap;
+  }
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  font-weight: var(--font-weight-regular);
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--color-text-primary);
+}
+
+.spaced {
+  /* Blank-line spacer, sized to what an empty paragraph at this same
+     font-size/line-height would occupy (fontSize * 1.5). */
+  margin-top: 21px;
+}
+
+@media (min-width: 900px) {
+  .body {
+    font-size: 16px;
+  }
+
+  .spaced {
+    margin-top: 24px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .body {
+    font-size: 18px;
+  }
+
+  .spaced {
+    margin-top: 27px;
+  }
+}

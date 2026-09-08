@@ -1,0 +1,173 @@
+/*
+ * About Me page — section gaps measured the same way as Home's
+ * page.module.css (top/bottom edge of each section at every Figma
+ * breakpoint on the "About me" page, 2240:2710). Unlike Home, the
+ * gaps immediately around Hero About Me are genuinely small and
+ * non-monotonic (Nav->Hero: 11/0/24/8/10/10px, Hero->My Story:
+ * 11/18/32/8/10/10px at XXL/XL/L/M/S/XS) — reproduced as measured
+ * rather than smoothed to a common scale, since Figma has no shared
+ * token tying them together and previous "surprising" gap values
+ * elsewhere in this project turned out to be real.
+ *
+ * My Story -> How I work matches the familiar 40/10/56/72/100/100
+ * progression used everywhere else in this project.
+ */
+
+.navToHero {
+  margin-top: 10px;
+}
+
+@media (min-width: 900px) {
+  .navToHero {
+    margin-top: 8px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .navToHero {
+    margin-top: 24px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .navToHero {
+    margin-top: 0px;
+  }
+}
+
+@media (min-width: 1800px) {
+  .navToHero {
+    margin-top: 11px;
+  }
+}
+
+.heroToMyStory {
+  margin-top: 10px;
+}
+
+@media (min-width: 900px) {
+  .heroToMyStory {
+    margin-top: 8px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .heroToMyStory {
+    margin-top: 32px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .heroToMyStory {
+    margin-top: 18px;
+  }
+}
+
+@media (min-width: 1800px) {
+  .heroToMyStory {
+    margin-top: 11px;
+  }
+}
+
+.myStoryToHowItWork {
+  margin-top: 40px;
+}
+
+@media (min-width: 600px) {
+  .myStoryToHowItWork {
+    margin-top: 10px;
+  }
+}
+
+@media (min-width: 900px) {
+  .myStoryToHowItWork {
+    margin-top: 56px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .myStoryToHowItWork {
+    margin-top: 72px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .myStoryToHowItWork {
+    margin-top: 100px;
+  }
+}
+
+.howItWork {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+.howItWorkIntro {
+  width: 100%;
+  font-size: 18px;
+  line-height: 1.5;
+  color: var(--color-text-primary);
+}
+
+@media (min-width: 1200px) {
+  .howItWorkIntro {
+    width: 800px;
+    max-width: 100%;
+    margin-inline: auto;
+  }
+}
+
+@media (min-width: 1440px) {
+  .howItWorkIntro {
+    width: 1000px;
+  }
+}
+
+.howItWorkGridWrap {
+  width: 100%;
+}
+
+/*
+ * Orange backdrop behind the Icon Card grid, same full-bleed
+ * viewport-edge technique as Home's Product Card Group backdrop
+ * (page.module.css .orangeBackdrop) — see that file's own comment for
+ * why 50%/100vw/-50vw is used instead of the grid-margin calc that
+ * broke at in-between viewport widths.
+ *
+ * Top/bottom offsets are measured from the grid wrapper's own edges
+ * at XXL (98px/120px) — L measured closer to 62px/73px, so these are
+ * an approximation rather than a precise per-breakpoint match; this
+ * is a decorative accent, not a layout-critical dimension.
+ */
+.howItWorkBackdrop {
+  display: none;
+}
+
+@media (min-width: 900px) {
+  .howItWorkBackdrop {
+    display: block;
+    position: absolute;
+    z-index: -1;
+    top: 98px;
+    bottom: 120px;
+    left: 50%;
+    width: 100vw;
+    margin-left: -50vw;
+    background: var(--color-accent);
+  }
+}
+
+.howItWorkGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  width: 100%;
+}
+
+@media (min-width: 900px) {
+  .howItWorkGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

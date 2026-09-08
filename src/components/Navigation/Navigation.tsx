@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 
 type NavKey = "latest-work" | "about-me" | "expertises" | "contact";
 
@@ -30,7 +31,7 @@ function NavItem({
   isActive: boolean;
 }) {
   return (
-    <a
+    <Link
       href={href}
       aria-current={isActive ? "page" : undefined}
       className={`hidden min-[900px]:flex h-[42px] items-center ${
@@ -47,13 +48,13 @@ function NavItem({
           {label}
         </span>
       </span>
-    </a>
+    </Link>
   );
 }
 
 function Logo() {
   return (
-    <a
+    <Link
       href="/"
       aria-label="Home"
       className="relative block size-[var(--nav-logo-size)] shrink-0"
@@ -66,7 +67,7 @@ function Logo() {
         className="object-cover"
         priority
       />
-    </a>
+    </Link>
   );
 }
 

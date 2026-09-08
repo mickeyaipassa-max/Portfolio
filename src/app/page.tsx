@@ -71,15 +71,16 @@ export default function Home() {
   return (
     <>
       {/* Temporary test hrefs for visual validation only — Figma defines no
-          link destinations, so these are not part of the component's design. */}
+          link destinations, so these are not part of the component's design.
+          No activeItem here: Home has no corresponding nav section, so every
+          item stays in its default state. */}
       <Navigation
         hrefs={{
           "latest-work": "#latest-work",
-          "about-me": "#about-me",
+          "about-me": "/about",
           expertises: "#expertises",
           contact: "#contact",
         }}
-        activeItem="about-me"
       />
       <Hero />
 
