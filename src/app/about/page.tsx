@@ -5,15 +5,6 @@ import { SectionHeading } from "@/components/SectionHeading/SectionHeading";
 import { IconCard } from "@/components/IconCard/IconCard";
 import styles from "./about.module.css";
 
-/**
- * Every card still uses the "search" icon in Figma — the component
- * also defines users/tool/pie-chart/message-circle/youtube icons that
- * aren't wired up to any of the 6 instances yet (likely meant to
- * differentiate them, given how specifically they'd fit: users for
- * "Understand behaviour", tool for "Make it tangible", etc.). Left as
- * "search" everywhere to match Figma's current state rather than
- * guessing icon assignments the design doesn't actually specify yet.
- */
 const HOW_I_WORK: {
   icon: string;
   title: string;
@@ -28,35 +19,35 @@ const HOW_I_WORK: {
     tag: "Understand",
   },
   {
-    icon: "/icon-card/search.svg",
+    icon: "/icon-card/pie-chart.svg",
     title: "Understand behaviour",
     description:
       "What people say and what they do aren’t always the same. I use research, data and observation to understand behaviour, uncover friction and identify opportunities.",
     tag: "Explore & learn",
   },
   {
-    icon: "/icon-card/search.svg",
+    icon: "/icon-card/tool.svg",
     title: "Make it tangible",
     description:
       "Ideas become more valuable when people can see, experience and challenge them. I prototype early to create conversations, align teams and turn assumptions into something we can test.",
     tag: "Understand",
   },
   {
-    icon: "/icon-card/search.svg",
+    icon: "/icon-card/message-circle.svg",
     title: "Don’t assume",
     description:
       "Design is full of assumptions. I turn them into hypotheses and use feedback, testing and data to learn what works, and what doesn’t.",
     tag: "Validate",
   },
   {
-    icon: "/icon-card/search.svg",
+    icon: "/icon-card/users.svg",
     title: "Design together",
     description:
       "The best solutions rarely come from one person. I like bringing design, product, technology and business together, using different perspectives to create stronger outcomes.",
     tag: "Stakeholders",
   },
   {
-    icon: "/icon-card/search.svg",
+    icon: "/icon-card/youtube.svg",
     title: "Can this be better?",
     description:
       "Better doesn’t simply mean prettier or easier to use. It means creating the right experience for the people using it while helping the product achieve its purpose.",
