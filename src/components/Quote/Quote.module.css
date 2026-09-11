@@ -1,0 +1,59 @@
+/*
+ * "Quote" — measured from the About Me page's "Better together" quote
+ * (2292:5663 XXL, 2299:3065 XL, 2300:3119 L, 2300:3153 M, 2300:3187 S,
+ * 2300:3242 XS). Just a centered quote + an orange eyebrow label below
+ * it, gap 10px between them at every breakpoint.
+ *
+ * The quote text is FIXED at 1200px at XXL/XL, but also reports FIXED
+ * 1200px at L (1000px-wide container) — almost certainly a stale
+ * override left over from duplicating the XL variant rather than a
+ * deliberate overflow, since M/S/XS all correctly use FILL. Reproduced
+ * as "cap at 1200px, fill below that" (width:100%; max-width:1200px)
+ * rather than replicating the apparent copy-paste artifact literally.
+ */
+
+.quote {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+}
+
+.quoteText {
+  width: 100%;
+  max-width: 1200px;
+  margin-inline: auto;
+  font-weight: var(--font-weight-semibold);
+  font-size: 28px;
+  line-height: normal;
+  color: var(--color-text-primary);
+  text-align: center;
+}
+
+@media (min-width: 900px) {
+  .quoteText {
+    font-size: 32px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .quoteText {
+    font-size: 40px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .quoteText {
+    font-size: 50px;
+  }
+}
+
+.eyebrow {
+  width: fit-content;
+  font-weight: var(--font-weight-semibold);
+  font-size: 20px;
+  line-height: 1.4;
+  color: var(--color-accent);
+}

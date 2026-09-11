@@ -213,3 +213,126 @@
     --tag-padding-inline-l: 24px;
   }
 }
+
+/*
+ * How I work -> Quote -> What I bring -> Beyond the pixels -> Footer:
+ * the same familiar 40/10/56/72/100/100 progression, EXCEPT
+ * How I work -> Quote at S specifically, which measures 120px instead
+ * of 10px — an invisible, fill-less "Rectangle 7" leftover (confirmed
+ * via the Plugin API: visible but fills: []) sits between them at
+ * exactly that breakpoint, the same leftover-rectangle pattern already
+ * found and excluded elsewhere in this project, just wide enough here
+ * to add a full extra 100px of gap rather than being a no-op.
+ */
+
+.howItWorkToQuote {
+  margin-top: 40px;
+}
+
+@media (min-width: 600px) {
+  .howItWorkToQuote {
+    margin-top: 120px;
+  }
+}
+
+@media (min-width: 900px) {
+  .howItWorkToQuote {
+    margin-top: 56px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .howItWorkToQuote {
+    margin-top: 72px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .howItWorkToQuote {
+    margin-top: 100px;
+  }
+}
+
+.quoteToWhatIBring {
+  margin-top: 40px;
+}
+
+@media (min-width: 600px) {
+  .quoteToWhatIBring {
+    margin-top: 10px;
+  }
+}
+
+@media (min-width: 900px) {
+  .quoteToWhatIBring {
+    margin-top: 56px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .quoteToWhatIBring {
+    margin-top: 72px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .quoteToWhatIBring {
+    margin-top: 100px;
+  }
+}
+
+.whatIBringToPhotoTextCard {
+  margin-top: 40px;
+}
+
+@media (min-width: 600px) {
+  .whatIBringToPhotoTextCard {
+    margin-top: 10px;
+  }
+}
+
+@media (min-width: 900px) {
+  .whatIBringToPhotoTextCard {
+    margin-top: 56px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .whatIBringToPhotoTextCard {
+    margin-top: 72px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .whatIBringToPhotoTextCard {
+    margin-top: 100px;
+  }
+}
+
+.photoTextCardToFooter {
+  margin-top: 40px;
+}
+
+@media (min-width: 600px) {
+  .photoTextCardToFooter {
+    margin-top: 10px;
+  }
+}
+
+@media (min-width: 900px) {
+  .photoTextCardToFooter {
+    margin-top: 56px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .photoTextCardToFooter {
+    margin-top: 72px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .photoTextCardToFooter {
+    margin-top: 100px;
+  }
+}

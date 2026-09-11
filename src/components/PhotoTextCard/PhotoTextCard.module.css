@@ -1,0 +1,362 @@
+/*
+ * "Photo and text card" ("Beyond the pixels") — measured from the
+ * standalone Figma component (2302:3457 XXL, 2302:3456 XL, 2302:3455
+ * L, 2302:3454 M, 2302:3453 S, 2302:3452 XS), not yet placed on a
+ * real page.
+ *
+ * Two overlapping square-ish photos on one side, a text block (heading
+ * + orange subheading + bio with blank-line spacers, same technique as
+ * My Story) on the other. Two real differences from My Story worth
+ * calling out:
+ * - No visible card background here — the text sits directly on the
+ *   page background (Figma's text frame has no fill), unlike My
+ *   Story's surface-subtle panel.
+ * - The row/stacked breakpoint is 1200px (L/M boundary), not 900px.
+ *
+ * Photo positioning is absolute within a sized stack container, not
+ * flex — the two photos overlap, which auto-layout can't express. The
+ * stack's own sizing mode changes across breakpoints (confirmed via
+ * the Plugin API, not guessed):
+ * - L/XL/XXL (row) and M (stacked): fixed pixel stack, exact position
+ *   per breakpoint (M sits centered in the stacked column since it's
+ *   narrower than the full width there).
+ * - S/XS (stacked): fluid — both photos sized as a % of the stack's
+ *   own width with aspect-ratio:1, only the front photo's vertical
+ *   offset stays a fixed px value (19.25px at XS, 30px at S).
+ *
+ * The front (motorcycle) photo uses the same "oversized image +
+ * overflow:hidden" crop technique as My Story's photo (149.75% wide,
+ * -18.13% left, 100% tall, identical at every breakpoint checked) —
+ * confirmed NOT reproducible with plain object-fit:cover, per the
+ * lesson learned there. The back (museum) photo uses a plain
+ * object-fit:cover, confirmed via Figma's own generated code.
+ */
+
+.card {
+  width: 100%;
+}
+
+/* ---------- Stacked (XS/S/M, <1200px) ---------- */
+
+.stacked {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 11px;
+  width: 100%;
+}
+
+.row {
+  display: none;
+}
+
+@media (min-width: 1200px) {
+  .stacked {
+    display: none;
+  }
+
+  .row {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 11px;
+    width: 100%;
+  }
+}
+
+@media (min-width: 1800px) {
+  .row {
+    /*
+     * Only at XXL is the text column a fixed width narrower than the
+     * remaining row space (see .row .textCard below) — Figma centers
+     * the whole photo+text group in the leftover space there, unlike
+     * L/XL where the text fills exactly and this has no visible effect.
+     */
+    justify-content: center;
+  }
+}
+
+/* ---------- Photo stack — shared inner elements ---------- */
+
+.photoBack,
+.photoFront {
+  position: absolute;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.photoBackImg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.photoFrontCrop {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.photoFrontImg {
+  position: absolute;
+  top: 0;
+  left: -18.13%;
+  width: 149.75%;
+  height: 100%;
+  max-width: none;
+}
+
+/* ---------- Stacked photo positioning ---------- */
+
+.stackedPhotos {
+  position: relative;
+  flex-shrink: 0;
+  width: 100%;
+  aspect-ratio: 1.593;
+}
+
+.stackedPhotos .photoBack {
+  top: 0;
+  left: 37.14%;
+  width: 62.86%;
+  aspect-ratio: 1;
+}
+
+.stackedPhotos .photoFront {
+  top: 19.25px;
+  left: 0;
+  width: 51.4%;
+  aspect-ratio: 1;
+}
+
+@media (min-width: 600px) {
+  .stackedPhotos .photoFront {
+    top: 30px;
+  }
+}
+
+@media (min-width: 900px) {
+  .stackedPhotos {
+    width: 661.16px;
+    max-width: 100%;
+    aspect-ratio: unset;
+    height: 404.11px;
+  }
+
+  .stackedPhotos .photoBack {
+    left: 256.38px;
+    width: 404.78px;
+    height: 404.11px;
+    aspect-ratio: unset;
+  }
+
+  .stackedPhotos .photoFront {
+    top: 37px;
+    left: 0;
+    width: 331px;
+    height: 330px;
+    aspect-ratio: unset;
+  }
+}
+
+/* ---------- Row photo positioning (>=1200px) ---------- */
+
+.rowPhotos {
+  position: relative;
+  flex-shrink: 0;
+  width: 392px;
+  height: 332.61px;
+}
+
+.rowPhotos .photoBack {
+  top: 0;
+  left: 109.98px;
+  width: 282.02px;
+  height: 281.56px;
+}
+
+.rowPhotos .photoFront {
+  top: 132.28px;
+  left: 0;
+  width: 200.66px;
+  height: 200.33px;
+}
+
+@media (min-width: 1440px) {
+  .rowPhotos {
+    width: 521.07px;
+    height: 410px;
+  }
+
+  .rowPhotos .photoBack {
+    left: 146.19px;
+    width: 374.88px;
+    height: 374.26px;
+  }
+
+  .rowPhotos .photoFront {
+    top: 143.71px;
+    width: 266.73px;
+    height: 266.29px;
+  }
+}
+
+@media (min-width: 1800px) {
+  .rowPhotos {
+    width: 610px;
+    height: 535px;
+  }
+
+  .rowPhotos .photoBack {
+    left: 171px;
+    width: 439px;
+    height: 438px;
+  }
+
+  .rowPhotos .photoFront {
+    top: 223px;
+    width: 312px;
+    height: 312px;
+  }
+}
+
+/* ---------- Text content ---------- */
+
+.stackedContent {
+  width: 100%;
+  padding-top: 8px;
+}
+
+@media (min-width: 600px) {
+  .stackedContent {
+    padding: 24px 24px 24px 0;
+  }
+}
+
+.rowContent {
+  flex: 1 0 0;
+  min-width: 0;
+  padding: 24px 24px 24px 0;
+}
+
+.textCard {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  border-radius: 16px;
+  padding: 24px 0;
+}
+
+@media (min-width: 600px) {
+  .textCard {
+    padding: 24px;
+  }
+}
+
+@media (min-width: 1800px) {
+  .row .rowContent {
+    /*
+     * At XXL the wrapper hugs its fixed-width child instead of filling
+     * the row (confirmed via the Plugin API: layoutSizingHorizontal
+     * "HUG", not "FILL", unlike L/XL) — needed so .row's
+     * justify-content: center actually has slack to distribute.
+     */
+    flex: none;
+  }
+
+  .row .textCard {
+    width: 800px;
+    max-width: 100%;
+    flex: none;
+  }
+}
+
+.heading {
+  width: 100%;
+  font-weight: var(--font-weight-semibold);
+  font-size: 24px;
+  line-height: normal;
+  color: var(--color-text-primary);
+}
+
+@media (min-width: 600px) {
+  .heading {
+    font-size: 32px;
+    height: 48px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .heading {
+    font-size: 40px;
+  }
+}
+
+.subheadingWrap {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.subheading {
+  width: 100%;
+  font-weight: var(--font-weight-semibold);
+  font-size: 16px;
+  line-height: 1.4;
+  color: var(--color-accent);
+}
+
+@media (min-width: 600px) {
+  .subheading {
+    width: auto;
+    font-size: 18px;
+    white-space: nowrap;
+  }
+}
+
+@media (min-width: 1800px) {
+  .subheading {
+    font-size: 20px;
+  }
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  font-weight: var(--font-weight-regular);
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--color-text-primary);
+}
+
+.spaced {
+  /* Blank-line spacer, sized to what an empty paragraph at this same
+     font-size/line-height would occupy (fontSize * 1.5). */
+  margin-top: 21px;
+}
+
+@media (min-width: 900px) {
+  .body {
+    font-size: 16px;
+  }
+
+  .spaced {
+    margin-top: 24px;
+  }
+}
+
+@media (min-width: 1800px) {
+  .body {
+    font-size: 18px;
+  }
+
+  .spaced {
+    margin-top: 27px;
+  }
+}

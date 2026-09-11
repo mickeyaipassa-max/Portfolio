@@ -20,6 +20,7 @@ const BREAKPOINTS = [
     contactHeight: 220,
     footerHeight: 250,
     heroAboutMeHeight: 750,
+    photoTextCardHeight: 560,
   },
   {
     label: "XL — 1440–1799px",
@@ -34,6 +35,7 @@ const BREAKPOINTS = [
     contactHeight: 220,
     footerHeight: 250,
     heroAboutMeHeight: 550,
+    photoTextCardHeight: 450,
   },
   {
     label: "L — 1200–1439px",
@@ -48,6 +50,7 @@ const BREAKPOINTS = [
     contactHeight: 220,
     footerHeight: 250,
     heroAboutMeHeight: 520,
+    photoTextCardHeight: 460,
   },
   {
     label: "M — 900–1199px",
@@ -62,6 +65,7 @@ const BREAKPOINTS = [
     contactHeight: 340,
     footerHeight: 300,
     heroAboutMeHeight: 520,
+    photoTextCardHeight: 850,
   },
   {
     label: "S — 600–899px",
@@ -76,6 +80,7 @@ const BREAKPOINTS = [
     contactHeight: 340,
     footerHeight: 480,
     heroAboutMeHeight: 830,
+    photoTextCardHeight: 780,
   },
   {
     label: "XS — <600px",
@@ -90,6 +95,7 @@ const BREAKPOINTS = [
     contactHeight: 400,
     footerHeight: 480,
     heroAboutMeHeight: 880,
+    photoTextCardHeight: 700,
   },
 ];
 
@@ -688,6 +694,35 @@ export default function LibraryPage() {
               src="/library/preview/hero-about-me"
               width={bp.width}
               height={bp.heroAboutMeHeight}
+              label={bp.label}
+            />
+          ))}
+        </div>
+      </section>
+
+      {/* Photo Text Card — "Beyond the pixels": two overlapping photos
+          beside a text block (row) above 1200px, stacked below it.
+          Not yet placed on a real page. */}
+      <section className="flex flex-col gap-4">
+        <h2 className="text-xl font-semibold">Photo Text Card</h2>
+        <p className="text-sm text-text-secondary">
+          6 breakpoint-varianten (Figma: &ldquo;Foto and text card&rdquo;).
+          &ge;1200px (L/XL/XXL): twee overlappende foto&apos;s naast de
+          tekst &mdash; de tekstkolom vult de resterende ruimte bij L/XL en
+          is vast 800px breed bij XXL (gecentreerd, met ruimte over).
+          &lt;1200px (XS/S/M): gestapeld en gecentreerd, de fotostapel is
+          vloeiend (procentuele breedte) bij XS/S en vaste pixels bij M.
+          Geen kaart-achtergrond &mdash; anders dan My Story staat de tekst
+          los op de paginabackground. Hergebruikt My Story&apos;s
+          lege-regel-spacertechniek voor de bio.
+        </p>
+        <div className="flex flex-wrap gap-6">
+          {BREAKPOINTS.map((bp) => (
+            <BreakpointFrame
+              key={bp.label}
+              src="/library/preview/photo-text-card"
+              width={bp.width}
+              height={bp.photoTextCardHeight}
               label={bp.label}
             />
           ))}

@@ -3,6 +3,10 @@ import { HeroAboutMe } from "@/components/HeroAboutMe/HeroAboutMe";
 import { MyStory } from "@/components/MyStory/MyStory";
 import { SectionHeading } from "@/components/SectionHeading/SectionHeading";
 import { IconCard } from "@/components/IconCard/IconCard";
+import { Quote } from "@/components/Quote/Quote";
+import { WhatIBring } from "@/components/WhatIBring/WhatIBring";
+import { PhotoTextCard } from "@/components/PhotoTextCard/PhotoTextCard";
+import { Footer } from "@/components/Footer/Footer";
 import styles from "./about.module.css";
 
 const HOW_I_WORK: {
@@ -103,6 +107,29 @@ export default function AboutMe() {
             ))}
           </div>
         </div>
+      </div>
+
+      <div className={`grid-container ${styles.howItWorkToQuote}`}>
+        <Quote />
+      </div>
+
+      <div className={`grid-container ${styles.quoteToWhatIBring}`}>
+        <WhatIBring />
+      </div>
+
+      <div className={`grid-container ${styles.whatIBringToPhotoTextCard}`}>
+        <PhotoTextCard />
+      </div>
+
+      <div className={`grid-container ${styles.photoTextCardToFooter}`}>
+        <Footer
+          hrefs={{
+            "latest-work": "/#latest-work",
+            "about-me": "/about",
+            expertises: "/#expertises",
+            contact: "/#contact",
+          }}
+        />
       </div>
     </>
   );

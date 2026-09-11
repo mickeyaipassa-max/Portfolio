@@ -1,0 +1,63 @@
+/*
+ * "What I bring" — measured from the About Me page's card grid
+ * (2299:3021 XXL, 2299:3069 XL, 2300:3123 L, 2300:3157 M, 2300:3191 S,
+ * 2300:3246 XS). Reuses the existing Card component (size "l" matches
+ * this section's title/body font-sizes exactly) and Tag (via Card).
+ *
+ * Grid: 4 columns in one row at XXL, a 2x2 grid at XL/L/M, a single
+ * column at S/XS — confirmed via each variant's own row layoutMode,
+ * not guessed from the XXL screenshot alone.
+ *
+ * Heading font-size (24/32/40) does NOT match SectionHeading's fixed
+ * 40px token — measured independently, same scale as PhotoTextCard's
+ * heading (jumps at 600px and 1200px), so built as its own local style
+ * rather than reusing SectionHeading here.
+ */
+
+.section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  width: 100%;
+}
+
+.heading {
+  width: 100%;
+  font-weight: var(--font-weight-semibold);
+  font-size: 24px;
+  line-height: normal;
+  color: var(--color-text-primary);
+  text-align: center;
+}
+
+@media (min-width: 600px) {
+  .heading {
+    font-size: 32px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .heading {
+    font-size: 40px;
+  }
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  width: 100%;
+}
+
+@media (min-width: 900px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1800px) {
+  .grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
