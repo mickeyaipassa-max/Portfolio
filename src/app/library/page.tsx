@@ -431,7 +431,9 @@ export default function LibraryPage() {
           en de gap tussen beschrijving en Tag schalen mee. Breedte is
           altijd vol (geen vaste-breedte modus zoals Card), hier getoond in
           een vaste 388px-container ter demonstratie. Hergebruikt Tag
-          (Secondary).
+          (Secondary). Toont tot 3 tags naast elkaar (8px gap) via de
+          optionele `tag2`/`tag3` props &mdash; hieronder eerst de
+          standaard enkele tag, daarna alle 3 aan.
         </p>
         <div className="flex flex-wrap items-start gap-6">
           {SIZES.map((size) => (
@@ -443,6 +445,24 @@ export default function LibraryPage() {
                 size={size}
                 icon="/icon-card/search.svg"
                 tag="Understand"
+                title="Start with why"
+                description="Before jumping into solutions, I want to understand the problem, context and what success looks like. A clear purpose creates better decisions later on."
+              />
+            </div>
+          ))}
+        </div>
+        <div className="flex flex-wrap items-start gap-6">
+          {SIZES.map((size) => (
+            <div key={`${size}-3-tags`} className="flex w-[388px] flex-col gap-2">
+              <p className="text-sm font-medium text-text-secondary uppercase">
+                {size} &mdash; 3 tags
+              </p>
+              <IconCard
+                size={size}
+                icon="/icon-card/search.svg"
+                tag="Understand"
+                tag2="Explore & learn"
+                tag3="Validate"
                 title="Start with why"
                 description="Before jumping into solutions, I want to understand the problem, context and what success looks like. A clear purpose creates better decisions later on."
               />

@@ -25,11 +25,27 @@ type IconCardProps = {
   size: IconCardSize;
   icon: string;
   tag: string;
+  /**
+   * Second and third tag, shown side by side after `tag` (max 3). Each
+   * mirrors Figma's "Show tag 2"/"Show tag 3" booleans — presence
+   * (a non-empty string) is the on/off switch, so most usages just omit
+   * these rather than passing a boolean.
+   */
+  tag2?: string;
+  tag3?: string;
   title: string;
   description: string;
 };
 
-export function IconCard({ size, icon, tag, title, description }: IconCardProps) {
+export function IconCard({
+  size,
+  icon,
+  tag,
+  tag2,
+  tag3,
+  title,
+  description,
+}: IconCardProps) {
   return (
     <div className={styles.card}>
       <img src={icon} alt="" aria-hidden="true" className={styles.icon} />
@@ -46,9 +62,21 @@ export function IconCard({ size, icon, tag, title, description }: IconCardProps)
         >
           {description}
         </p>
-        <Tag type="secondary" size={size}>
-          {tag}
-        </Tag>
+        <div className={styles.tags}>
+          <Tag type="secondary" size={size}>
+            {tag}
+          </Tag>
+          {tag2 && (
+            <Tag type="secondary" size={size}>
+              {tag2}
+            </Tag>
+          )}
+          {tag3 && (
+            <Tag type="secondary" size={size}>
+              {tag3}
+            </Tag>
+          )}
+        </div>
       </div>
     </div>
   );
