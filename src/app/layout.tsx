@@ -7,7 +7,7 @@ import "@/styles/grid.css";
 const inter = Inter({
   variable: "--font-family-base",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "900"],
+  weight: ["400", "500", "600", "700", "900"],
   style: ["normal", "italic"],
 });
 

@@ -86,25 +86,25 @@
   overflow: hidden;
 }
 
-.photoBackImg {
+.shadowed {
+  box-shadow: 0 0 12.9px rgba(0, 0, 0, 0.15);
+}
+
+.photoCoverImg {
   display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-.photoFrontCrop {
+.photoCrop {
   position: absolute;
   inset: 0;
   overflow: hidden;
 }
 
-.photoFrontImg {
+.photoCropImg {
   position: absolute;
-  top: 0;
-  left: -18.13%;
-  width: 149.75%;
-  height: 100%;
   max-width: none;
 }
 
@@ -276,6 +276,16 @@
   }
 }
 
+.headingBreak {
+  display: inline;
+}
+
+@media (min-width: 1800px) {
+  .headingBreak {
+    display: none;
+  }
+}
+
 .heading {
   width: 100%;
   font-weight: var(--font-weight-semibold);
@@ -295,6 +305,11 @@
   .heading {
     font-size: 40px;
   }
+}
+
+/* Two-line headings size to their content instead of the fixed 48px. */
+.headingMulti {
+  height: auto;
 }
 
 .subheadingWrap {
@@ -358,5 +373,65 @@
 
   .spaced {
     margin-top: 27px;
+  }
+}
+
+/* Variant: body copy only steps to 16px at L (1200px), not at M. */
+@media (min-width: 900px) {
+  .body.bodyCompact {
+    font-size: 14px;
+  }
+
+  .body.bodyCompact .spaced {
+    margin-top: 21px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .body.bodyCompact {
+    font-size: 16px;
+  }
+
+  .body.bodyCompact .spaced {
+    margin-top: 24px;
+  }
+}
+
+@media (min-width: 1800px) {
+  .body.bodyCompact {
+    font-size: 18px;
+  }
+
+  .body.bodyCompact .spaced {
+    margin-top: 27px;
+  }
+}
+
+/*
+ * Variant "tight" ("Understanding the existing journey"): the stacked
+ * (<1200px) text block is padded differently than in "Beyond the pixels"
+ * — measured on the Component 2 instances (2503:3661 M, 2503:4479 S,
+ * 2512:4959 XS): 24px on top and right and nothing below at M/S (the
+ * card itself has no padding at S/XS), 8px on top at XS.
+ */
+@media (max-width: 1199.98px) {
+  .tight .stackedContent {
+    padding: 24px 24px 0 0;
+  }
+
+  .tight .textCard {
+    padding: 24px;
+  }
+}
+
+@media (max-width: 899.98px) {
+  .tight .textCard {
+    padding: 0;
+  }
+}
+
+@media (max-width: 599.98px) {
+  .tight .stackedContent {
+    padding: 8px 0 0;
   }
 }

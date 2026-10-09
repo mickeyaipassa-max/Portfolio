@@ -43,11 +43,12 @@ const HOW_I_WORK: [Service, Service, Service, Service] = [
 const PROJECTS: [Project, Project, Project] = [
   {
     client: "a.s.r. Nederland",
-    title: "Service & Contact",
+    title: "Generic purchase flow",
     discipline: "Ux & Ui Design",
-    href: "#",
+    href: "/caseasr",
     mediaSrc: "/product-cards/asr-nederland.png",
     mediaAlt: "a.s.r. Nederland project",
+    mediaFit: "contain",
   },
   {
     client: "RocketSourcers",

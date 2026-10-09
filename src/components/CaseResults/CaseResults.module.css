@@ -1,0 +1,184 @@
+/*
+ * "Results" — measured from the case page's "Resultaten" frames
+ * (2484:3489 XXL, 2503:2832 XL, 2503:3397 L, 2503:4347 M, 2517:5768 S;
+ * the XS frame has no results section in Figma). A white section with a
+ * centered intro (primary Tag label, title, text) and two grey result
+ * cards (#f5f5f5, radius 16) with an icon, title and a mixed-size text:
+ * big bold figure + label, a line of explanation, and a bold/regular
+ * detail line, and a 1px #c7c7c7 stroke that counts toward the layout.
+ * Everything is 150% line height in Figma, but its mixed-size first line
+ * comes out 79px tall (64px figure) or 53px (40px figure), so that line
+ * gets those heights explicitly — the card heights (290/287/284/255px)
+ * then follow from the content.
+ *
+ * Sizes per breakpoint (figure / label / description / detail):
+ * XXL 64/26/18/18, XL 64/26/16/16, L 64/26/14/16, M-S 40/18/12/16. The
+ * label Tag is the L size at XXL and 16px from XL down, set via the
+ * -l tag tokens.
+ */
+
+.section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 48px;
+  width: 100%;
+  background: var(--color-background);
+  --font-size-tag-l: 16px;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+}
+
+.heading {
+  width: 100%;
+  font-weight: var(--font-weight-semibold);
+  font-size: 32px;
+  line-height: 1.125;
+  letter-spacing: -1.5px;
+  text-align: center;
+  color: #111111;
+}
+
+.intro {
+  width: 100%;
+  max-width: 800px;
+  font-size: 14px;
+  line-height: 1.5;
+  text-align: center;
+  color: #626262;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 24px;
+  width: 100%;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 32px 16px;
+  background: #f5f5f5;
+  border: 1px solid var(--color-border-subtle);
+  border-radius: 16px;
+  --res-line1: 53px;
+  --res-figure: 40px;
+  --res-label: 18px;
+  --res-description: 12px;
+  --res-detail: 16px;
+}
+
+.icon {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+}
+
+.cardTitle {
+  font-weight: var(--font-weight-semibold);
+  font-size: 20px;
+  line-height: 1.4;
+  color: var(--color-accent);
+}
+
+.cardText {
+  width: 100%;
+  line-height: 1.5;
+  color: #626262;
+}
+
+.line {
+  display: block;
+}
+
+.line1 {
+  /* Figma's mixed-size first line is 79px tall at a 64px figure and 53px
+     at a 40px one — not what 150% line-height would give in CSS. */
+  height: var(--res-line1);
+  line-height: var(--res-line1);
+}
+
+.figure {
+  font-weight: 700;
+  font-size: var(--res-figure);
+  letter-spacing: -2px;
+  color: var(--color-accent);
+}
+
+.label {
+  white-space: pre;
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--res-label);
+  color: #111111;
+}
+
+.description {
+  font-size: var(--res-description);
+}
+
+.detail {
+  font-size: var(--res-detail);
+}
+
+.detailStrong {
+  font-weight: var(--font-weight-semibold);
+  font-size: 20px;
+  color: #111111;
+}
+
+@media (min-width: 900px) {
+  .cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1200px) {
+  .heading {
+    font-size: 40px;
+  }
+
+  .intro {
+    font-size: 16px;
+  }
+
+  .card {
+    padding: 32px;
+    --res-line1: 79px;
+    --res-figure: 64px;
+    --res-label: 26px;
+    --res-description: 14px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .card {
+    --res-description: 16px;
+  }
+}
+
+@media (min-width: 1800px) {
+  .section {
+    max-width: 1400px;
+    margin-inline: auto;
+    --font-size-tag-l: 18px;
+  }
+
+  .intro {
+    max-width: 1320px;
+    font-size: 18px;
+  }
+
+  .card {
+    --res-description: 18px;
+    --res-detail: 18px;
+  }
+}

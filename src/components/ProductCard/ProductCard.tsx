@@ -35,6 +35,11 @@ type ProductCardProps = {
   mediaSrc: string;
   mediaAlt: string;
   /**
+   * How the media sits in its square: "cover" crops to fill (photos),
+   * "contain" shows the whole image (UI mockups that must not be cropped).
+   */
+  mediaFit?: "cover" | "contain";
+  /**
    * Fills the width of its parent instead of Figma's default fixed
    * 448px — used inside Product Card Group, where the parent grid
    * controls each card's width (equal columns, or full width when
@@ -51,6 +56,7 @@ export function ProductCard({
   href,
   mediaSrc,
   mediaAlt,
+  mediaFit = "cover",
   fill = false,
 }: ProductCardProps) {
   const tagSize = TAG_SIZE[size];
@@ -74,7 +80,12 @@ export function ProductCard({
           {client}
         </p>
         <div className="relative aspect-square w-full">
-          <Image src={mediaSrc} alt={mediaAlt} fill className="object-cover" />
+          <Image
+            src={mediaSrc}
+            alt={mediaAlt}
+            fill
+            className={mediaFit === "contain" ? "object-contain" : "object-cover"}
+          />
         </div>
       </div>
 

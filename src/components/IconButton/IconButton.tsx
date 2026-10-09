@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 type IconButtonSize = "s" | "m" | "l";
 type IconButtonState = "default" | "hover" | "pressed";
 
@@ -74,9 +76,9 @@ export function IconButton({
 
   if (href) {
     return (
-      <a href={href} aria-label={ariaLabel} className={className} style={style}>
+      <Link href={href} aria-label={ariaLabel} className={className} style={style}>
         {icon}
-      </a>
+      </Link>
     );
   }
 

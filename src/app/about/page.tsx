@@ -6,6 +6,7 @@ import { IconCard } from "@/components/IconCard/IconCard";
 import { Quote } from "@/components/Quote/Quote";
 import { WhatIBring } from "@/components/WhatIBring/WhatIBring";
 import { PhotoTextCard } from "@/components/PhotoTextCard/PhotoTextCard";
+import { BEYOND_THE_PIXELS } from "@/components/PhotoTextCard/beyondThePixels";
 import { Footer } from "@/components/Footer/Footer";
 import styles from "./about.module.css";
 
@@ -118,7 +119,7 @@ export default function AboutMe() {
       </div>
 
       <div className={`grid-container ${styles.whatIBringToPhotoTextCard}`}>
-        <PhotoTextCard />
+        <PhotoTextCard {...BEYOND_THE_PIXELS} />
       </div>
 
       <div className={`grid-container ${styles.photoTextCardToFooter}`}>

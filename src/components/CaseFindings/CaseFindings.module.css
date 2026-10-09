@@ -1,0 +1,124 @@
+/*
+ * "What we found" — measured from the case page's orange frames
+ * (2310:4801 XXL, 2503:1958 XL, 2503:3027 L, 2503:3679 M, 2517:5868 S,
+ * 2517:5985 XS): an orange block (radius 16) with a white centered
+ * heading + intro and six Icon Cards (icon + title + text, no tags).
+ *
+ * Only at L (1200-1439px) the block bleeds to the full frame width in
+ * Figma (1200px frame vs. the 1000px grid, content re-centered at
+ * 1000px) — done with the viewport-wide technique used elsewhere. Cards
+ * are 3 columns (16px gaps) from L up, 2 columns (8px) at M, 1 column
+ * (8px) at S/XS, and read the -l Icon Card tokens, overridden per
+ * breakpoint to the measured sizes (XXL 20/18, XL-L 16/16, below 16/14).
+ *
+ * The descriptions are fixed three-line text boxes in Figma (81/72/63px),
+ * which is what makes every card the same height.
+ *
+ * The intro is a fixed 600px text box in Figma that, at S/XS, is wider
+ * than the block it sits in and sticks out on both sides — an overflow
+ * glitch, not a design choice; here it's capped at 600px but never wider
+ * than the block.
+ */
+
+.block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  width: 100%;
+  padding: 40px 24px;
+  background: var(--color-accent);
+  border-radius: 16px;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+}
+
+.heading {
+  width: 100%;
+  font-weight: var(--font-weight-semibold);
+  font-size: 32px;
+  line-height: normal;
+  text-align: center;
+  color: #ffffff;
+}
+
+.intro {
+  width: 100%;
+  max-width: 600px;
+  font-size: 16px;
+  line-height: 1.5;
+  text-align: center;
+  color: #ffffff;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 8px;
+  width: 100%;
+  --font-size-icon-card-title-l: 16px;
+  --font-size-icon-card-body-l: 14px;
+  --icon-card-description-height: 63px;
+}
+
+@media (min-width: 900px) {
+  .cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1200px) {
+  .block {
+    padding: 72px 40px;
+  }
+
+  .cards {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+    max-width: 1000px;
+    --font-size-icon-card-body-l: 16px;
+    --icon-card-description-height: 72px;
+  }
+
+  .heading {
+    font-size: 40px;
+  }
+}
+
+/* L only: block bleeds to the viewport edges. */
+@media (min-width: 1200px) and (max-width: 1439.98px) {
+  .block {
+    width: 100vw;
+    margin-inline: calc(50% - 50vw);
+    border-radius: 16px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .cards {
+    max-width: none;
+  }
+}
+
+@media (min-width: 1800px) {
+  .block {
+    padding-inline: 0;
+  }
+
+  .cards {
+    max-width: 1200px;
+    --font-size-icon-card-title-l: 20px;
+    --font-size-icon-card-body-l: 18px;
+    --icon-card-description-height: 81px;
+  }
+
+  .intro {
+    font-size: 18px;
+  }
+}

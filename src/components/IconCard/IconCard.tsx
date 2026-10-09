@@ -24,7 +24,8 @@ const BODY_GAP_VAR: Record<IconCardSize, string> = {
 type IconCardProps = {
   size: IconCardSize;
   icon: string;
-  tag: string;
+  /** Omit for cards without tags (Figma hides the whole Tags group). */
+  tag?: string;
   /**
    * Second and third tag, shown side by side after `tag` (max 3). Each
    * mirrors Figma's "Show tag 2"/"Show tag 3" booleans — presence
@@ -34,7 +35,8 @@ type IconCardProps = {
   tag2?: string;
   tag3?: string;
   title: string;
-  description: string;
+  /** Line breaks ("\n") are kept, like Figma's text node. */
+  description: React.ReactNode;
 };
 
 export function IconCard({
@@ -58,25 +60,32 @@ export function IconCard({
       <div className={styles.body} style={{ gap: BODY_GAP_VAR[size] }}>
         <p
           className="text-text-primary"
-          style={{ fontSize: BODY_SIZE_VAR[size], lineHeight: 1.5 }}
+          style={{
+            fontSize: BODY_SIZE_VAR[size],
+            lineHeight: 1.5,
+            whiteSpace: "pre-line",
+            height: "var(--icon-card-description-height, auto)",
+          }}
         >
           {description}
         </p>
-        <div className={styles.tags}>
-          <Tag type="secondary" size={size}>
-            {tag}
-          </Tag>
-          {tag2 && (
+        {tag && (
+          <div className={styles.tags}>
             <Tag type="secondary" size={size}>
-              {tag2}
+              {tag}
             </Tag>
-          )}
-          {tag3 && (
-            <Tag type="secondary" size={size}>
-              {tag3}
-            </Tag>
-          )}
-        </div>
+            {tag2 && (
+              <Tag type="secondary" size={size}>
+                {tag2}
+              </Tag>
+            )}
+            {tag3 && (
+              <Tag type="secondary" size={size}>
+                {tag3}
+              </Tag>
+            )}
+          </div>
+        )}
       </div>
     </div>
   );

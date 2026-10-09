@@ -1,0 +1,191 @@
+/*
+ * Facts strip under the case hero (role, scope, organisation, impact) —
+ * measured from the Icon Card instances in frames 2310:6251 (XXL),
+ * 2503:1843 (XL), 2503:2913 (L), 2503:3583 (M), 2503:4398 (S) and
+ * 2512:4902 (XS). They are Icon Cards with the icon and the tags hidden
+ * and a plain white fill, so this is a thin card of its own rather than
+ * IconCard with half its parts switched off.
+ *
+ * Two real compositions, so two blocks toggled by display (removes the
+ * hidden one from the accessibility tree):
+ * - >=1800px: five cards — Role, Scope and Organisation are separate.
+ * - <1800px: four cards — "Organisation & Role" is merged into one.
+ * Figma sizes the cards to their content and the strip happens to land
+ * on exactly the row width, so widths here are proportional (fr tracks
+ * taken from the measured card widths; fr, unlike flex bases, counts
+ * the card's own padding).
+ *
+ * The title-to-body gap is 10px at XXL/XL and 0 from L down; the sizes
+ * step 20/18 -> 18/14 -> 16/14, and the impact figure line (+51%) keeps
+ * its own 24px bold / label / detail sizes per breakpoint.
+ */
+
+.facts {
+  width: 100%;
+}
+
+.wide {
+  display: none;
+}
+
+.compact {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.wideImpacts,
+.compactImpacts {
+  display: contents;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  /* Centered at S/XS (Figma), left-aligned from M up. */
+  text-align: center;
+  padding: 24px;
+  background: var(--color-background);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: 16px;
+}
+
+.title {
+  font-weight: var(--font-weight-semibold);
+  font-size: 16px;
+  line-height: 1.4;
+  color: var(--color-text-primary);
+}
+
+.titleAccent {
+  color: var(--color-accent);
+}
+
+.body {
+  /* Wraps below L (Scope wraps at M); from L up Figma keeps every line on one row. */
+  white-space: pre-line;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--color-text-primary);
+}
+
+.figureLine {
+  display: block;
+  /* Figma keeps this line on one row even where it just overflows the card. */
+  white-space: nowrap;
+  font-size: 24px;
+  /* Figma's mixed first line (24px figure + label) is ~32.4px tall. */
+  line-height: 1.35;
+}
+
+.figure {
+  font-weight: 700;
+  font-size: 24px;
+  letter-spacing: -0.5px;
+  color: var(--color-accent);
+}
+
+.figureLabel {
+  font-weight: var(--font-weight-semibold);
+  font-size: 14px;
+  color: #111111;
+}
+
+.figureDetail {
+  color: #626262;
+  display: block;
+  white-space: nowrap;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+/* M: three columns, the fourth card wraps to the second row. */
+@media (min-width: 900px) {
+  .card {
+    text-align: left;
+  }
+
+  .compact {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .title {
+    font-size: 18px;
+  }
+
+  .figureLabel {
+    font-size: 18px;
+  }
+}
+
+/* L and up: one row; the two impact cards sit together in a group. */
+@media (min-width: 1200px) {
+  .body {
+    white-space: pre;
+  }
+
+  .compact {
+    display: grid;
+    grid-template-columns: minmax(0, 221fr) minmax(0, 229fr) minmax(0, 534fr);
+    gap: 8px;
+  }
+
+  .compactImpacts {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .compact {
+    grid-template-columns: minmax(0, 221fr) minmax(0, 351fr) minmax(0, 596fr);
+    gap: 16px;
+  }
+
+  .compactImpacts {
+    grid-template-columns: minmax(0, 285fr) minmax(0, 266fr);
+  }
+
+  .card {
+    gap: 10px;
+  }
+
+  .figureDetail {
+    font-size: 14px;
+  }
+}
+
+@media (min-width: 1800px) {
+  .compact {
+    display: none;
+  }
+
+  .wide {
+    display: grid;
+    grid-template-columns:
+      minmax(0, 257fr) minmax(0, 437fr) minmax(0, 184fr) minmax(0, 674fr);
+    gap: 16px;
+  }
+
+  .wideImpacts {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+  }
+
+  .title {
+    font-size: 20px;
+  }
+
+  .body {
+    font-size: 18px;
+  }
+
+  .figureDetail {
+    font-size: 16px;
+  }
+}

@@ -1,0 +1,181 @@
+/*
+ * "The challenge" — measured from the case page's "My story"-named
+ * frames (2310:4791 XXL, 2503:1893 XL, 2503:2948 L, 2503:3628 M,
+ * 2503:4457 S, 2512:4937 XS). A grey card (surface-subtle, radius 16)
+ * with the text block and a white Icon Card ("The goal was clear",
+ * icon + title + text, no tag). Despite the layer name it isn't the
+ * About page's My Story — no photo here. The same hidden ILTO leftover
+ * frame sits inside it; not implemented.
+ *
+ * Row from L up (>=1200px, not 900 as elsewhere), stacked below. In the
+ * row the Icon Card is a fixed width (520/376/395px) and the text takes
+ * the rest — except at XXL, where the text is capped at 800px and the
+ * remainder stays empty. The Icon Card's own sizes are set through the
+ * -l tokens it reads (same trick as the About page's How I work grid):
+ * XXL 20/18, XL-L 16/16, M and below 16/14.
+ */
+
+.card {
+  width: 100%;
+  background: var(--color-surface-subtle);
+  border-radius: 16px;
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 24px 16px;
+}
+
+@media (min-width: 600px) {
+  .inner {
+    padding: 24px;
+  }
+}
+
+.textCard {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  width: 100%;
+  padding: 0;
+}
+
+.heading {
+  width: 100%;
+  font-weight: var(--font-weight-semibold);
+  font-size: 24px;
+  line-height: normal;
+  color: var(--color-text-primary);
+}
+
+.subheadingWrap {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.subheading {
+  font-weight: var(--font-weight-semibold);
+  font-size: 16px;
+  line-height: 1.4;
+  white-space: nowrap;
+  color: var(--color-accent);
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  font-weight: var(--font-weight-regular);
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--color-text-primary);
+}
+
+.lead {
+  font-weight: var(--font-weight-semibold);
+}
+
+.spaced {
+  /* Blank-line spacer, sized to what an empty paragraph at this same
+     font-size/line-height would occupy (fontSize * 1.5). */
+  margin-top: 21px;
+}
+
+.goal {
+  width: 100%;
+  --font-size-icon-card-title-l: 16px;
+  --font-size-icon-card-body-l: 14px;
+}
+
+/* XS: the Icon Card is tighter (24/16 instead of 40/24). */
+.goal > div {
+  padding: 24px 16px;
+}
+
+@media (min-width: 600px) {
+  .textCard {
+    padding: 24px 0;
+  }
+
+  .heading {
+    font-size: 32px;
+  }
+
+  .subheading {
+    font-size: 20px;
+  }
+
+  .goal > div {
+    padding: 40px 24px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .inner {
+    flex-direction: row;
+    align-items: center;
+    gap: 80px;
+    padding: 24px 24px 24px 0;
+  }
+
+  .textCard {
+    flex: 1 1 0;
+    min-width: 0;
+    /* L: no right padding (text 477px of a 501px card); XL/XXL: 24px. */
+    padding: 24px 0 24px 24px;
+  }
+
+  .goal {
+    flex: none;
+    width: 395px;
+    --font-size-icon-card-body-l: 16px;
+  }
+
+  .heading {
+    font-size: 40px;
+    height: 48px;
+  }
+
+  .body {
+    font-size: 16px;
+  }
+
+  .spaced {
+    margin-top: 24px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .textCard {
+    padding: 24px;
+  }
+
+  .goal {
+    width: 376px;
+  }
+}
+
+@media (min-width: 1800px) {
+  .textCard {
+    flex: none;
+    width: 800px;
+  }
+
+  .goal {
+    width: 520px;
+    --font-size-icon-card-title-l: 20px;
+    --font-size-icon-card-body-l: 18px;
+  }
+
+  .body {
+    font-size: 18px;
+  }
+
+  .spaced {
+    margin-top: 27px;
+  }
+}

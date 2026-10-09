@@ -1,0 +1,84 @@
+/*
+ * "What we concluded" — measured from the case page's quote frames
+ * (2310:4813 XXL, 2310:4854 XL, 2503:3145 L, 2503:4004 M, 2503:4497 S,
+ * 2512:4977 XS). An orange eyebrow label above a large centered quote
+ * (the About page's Quote has them the other way round, so it isn't
+ * reused). Gap 10px between them, 6px at XS.
+ *
+ * Quote sizes 50/50/40/32/28/18 and a 1200px cap (fills below that);
+ * the eyebrow is 20px, 14px at XS.
+ */
+
+.conclusion {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  width: 100%;
+}
+
+.lineBreak {
+  display: none;
+}
+
+.label {
+  font-weight: var(--font-weight-semibold);
+  font-size: 14px;
+  line-height: 1.4;
+  color: var(--color-accent);
+}
+
+.quote {
+  width: 100%;
+  max-width: 1200px;
+  font-weight: var(--font-weight-semibold);
+  font-size: 18px;
+  line-height: normal;
+  text-align: center;
+  color: var(--color-text-primary);
+}
+
+@media (min-width: 600px) {
+  .conclusion {
+    gap: 10px;
+  }
+
+  .label {
+    font-size: 20px;
+  }
+
+  .quote {
+    font-size: 28px;
+  }
+}
+
+@media (min-width: 900px) {
+  .quote {
+    font-size: 32px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .quote {
+    font-size: 40px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .quote {
+    font-size: 50px;
+  }
+
+  /* Figma breaks the quote after "they" and "needed to" at XL/XXL; Chrome's
+     marginally wider Inter metrics would otherwise wrap earlier within the
+     1200px box, so the breaks are forced and the box hugs the text. */
+  .lineBreak {
+    display: inline;
+  }
+
+  .quote {
+    width: max-content;
+    white-space: nowrap;
+  }
+}

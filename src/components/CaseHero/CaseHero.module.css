@@ -1,0 +1,180 @@
+/*
+ * Case hero ("Insurance Purchase Flow") — measured from the case page's
+ * hero frames (2310:6193 XXL, 2503:1830 XL, 2503:2900 L, 2503:3432 M,
+ * 2503:4384 S, 2512:4876 XS).
+ *
+ * Text block + a collage of two overlapping screenshots. Row from M up
+ * (>=900px), stacked below. In the row the text column is a fixed width
+ * (876/712/588/452px) and the image column fills what's left; stacked,
+ * the collage is a fixed 307px centered.
+ *
+ * Collage: both images share one grid cell (same technique Figma's own
+ * code uses) so percentage margins resolve against the collage width —
+ * the back image is 88.44% wide pushed right by 11.56%, the front one
+ * 44.12% wide with a top margin of 41.711% of the collage width. That
+ * ratio is identical at every breakpoint (301.99/724 at XXL, 203/488 at
+ * XL, 162/388 at L, ...), so one rule covers all of them.
+ */
+
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+}
+
+@media (min-width: 600px) {
+  .hero {
+    gap: 24px;
+  }
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+
+.titleBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.eyebrow {
+  font-weight: var(--font-weight-semibold);
+  font-size: 20px;
+  line-height: normal;
+  color: var(--color-text-primary);
+}
+
+.title {
+  font-weight: var(--font-weight-black);
+  font-size: 32px;
+  line-height: 1;
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+@media (min-width: 600px) {
+  .title {
+    font-size: 48px;
+  }
+}
+
+.subtitle {
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--color-text-primary);
+}
+
+.media {
+  width: 307px;
+  max-width: 100%;
+}
+
+.group {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: max-content;
+  place-items: start;
+  width: 100%;
+}
+
+.mainImg,
+.secondaryImg {
+  grid-area: 1 / 1;
+  display: block;
+  aspect-ratio: 924 / 724;
+  object-fit: cover;
+}
+
+.mainImg {
+  margin-left: 11.56%;
+  width: 88.44%;
+}
+
+.secondaryImg {
+  margin-top: 41.711%;
+  width: 44.12%;
+}
+
+@media (min-width: 900px) {
+  .hero {
+    flex-direction: row;
+    gap: 24px;
+  }
+
+  .group {
+    /* The image frame is slightly taller than the collage: ~1.01% of its
+       width above and below (7.3px of 724 at XXL, 5px of 488 at XL...). */
+    margin-block: 1.0107%;
+  }
+
+  .text {
+    flex: none;
+    width: 452px;
+  }
+
+  .media {
+    flex: 1 1 0;
+    min-width: 0;
+    width: auto;
+  }
+
+  .eyebrow {
+    font-size: 20px;
+  }
+
+  .title {
+    font-size: 48px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .text {
+    width: 588px;
+  }
+
+  .eyebrow {
+    font-size: 28px;
+  }
+
+  .title {
+    font-size: 64px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .hero {
+    gap: 0;
+  }
+
+  .text {
+    width: 712px;
+  }
+
+  .eyebrow {
+    font-size: 40px;
+  }
+
+  .title {
+    font-size: 72px;
+  }
+
+  .subtitle {
+    font-size: 18px;
+  }
+}
+
+@media (min-width: 1800px) {
+  .text {
+    width: 876px;
+  }
+
+  .title {
+    font-size: 90px;
+  }
+}

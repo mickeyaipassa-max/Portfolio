@@ -1,0 +1,155 @@
+/*
+ * "Designing for human behaviour" — measured from the case page's grey
+ * frames (2380:6486 XXL, 2503:2308 XL, 2503:3193 L, 2503:4010 M,
+ * 2503:4671 S, 2512:5067 XS): a light-grey block (#f5f5f5, radius 16)
+ * with a centered heading + intro and four Icon Cards, each with an icon
+ * and three tags side by side (the multi-tag Icon Card).
+ *
+ * Cards sit 2 across from L up (XXL inner 1300px, XL/L 1120px) and one
+ * per row below. Only at L the block bleeds to the full 1200px frame
+ * width in Figma (the 1000px grid is wider than the content there), done
+ * with the viewport-wide technique. Card text sizes are set through the
+ * -l tokens the Icon Card reads: title 20/16, body 18/16/14, tags
+ * 18/16/14/12 (Tag inline padding stays 24px at every size, as measured
+ * on the instances — unlike the Tag component's S size). The tag row
+ * never wraps in Figma (it overflows into the card padding at XL/L) and
+ * only turns into a column at XS. Card heights come from fixed text
+ * boxes in Figma, so the cards of a row are kept equally tall.
+ */
+
+.block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  width: 100%;
+  padding: 32px 16px;
+  background: #f5f5f5;
+  border-radius: 16px;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+}
+
+.heading {
+  width: 100%;
+  font-weight: var(--font-weight-semibold);
+  font-size: 24px;
+  line-height: normal;
+  text-align: center;
+  color: var(--color-text-primary);
+}
+
+.intro {
+  width: 100%;
+  max-width: 800px;
+  font-size: 14px;
+  line-height: 1.5;
+  text-align: center;
+  color: var(--color-text-primary);
+}
+
+.applied {
+  display: block;
+  font-size: 12px;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 16px;
+  width: 100%;
+  --icon-card-tags-direction: column;
+  --icon-card-tags-align: flex-start;
+  --font-size-icon-card-title-l: 16px;
+  --font-size-icon-card-body-l: 14px;
+  --font-size-tag-l: 12px;
+  --tag-padding-inline-l: 24px;
+}
+
+@media (min-width: 600px) {
+  .heading {
+    font-size: 32px;
+  }
+
+  .cards {
+    --icon-card-tags-direction: row;
+    --icon-card-tags-align: center;
+  }
+}
+
+@media (min-width: 900px) {
+  .block {
+    padding: 72px 40px;
+  }
+
+  .applied {
+    font-size: inherit;
+  }
+
+  /* The intro is a 720px text box (800px at XXL) that may overhang the
+     block's padding, as at M where the inner width is 692px. */
+  .intro {
+    width: 720px;
+    max-width: none;
+    flex: none;
+  }
+
+  .header {
+    gap: 24px;
+  }
+
+  .cards {
+    --font-size-tag-l: 14px;
+  }
+}
+
+@media (min-width: 900px) and (max-width: 1199.98px) {
+  .heading {
+    /* 48px heading box at M even though the type is 32px. */
+    min-height: 48px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .heading {
+    font-size: 40px;
+  }
+
+  .intro {
+    font-size: 16px;
+  }
+
+  .cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    --font-size-icon-card-body-l: 16px;
+    --font-size-tag-l: 16px;
+  }
+}
+
+/* L only: block bleeds to the viewport edges. */
+@media (min-width: 1200px) and (max-width: 1439.98px) {
+  .block {
+    width: 100vw;
+    margin-inline: calc(50% - 50vw);
+  }
+}
+
+@media (min-width: 1800px) {
+  .intro {
+    width: 800px;
+    font-size: 18px;
+  }
+
+  .cards {
+    max-width: 1300px;
+    --font-size-icon-card-title-l: 20px;
+    --font-size-icon-card-body-l: 18px;
+    --font-size-tag-l: 18px;
+  }
+}

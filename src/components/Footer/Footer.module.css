@@ -1,21 +1,18 @@
 /*
- * "Footer" — designed and approved directly in Figma (no pre-existing
- * source design elsewhere to measure from), reusing the same Nav Item
- * icons/labels and Logo as the top Navigation, plus this project's
- * existing surface/border/text-secondary tokens. Two structurally
- * different layouts (not just a restyle), same technique as
- * IHeartTo/AboutIntro — both blocks always render, toggled with
- * display, since the wide layout shares a "row" (logo + flexible
- * spacer + nav links) that the narrow layout has no equivalent for.
+ * "Footer" — measured from the Footer component set (2245:1083 XXL,
+ * 2247:1060 XL, 2247:1126 L, 2248:1134 M, 2249:1171 S, 2249:1235 XS),
+ * as it stands in Figma now: one centered, stacked composition at every
+ * size (an earlier version had a left-aligned logo + nav row from L up
+ * on a white ground). Logo, nav links, divider, copyright on a
+ * surface-subtle (#f9f9f9) card with radius 16 and 40px block padding.
  *
- * >=1200px (L/XL/XXL): logo left, nav links right on the same row,
- * divider, copyright — all left-aligned, gap 32px between the row/
- * divider/copyright group.
- * <1200px (M/S/XS): logo, nav links, divider, copyright all centered
- * and stacked, gap 24px. Nav links are a horizontal row at M and a
- * vertical column at S/XS. Outer horizontal padding is 16px at S/XS
- * only — M and the row layout have none (their own width already
- * matches the grid content area when placed on a page).
+ * What still varies is only spacing: the gap between logo and nav
+ * (24px below L; 9/25/33px at L/XL/XXL, where Figma puts a 1px spacer
+ * between them with a 4/12/16px gap on each side), the nav's own gap
+ * (16px column at S/XS; a row of 24/16/24/80px from M up) and the gap
+ * to the divider and copyright (24px below L, 32px from L up). The
+ * inline padding is 16px at S/XS only; the copyright keeps one line from
+ * M up and wraps at S/XS.
  *
  * Logo is a constant 84px and nav-link text a constant 18px at every
  * breakpoint in Figma — unlike the top Navigation's own fluid
@@ -26,54 +23,19 @@
 .footer {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  gap: 24px;
   width: 100%;
-  padding-block: 40px;
-  background: var(--color-background);
+  padding: 40px 16px;
+  background: var(--color-surface-subtle);
   border-radius: 16px;
 }
 
-.wide {
-  display: none;
-}
-
-.narrow {
+.top {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 24px;
-  width: 100%;
-  padding-inline: 16px;
-}
-
-@media (min-width: 900px) and (max-width: 1199.98px) {
-  .narrow {
-    padding-inline: 0;
-  }
-}
-
-@media (min-width: 1200px) {
-  .wide {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 32px;
-    width: 100%;
-  }
-
-  .narrow {
-    display: none;
-  }
-}
-
-.row {
-  display: flex;
-  align-items: center;
-  gap: 40px;
-  width: 100%;
-}
-
-.spacer {
-  flex: 1 0 0;
 }
 
 .logo {
@@ -84,36 +46,11 @@
   flex-shrink: 0;
 }
 
-.navLinksWide {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-}
-
-@media (min-width: 1440px) {
-  .navLinksWide {
-    gap: 24px;
-  }
-}
-
-@media (min-width: 1800px) {
-  .navLinksWide {
-    gap: 32px;
-  }
-}
-
-.navLinksNarrow {
+.nav {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 16px;
-}
-
-@media (min-width: 900px) and (max-width: 1199.98px) {
-  .navLinksNarrow {
-    flex-direction: row;
-    gap: 24px;
-  }
 }
 
 .link {
@@ -150,20 +87,58 @@
   background: var(--color-border-subtle);
 }
 
-.copyrightWide {
+.copyright {
   font-size: 14px;
-  color: var(--color-text-secondary);
-  white-space: nowrap;
-}
-
-.copyrightNarrow {
-  font-size: 14px;
+  line-height: normal;
   color: var(--color-text-secondary);
   text-align: center;
 }
 
-@media (min-width: 900px) and (max-width: 1199.98px) {
-  .copyrightNarrow {
+@media (min-width: 900px) {
+  .footer {
+    padding-inline: 0;
+  }
+
+  .nav {
+    flex-direction: row;
+    gap: 24px;
+  }
+
+  .copyright {
     white-space: nowrap;
+  }
+}
+
+@media (min-width: 1200px) {
+  .footer {
+    gap: 32px;
+  }
+
+  .top {
+    gap: 9px;
+  }
+
+  .nav {
+    gap: 16px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .top {
+    gap: 25px;
+  }
+
+  .nav {
+    gap: 24px;
+  }
+}
+
+@media (min-width: 1800px) {
+  .top {
+    gap: 33px;
+  }
+
+  .nav {
+    gap: 80px;
   }
 }

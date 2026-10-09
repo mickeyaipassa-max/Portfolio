@@ -54,6 +54,7 @@
 
 .tags {
   display: flex;
-  align-items: center;
+  flex-direction: var(--icon-card-tags-direction, row);
+  align-items: var(--icon-card-tags-align, center);
   gap: 8px;
 }

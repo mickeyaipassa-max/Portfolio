@@ -8,6 +8,7 @@ export type Project = {
   href: string;
   mediaSrc: string;
   mediaAlt: string;
+  mediaFit?: "cover" | "contain";
 };
 
 type ProductCardGroupProps = {

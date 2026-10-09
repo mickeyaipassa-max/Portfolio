@@ -1,0 +1,160 @@
+/*
+ * Case page "Insurance Purchase Flow" (a.s.r. Nederland) — section gaps
+ * measured on the six breakpoint frames of the Figma page (2310:4787 XXL
+ * ... 2310:4999 XS): the distance from the bottom of each section to the
+ * top of the next.
+ *
+ * Most sections follow the familiar 40/32/56/72/100/100 progression
+ * (XS/S/M/L/XL/XXL); the first three differ and are set by hand:
+ * - nav -> hero:        40 / 32 / 56 / 56 / 32 / 24
+ * - hero -> facts:      40 / 24 / 56 / 12 / 41.6 / 23.71
+ * - facts -> challenge: 40 / 32 / 56 / 46 / 83 / 72
+ *
+ * Two things only exist on some breakpoints in Figma and are reproduced
+ * as such: at XS the quote ("What we concluded") sits before the orange
+ * "What we found" block (everywhere else it's after it), and the XS frame
+ * has no Results section at all.
+ */
+
+.page {
+  display: flex;
+  flex-direction: column;
+  overflow-x: clip;
+}
+
+.section {
+  margin-top: 40px;
+}
+
+.hero {
+  order: 1;
+  margin-top: 40px;
+}
+
+.facts {
+  order: 2;
+  margin-top: 40px;
+}
+
+.challenge {
+  order: 3;
+  margin-top: 40px;
+}
+
+.journey {
+  order: 4;
+}
+
+.conclusion {
+  order: 5;
+}
+
+.findings {
+  order: 6;
+}
+
+.principles {
+  order: 7;
+}
+
+.behaviour {
+  order: 8;
+}
+
+.carousel {
+  order: 9;
+}
+
+.results {
+  order: 10;
+  display: none;
+}
+
+.footer {
+  order: 11;
+}
+
+@media (min-width: 600px) {
+  .section,
+  .challenge {
+    margin-top: 32px;
+  }
+
+  .hero {
+    margin-top: 32px;
+  }
+
+  .facts {
+    margin-top: 24px;
+  }
+
+  .conclusion {
+    order: 6;
+  }
+
+  .findings {
+    order: 5;
+  }
+
+  .results {
+    display: block;
+  }
+}
+
+@media (min-width: 900px) {
+  .section,
+  .challenge,
+  .facts {
+    margin-top: 56px;
+  }
+
+  .hero {
+    margin-top: 56px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .section {
+    margin-top: 72px;
+  }
+
+  .facts {
+    margin-top: 12px;
+  }
+
+  .challenge {
+    margin-top: 46px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .section {
+    margin-top: 100px;
+  }
+
+  .hero {
+    margin-top: 32px;
+  }
+
+  .facts {
+    margin-top: 41.6px;
+  }
+
+  .challenge {
+    margin-top: 83px;
+  }
+}
+
+@media (min-width: 1800px) {
+  .hero {
+    margin-top: 24px;
+  }
+
+  .facts {
+    margin-top: 23.71px;
+  }
+
+  .challenge {
+    margin-top: 72px;
+  }
+}

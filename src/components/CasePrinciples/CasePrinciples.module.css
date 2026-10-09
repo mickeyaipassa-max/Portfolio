@@ -1,0 +1,91 @@
+/*
+ * "Our design principles" — measured from the case page's frames
+ * (2310:4817 XXL, 2503:2147 XL, 2503:3151 L, 2503:4099 M, 2503:4629 S,
+ * 2512:5025 XS): a centered heading and six Cards (tag, title, text, no
+ * skills line) in 3 columns from M up and 1 column below, 16px gaps.
+ *
+ * The Cards swap their Size variant by breakpoint (L at XXL, M at
+ * XL/L, S at M and below) — done by overriding the -l tokens the Card
+ * reads, the same way as the About page's grids (a single render
+ * instead of three). The measured per-size values: padding 40/24 ->
+ * 32/24 -> 24/16, tag 18 -> 16 -> 14 (inline padding 24, 24, 16), title
+ * 20 -> 16 -> 16, body 18 -> 16 -> 14. Figma's text boxes have fixed
+ * heights, which keeps the cards of a row (mostly) equally tall; here the
+ * cards of a row simply stretch to the tallest one.
+ */
+
+.section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  width: 100%;
+}
+
+.heading {
+  width: 100%;
+  font-weight: var(--font-weight-semibold);
+  font-size: 24px;
+  line-height: normal;
+  text-align: center;
+  color: var(--color-text-primary);
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 16px;
+  width: 100%;
+  --card-padding-l: 24px 16px;
+  --font-size-card-title-l: 16px;
+  --font-size-card-body-l: 14px;
+  --font-size-tag-l: 14px;
+  --tag-padding-inline-l: 16px;
+}
+
+@media (min-width: 600px) {
+  .heading {
+    font-size: 32px;
+    /* Figma's heading box is 48px tall at 32px too (S/M). */
+    min-height: 48px;
+  }
+}
+
+@media (min-width: 900px) {
+  .cards {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  /* M: in Figma the first row's cards share one height but the second row's
+     hug their content, centred, so the two shorter cards beside the taller
+     third one aren't stretched to match it. */
+  .cards > :nth-child(n + 4) {
+    align-self: center;
+  }
+}
+
+@media (min-width: 1200px) {
+  .heading {
+    font-size: 40px;
+  }
+
+  .cards > :nth-child(n + 4) {
+    align-self: stretch;
+  }
+
+  .cards {
+    --card-padding-l: 32px 24px;
+    --font-size-card-body-l: 16px;
+    --font-size-tag-l: 16px;
+    --tag-padding-inline-l: 24px;
+  }
+}
+
+@media (min-width: 1800px) {
+  .cards {
+    --card-padding-l: 40px 24px;
+    --font-size-card-title-l: 20px;
+    --font-size-card-body-l: 18px;
+    --font-size-tag-l: 18px;
+  }
+}
