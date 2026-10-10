@@ -29,6 +29,9 @@
 @layer base {
   html {
     height: 100%;
+    /* The sticky header (logo + 2 × 8px padding) would otherwise cover the
+       target of in-page anchors like /#latest-work. */
+    scroll-padding-top: calc(var(--nav-logo-size) + 16px);
   }
 
   html,

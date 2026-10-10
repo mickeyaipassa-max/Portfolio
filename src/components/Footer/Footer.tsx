@@ -36,7 +36,7 @@ function FooterLink({
 function FooterLogo() {
   return (
     <Link href="/" aria-label="Home" className={styles.logo}>
-      <Image src="/nav/logo.png" alt="" fill sizes="84px" className="object-cover" />
+      <Image src="/nav/logo.webp" alt="" fill sizes="84px" className="object-cover" />
     </Link>
   );
 }
