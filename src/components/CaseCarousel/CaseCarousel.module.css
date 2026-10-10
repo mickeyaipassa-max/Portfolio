@@ -504,10 +504,12 @@
   }
 }
 
-@media (min-width: 1440px) {
+@media (min-width: 1200px) {
   /*
-   * XL and XXL have their own, newer carousel (Figma 2560:6261 XL, 2560:6204
-   * XXL, "before first swipe"); the two only differ in text size and grid.
+   * L, XL and XXL share the newer carousel (Figma 2560:6261 XL, 2560:6204
+   * XXL, "before first swipe"); they only differ in the grid (1000/1200/1600px)
+   * and, at XXL, the text size. There is no separate L frame: it takes the XL
+   * design on its 1000px grid.
    * It reuses the S/XS module composition at a larger size instead of the
    * 680x838 desktop module: 471x670 #fcfcfc cards on a 16px gap, no shadow,
    * number + "Step N" tag on top, then title, goal and the screenshot last.
@@ -536,6 +538,7 @@
   }
 
   .introText {
+    flex: none;
     width: 100%;
     font-size: 16px;
   }
@@ -550,7 +553,7 @@
   }
 
   .window {
-    --inset: calc((100vw - 1200px) / 2);
+    --inset: calc((100vw - 1000px) / 2);
     width: calc(100vw - var(--inset));
     padding-inline: 0;
     scroll-padding-inline: 0;
@@ -642,6 +645,13 @@
 
   .floatingNext {
     display: none;
+  }
+}
+
+/* XL: 1200px grid. */
+@media (min-width: 1440px) {
+  .window {
+    --inset: calc((100vw - 1200px) / 2);
   }
 }
 
