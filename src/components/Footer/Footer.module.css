@@ -3,8 +3,9 @@
  * 2247:1060 XL, 2247:1126 L, 2248:1134 M, 2249:1171 S, 2249:1235 XS),
  * as it stands in Figma now: one centered, stacked composition at every
  * size (an earlier version had a left-aligned logo + nav row from L up
- * on a white ground). Logo, nav links, divider, copyright on a
- * surface-subtle (#f9f9f9) card with radius 16 and 40px block padding.
+ * on a white ground). Logo, nav links, divider, copyright with 40px block
+ * padding and deliberately no background: the page's white shows through,
+ * on every page that uses the Footer.
  *
  * What still varies is only spacing: the gap between logo and nav
  * (24px below L; 9/25/33px at L/XL/XXL, where Figma puts a 1px spacer
@@ -27,8 +28,6 @@
   gap: 24px;
   width: 100%;
   padding: 40px 16px;
-  background: var(--color-surface-subtle);
-  border-radius: 16px;
 }
 
 .top {
