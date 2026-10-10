@@ -42,6 +42,7 @@ function Photo() {
           sizes="540px"
           className="object-cover"
           style={{ transform: "scaleX(-1)" }}
+          priority
         />
       </div>
     </div>
