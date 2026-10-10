@@ -505,41 +505,141 @@
 }
 
 @media (min-width: 1800px) {
+  /*
+   * XXL has its own, newer carousel (Figma 2560:6204, "before first swipe").
+   * It reuses the S/XS module composition at a larger size instead of the
+   * 680x838 desktop module: 471x670 #fcfcfc cards on a 16px gap, no shadow,
+   * number + "Step N" tag on top, then title, goal and the screenshot last.
+   * The intro is stacked (title, then the text full width, no rule), and the
+   * floating chevron is gone. The window starts on the 1600px grid at the
+   * left and runs off the viewport on the right; modules snap to the grid's
+   * left edge, so after the first step the first card slides out to the left.
+   */
+  .carousel {
+    gap: 30px;
+  }
+
   .editorial {
-    gap: 80px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  /* The Figma texts of this carousel are rendered without tracking (their
+     boxes measure as natural widths), so the negative letter-spacing used at
+     the smaller sizes is dropped here. */
+  .title {
+    flex: none;
+    width: auto;
+    letter-spacing: 0;
   }
 
   .introText {
+    width: 100%;
     font-size: 18px;
+  }
+
+  .divider {
+    display: none;
   }
 
   .stage {
     position: relative;
+    gap: 30px;
   }
 
   .window {
-    width: 100vw;
-    margin-inline: calc(50% - 50vw);
     --inset: max(100px, calc((100vw - 1600px) / 2));
-    padding-inline: var(--inset);
-    scroll-padding-inline: calc(var(--inset) + 8px);
+    width: calc(100vw - var(--inset));
+    padding-inline: 0;
+    scroll-padding-inline: 0;
+  }
+
+  .track {
+    gap: 16px;
+    padding: 0;
+    filter: none;
+  }
+
+  .module {
+    width: 470.83px;
+    height: 670px;
+    background: #fcfcfc;
+  }
+
+  .flowLabel {
+    display: none;
+  }
+
+  .mobileTag {
+    display: inline-flex;
+  }
+
+  .desktopTag {
+    display: none;
+  }
+
+  .body {
+    align-items: stretch;
+    gap: 12px;
+    padding: 32px 16px;
+  }
+
+  .stageBlock {
+    display: contents;
+  }
+
+  .shot {
+    order: 2;
+    flex: none;
+    height: 387px;
+  }
+
+  .titleGoal {
+    order: 1;
+  }
+
+  .number {
+    letter-spacing: 0;
+  }
+
+  .stepTitle {
+    font-size: 32px;
+    letter-spacing: 0;
+  }
+
+  .goal {
+    font-size: 18px;
+    /* Figma's goal box is two lines tall even for the one-line goal of step
+       3 (it ends in a line break), so the screenshots line up across cards. */
+    min-height: 54px;
+  }
+
+  .indicatorNumber {
+    text-align: left;
+  }
+
+  /* Figma's arrow buttons are 79.2px boxes around a centred 56px circle
+     (gap 16px between boxes), which is why the pair ends 11.6px short of the
+     grid's right edge. */
+  .nav {
+    min-height: 79.2px;
+  }
+
+  .navButton {
+    width: 79.2px;
+    height: 79.2px;
+    padding: 11.6px;
+    background-clip: content-box;
+  }
+
+  /* the hover/pressed backgrounds are shorthands and would reset the clip */
+  .next:enabled:hover,
+  .next:enabled:active {
+    background-clip: content-box;
   }
 
   .floatingNext {
-    position: absolute;
-    top: 156px;
-    right: 30px;
-    z-index: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 44px;
-    height: 44px;
-    padding: 0;
-    background: #ffffff;
-    border: 0;
-    border-radius: 50%;
-    box-shadow: 0 0 12.9px rgba(0, 0, 0, 0.15);
-    cursor: pointer;
+    display: none;
   }
 }

@@ -23,7 +23,7 @@ const STEPS = [
   },
   {
     title: "Samenvatting",
-    goal: "Goal: Provide users with a comprehensive overview of their selected products and entered information. Also to finalize the application with informed consent and clarity.",
+    goal: "Goal: Provide users with an overview of their selected products and information. Also to finalize the application with informed consent and clarity.",
   },
   {
     title: "Succes",
