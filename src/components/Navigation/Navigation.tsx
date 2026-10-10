@@ -152,7 +152,7 @@ export function Navigation(props: NavigationProps) {
         aria-label="Hoofdnavigatie (vast)"
         aria-hidden={!stuck}
         inert={!stuck}
-        className={`fixed inset-x-0 top-0 z-50 bg-white py-2 shadow-[0_0_12.9px_rgba(0,0,0,0.15)] transition-[transform,visibility] duration-200 max-[899px]:[--nav-logo-size:50.4px] motion-reduce:transition-none ${
+        className={`fixed inset-x-0 top-0 z-50 bg-white py-2 shadow-[0_0_12.9px_rgba(0,0,0,0.15)] transition-[translate,visibility] duration-500 ease-[cubic-bezier(0.65,0,0.35,1)] max-[899px]:[--nav-logo-size:50.4px] motion-reduce:transition-none ${
           stuck ? "visible translate-y-0" : "invisible -translate-y-full"
         }`}
       >
