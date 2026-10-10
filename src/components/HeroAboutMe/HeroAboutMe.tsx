@@ -36,7 +36,7 @@ function Photo() {
     <div className={styles.photoCol}>
       <div className={styles.photo}>
         <Image
-          src="/hero/photo.png"
+          src="/hero/photo.webp"
           alt="Portret van Mickey Aipassa"
           fill
           sizes="540px"

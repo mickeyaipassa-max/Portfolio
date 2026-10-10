@@ -172,7 +172,7 @@ export function CaseCarousel() {
                     </span>
                     <div className={styles.shot}>
                       <img
-                        src={`/case-asr/step-${i + 1}.png`}
+                        src={`/case-asr/step-${i + 1}.webp`}
                         alt={`Bestaand scherm van stap ${i + 1}: ${step.title}`}
                         className={styles.shotImg}
                         loading="lazy"

@@ -22,12 +22,12 @@ export function CaseHero() {
       <div className={styles.media}>
         <div className={styles.group}>
           <img
-            src="/case-asr/hero-main.png"
+            src="/case-asr/hero-main.webp"
             alt="Het herontworpen aanvraagproces voor een verzekering"
             className={styles.mainImg}
           />
           <img
-            src="/case-asr/hero-secondary.png"
+            src="/case-asr/hero-secondary.webp"
             alt="Detail van het herontworpen aanvraagproces"
             className={styles.secondaryImg}
           />

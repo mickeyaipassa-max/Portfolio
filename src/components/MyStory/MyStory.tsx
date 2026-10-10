@@ -48,7 +48,7 @@ function Photo({ className }: { className: string }) {
           oversized, absolutely-positioned <img> is the only way to
           match the exact zoom level. */}
       <img
-        src="/my-story/photo.png"
+        src="/my-story/photo.webp"
         alt="Portret van Mickey Aipassa"
         className={styles.photoImg}
       />

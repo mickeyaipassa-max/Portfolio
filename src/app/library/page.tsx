@@ -493,7 +493,7 @@ export default function LibraryPage() {
                 title="Service & Contact"
                 discipline="Ux & Ui Design"
                 href="#"
-                mediaSrc="/hero/photo.png"
+                mediaSrc="/hero/photo.webp"
                 mediaAlt="Placeholder projectafbeelding"
               />
             </div>

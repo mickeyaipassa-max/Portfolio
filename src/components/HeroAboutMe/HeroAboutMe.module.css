@@ -25,7 +25,7 @@
  * asset reused at different sizes) sit as sibling <img> tags, each
  * shown only in its own breakpoint band — same technique as
  * AboutIntro's multiple wordmark assets. The photo reuses the Home
- * Hero's existing /hero/photo.png (same source photo, confirmed by
+ * Hero's existing /hero/photo.webp (same source photo, confirmed by
  * matching width/height aspect ratio at XXL — 540x707.53 here is
  * exactly proportional to Home Hero's 337.52x442.24) rather than
  * exporting six new crops, with per-breakpoint sizing and the same

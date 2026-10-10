@@ -44,12 +44,12 @@ export default function CaseAsr() {
       <div className={`grid-container ${styles.section} ${styles.journey}`}>
         <PhotoTextCard
           backPhoto={{
-            src: "/case-asr/journey-back.png",
+            src: "/case-asr/journey-back.webp",
             alt: "Een scherm uit de bestaande aanvraagflow",
             crop: { width: "100%", height: "239.36%", left: "0", top: "-0.05%" },
           }}
           frontPhoto={{
-            src: "/case-asr/journey-front.png",
+            src: "/case-asr/journey-front.webp",
             alt: "Een tweede scherm uit de bestaande aanvraagflow",
             crop: { width: "100%", height: "195.42%", left: "0", top: "0.05%" },
           }}

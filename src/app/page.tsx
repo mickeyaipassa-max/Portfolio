@@ -46,7 +46,7 @@ const PROJECTS: [Project, Project, Project] = [
     title: "Generic purchase flow",
     discipline: "Ux & Ui Design",
     href: "/caseasr",
-    mediaSrc: "/product-cards/asr-nederland.png",
+    mediaSrc: "/product-cards/asr-nederland.webp",
     mediaAlt: "a.s.r. Nederland project",
     mediaFit: "contain",
   },
@@ -55,7 +55,7 @@ const PROJECTS: [Project, Project, Project] = [
     title: "New Website",
     discipline: "Ux, Ui & Visual Design",
     href: "#",
-    mediaSrc: "/product-cards/rocketsourcers.png",
+    mediaSrc: "/product-cards/rocketsourcers.webp",
     mediaAlt: "RocketSourcers project",
   },
   {
@@ -63,7 +63,7 @@ const PROJECTS: [Project, Project, Project] = [
     title: "Digital campaign",
     discipline: "Ux, Ui & Visual Design",
     href: "#",
-    mediaSrc: "/product-cards/lotus-cars.png",
+    mediaSrc: "/product-cards/lotus-cars.webp",
     mediaAlt: "Lotus Cars project",
   },
 ];

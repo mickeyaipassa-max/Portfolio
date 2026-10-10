@@ -57,7 +57,7 @@ export function AboutIntro() {
           />
           <div className={styles.rowPhotoWrap}>
             <Image
-              src="/voorstellen/photo.png"
+              src="/voorstellen/photo.webp"
               alt="Portret van Mickey Aipassa"
               fill
               sizes="170px"
@@ -76,7 +76,7 @@ export function AboutIntro() {
         <div className={styles.stackedTopRow}>
           <div className={styles.stackedPhotoWrap}>
             <Image
-              src="/voorstellen/photo.png"
+              src="/voorstellen/photo.webp"
               alt="Portret van Mickey Aipassa"
               fill
               sizes="130px"
@@ -97,7 +97,7 @@ export function AboutIntro() {
       <div className={styles.fullyStacked}>
         <div className={styles.xsPhotoWrap}>
           <Image
-            src="/voorstellen/photo.png"
+            src="/voorstellen/photo.webp"
             alt="Portret van Mickey Aipassa"
             fill
             sizes="140px"

@@ -3,11 +3,11 @@ import type { PhotoTextCardProps } from "./PhotoTextCard";
 /** The "Beyond the pixels" content, as set in Figma (Foto and text card). */
 export const BEYOND_THE_PIXELS: PhotoTextCardProps = {
   backPhoto: {
-    src: "/photo-text-card/museum.jpg",
+    src: "/photo-text-card/museum.webp",
     alt: "Mickey bij een muurschildering in een museum",
   },
   frontPhoto: {
-    src: "/photo-text-card/motorcycle.png",
+    src: "/photo-text-card/motorcycle.webp",
     alt: "Mickey op een motorfiets op het circuit",
     crop: { width: "149.75%", height: "100%", left: "-18.13%", top: "0" },
   },
