@@ -504,9 +504,10 @@
   }
 }
 
-@media (min-width: 1800px) {
+@media (min-width: 1440px) {
   /*
-   * XXL has its own, newer carousel (Figma 2560:6204, "before first swipe").
+   * XL and XXL have their own, newer carousel (Figma 2560:6261 XL, 2560:6204
+   * XXL, "before first swipe"); the two only differ in text size and grid.
    * It reuses the S/XS module composition at a larger size instead of the
    * 680x838 desktop module: 471x670 #fcfcfc cards on a 16px gap, no shadow,
    * number + "Step N" tag on top, then title, goal and the screenshot last.
@@ -536,7 +537,7 @@
 
   .introText {
     width: 100%;
-    font-size: 18px;
+    font-size: 16px;
   }
 
   .divider {
@@ -549,7 +550,7 @@
   }
 
   .window {
-    --inset: max(100px, calc((100vw - 1600px) / 2));
+    --inset: calc((100vw - 1200px) / 2);
     width: calc(100vw - var(--inset));
     padding-inline: 0;
     scroll-padding-inline: 0;
@@ -609,10 +610,10 @@
   }
 
   .goal {
-    font-size: 18px;
+    font-size: 16px;
     /* Figma's goal box is two lines tall even for the one-line goal of step
        3 (it ends in a line break), so the screenshots line up across cards. */
-    min-height: 54px;
+    min-height: 48px;
   }
 
   .indicatorNumber {
@@ -641,5 +642,21 @@
 
   .floatingNext {
     display: none;
+  }
+}
+
+/* XXL: 1600px grid, 18px intro and goal text. */
+@media (min-width: 1800px) {
+  .introText {
+    font-size: 18px;
+  }
+
+  .window {
+    --inset: max(100px, calc((100vw - 1600px) / 2));
+  }
+
+  .goal {
+    font-size: 18px;
+    min-height: 54px;
   }
 }
