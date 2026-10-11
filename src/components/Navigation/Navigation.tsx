@@ -126,7 +126,8 @@ function NavRow({ hrefs, activeItem, onMenuToggle }: NavigationProps) {
  * only slides in once the regular header has scrolled out of view; it has a
  * white background and Figma's shadow (0 0 12.9px at 15%). Below 900px (S/XS)
  * its logo is 40% smaller (84px -> 50.4px), so the bar is 66.4px instead of
- * 100px. The sticky copy is fixed, so it never takes up space in the layout.
+ * 100px; at L and XL it is 30% smaller (88px -> 61.6px, 112px -> 78.4px).
+ * The sticky copy is fixed, so it never takes up space in the layout.
  */
 export function Navigation(props: NavigationProps) {
   const barRef = useRef<HTMLElement>(null);
@@ -152,7 +153,7 @@ export function Navigation(props: NavigationProps) {
         aria-label="Hoofdnavigatie (vast)"
         aria-hidden={!stuck}
         inert={!stuck}
-        className={`fixed inset-x-0 top-0 z-50 bg-white py-2 shadow-[0_0_12.9px_rgba(0,0,0,0.15)] transition-[translate,visibility] duration-500 ease-[cubic-bezier(0.65,0,0.35,1)] max-[899px]:[--nav-logo-size:50.4px] motion-reduce:transition-none ${
+        className={`fixed inset-x-0 top-0 z-50 bg-white py-2 shadow-[0_0_12.9px_rgba(0,0,0,0.15)] transition-[translate,visibility] duration-500 ease-[cubic-bezier(0.65,0,0.35,1)] max-[899px]:[--nav-logo-size:50.4px] min-[1200px]:max-[1439px]:[--nav-logo-size:61.6px] min-[1440px]:max-[1799px]:[--nav-logo-size:78.4px] motion-reduce:transition-none ${
           stuck ? "visible translate-y-0" : "invisible -translate-y-full"
         }`}
       >
