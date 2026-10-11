@@ -648,6 +648,71 @@
   }
 }
 
+/*
+ * L and XL (1200-1799px): the updated carousel (Figma 2560:6261, XL). Compact
+ * 400px cards that are as tall as the tallest one (step 5's four-line goal),
+ * a 32px number, a 12px tag, no top padding under the header and a screenshot
+ * at 75% size centred in the card. The arrows no longer sit in the progress
+ * row: they float over the cards at fixed positions on the grid (the previous
+ * one on the grid's left edge, the next one just right of its right edge,
+ * 225px below the top of the cards) with a soft shadow. XXL keeps the layout
+ * above.
+ */
+@media (min-width: 1200px) and (max-width: 1799px) {
+  .module {
+    width: 400px;
+    height: auto;
+  }
+
+  .index {
+    height: 88px;
+    padding: 0 32px;
+  }
+
+  .number {
+    font-size: 32px;
+  }
+
+  .mobileTag {
+    --font-size-tag-l: 12px;
+  }
+
+  .body {
+    flex: none;
+    min-height: auto;
+    padding: 0 16px 32px;
+  }
+
+  .shot {
+    align-self: center;
+    width: 329.125px;
+    height: 290.25px;
+  }
+
+  .progress {
+    min-height: 30px;
+  }
+
+  .nav {
+    min-height: 0;
+  }
+
+  .navButton {
+    position: absolute;
+    top: 225px;
+    z-index: 1;
+    filter: drop-shadow(0 0 12.9px rgba(0, 0, 0, 0.15));
+  }
+
+  .prev {
+    left: -38px;
+  }
+
+  .next {
+    left: calc(100% - 7.2px);
+  }
+}
+
 /* XL: 1200px grid. */
 @media (min-width: 1440px) {
   .window {
