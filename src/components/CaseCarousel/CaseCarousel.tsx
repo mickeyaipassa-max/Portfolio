@@ -180,8 +180,14 @@ export function CaseCarousel() {
                     </div>
                   </div>
                   <div className={styles.titleGoal}>
-                    <p className={styles.stepTitle}>{step.title}</p>
-                    <p className={styles.goal}>{step.goal}</p>
+                    <p className={styles.stepTitle}>
+                      <span className={styles.inlineNumber}>{pad(i + 1)}</span>{" "}
+                      {step.title}
+                    </p>
+                    <p className={styles.goal}>
+                      <span className={styles.goalLabel}>Goal:</span>
+                      {step.goal.slice("Goal:".length)}
+                    </p>
                   </div>
                 </div>
               </li>

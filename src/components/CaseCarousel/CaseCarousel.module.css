@@ -203,6 +203,16 @@
   color: #626262;
 }
 
+/* The inline step number in the title and the "Goal:" label only get their
+   own look at L/XL; everywhere else the title and goal read as plain text. */
+.inlineNumber {
+  display: none;
+}
+
+.goalLabel {
+  color: inherit;
+}
+
 /* ---------- Progress ---------- */
 
 .progress {
@@ -649,44 +659,71 @@
 }
 
 /*
- * L and XL (1200-1799px): the updated carousel (Figma 2560:6261, XL). Compact
- * 400px cards that are as tall as the tallest one (step 5's four-line goal),
- * a 32px number, a 12px tag, no top padding under the header and a screenshot
- * at 75% size centred in the card. The arrows no longer sit in the progress
- * row: they float over the cards at fixed positions on the grid (the previous
- * one on the grid's left edge, the next one just right of its right edge,
- * 225px below the top of the cards) with a soft shadow. XXL keeps the layout
- * above.
+ * L and XL (1200-1799px): the updated carousel (Figma 2560:6262, XL). 400px
+ * cards that are as tall as the tallest one (step 5's four-line goal) with the
+ * number inline in the title; the arrows are not in the progress row but float
+ * over the cards at fixed positions on the grid (the previous one on the
+ * grid's left edge, the next one just right of its right edge), centred
+ * vertically on the cards, with a soft shadow. XXL keeps the layout above.
  */
 @media (min-width: 1200px) and (max-width: 1799px) {
+  /* 400px cards with a 0.5px border, as tall as the tallest one (step 5 has a
+     four-line goal): padding 24/16, then "01 Jouw situatie" centred, the
+     screenshot at 224x198 and the goal centred below it. The header with the
+     big number and the tag is gone; the number sits in the title instead. */
   .module {
     width: 400px;
     height: auto;
+    /* drawn as an inset shadow so the 0.5px outline takes no layout space,
+       like Figma's stroke (the card stays exactly 392px tall) */
+    box-shadow: inset 0 0 0 0.5px #d2d2d2;
   }
 
   .index {
-    height: 88px;
-    padding: 0 32px;
-  }
-
-  .number {
-    font-size: 32px;
-  }
-
-  .mobileTag {
-    --font-size-tag-l: 12px;
+    display: none;
   }
 
   .body {
     flex: none;
     min-height: auto;
-    padding: 0 16px 32px;
+    align-items: center;
+    gap: 12px;
+    padding: 24px 16px;
+  }
+
+  .titleGoal {
+    display: contents;
+  }
+
+  .stepTitle {
+    order: 0;
+    width: 100%;
+    font-size: 24px;
+    line-height: 26px;
+    text-align: center;
+  }
+
+  .inlineNumber {
+    display: inline;
+    color: var(--color-accent);
   }
 
   .shot {
-    align-self: center;
-    width: 329.125px;
-    height: 290.25px;
+    order: 1;
+    flex: none;
+    width: 224px;
+    height: 198px;
+  }
+
+  .goal {
+    order: 2;
+    width: 100%;
+    min-height: 0;
+    text-align: center;
+  }
+
+  .goalLabel {
+    color: #000000;
   }
 
   .progress {
@@ -697,9 +734,11 @@
     min-height: 0;
   }
 
+  /* The arrows float over the cards at fixed positions on the grid, centred
+     vertically on the 392px-tall cards (196px - half the 79.2px box). */
   .navButton {
     position: absolute;
-    top: 225px;
+    top: 156.4px;
     z-index: 1;
     filter: drop-shadow(0 0 12.9px rgba(0, 0, 0, 0.15));
   }
