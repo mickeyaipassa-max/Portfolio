@@ -1,0 +1,354 @@
+/*
+ * Expertises — second section: four expertise rows, each a text panel and a
+ * "Selected work" panel. Measured from the Figma "Expertises" page (light
+ * concept: XXL 2600:1153 "Sections" and the XL/L/M/S/XS frames
+ * "section 2"). From L the two panels sit side by side (text panel 940 /
+ * 705 / 586px, the other fills the rest) and every second row is mirrored;
+ * below 1200px they stack. Rows are 24px apart and the section ends 60px
+ * below the last row. Panel padding, gaps and type follow the breakpoint
+
+ * (body 18/16/16/16/14/14, headline 40/40/40/32/32/24); line heights are
+ * whole pixels because Figma rounds each line box.
+ */
+
+.work {
+  --copy-pad: 24px;
+  --copy-gap: 16px;
+  --work-pad: 24px;
+  --number-size: 32px;
+  --badge-pad: 12px;
+  --badge-icon: 24px;
+  --title-size: 24px;
+  --text-size: 14px;
+  --work-title-size: 18px;
+  --work-text-size: 14px;
+  --item-size: 14px;
+  --metric-size: 32px;
+  --metric-pad: 16px;
+  /* Figma rounds each line box to whole pixels, so the line heights are px */
+  --number-lh: 38px;
+  --title-lh: 27px;
+  --text-lh: 25px;
+  --work-title-lh: 22px;
+  --work-text-lh: 24px;
+  --metric-lh: 38px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding-bottom: 60px;
+}
+
+.row {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.panel {
+  border: 1px solid var(--color-border-subtle);
+  border-radius: 22px;
+}
+
+/* ---------- Text panel ---------- */
+
+.copy {
+  display: flex;
+  flex-direction: column;
+  gap: var(--copy-gap);
+  padding: var(--copy-pad);
+  background: var(--color-surface-subtle);
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.number {
+  font-weight: 700;
+  font-size: var(--number-size);
+  line-height: var(--number-lh);
+  color: var(--color-text-secondary);
+}
+
+.badge {
+  display: flex;
+  padding: var(--badge-pad);
+  background: #ffffff;
+  border: 1px solid var(--color-border-subtle);
+  border-radius: 100px;
+}
+
+.badgeIcon {
+  width: var(--badge-icon);
+  height: var(--badge-icon);
+}
+
+.label {
+  font-weight: var(--font-weight-semibold);
+  font-size: 14px;
+  line-height: normal;
+  letter-spacing: 2px;
+  color: var(--color-accent);
+}
+
+.title {
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--title-size);
+  line-height: var(--title-lh);
+  color: #111111;
+}
+
+.text {
+  font-size: var(--text-size);
+  line-height: var(--text-lh);
+  color: var(--color-text-secondary);
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tag {
+  padding: 7px 14px;
+  font-weight: var(--font-weight-medium);
+  font-size: 14px;
+  line-height: normal;
+  color: #111111;
+  background: #ffffff;
+  border: 1px solid var(--color-border-subtle);
+  border-radius: 100px;
+}
+
+/* ---------- Selected work panel ---------- */
+
+.workPanel {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: var(--work-pad);
+  background: #ffffff;
+}
+
+.workTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.workLabel {
+  font-weight: var(--font-weight-semibold);
+  font-size: 14px;
+  line-height: normal;
+  letter-spacing: 3px;
+  color: var(--color-accent);
+}
+
+.open {
+  display: flex;
+  padding: 10px;
+  background: #ffffff;
+  border: 1px solid var(--color-border-subtle);
+  border-radius: 100px;
+}
+
+.openIcon {
+  width: 16px;
+  height: 16px;
+}
+
+.workTitle {
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--work-title-size);
+  line-height: var(--work-title-lh);
+  color: #111111;
+}
+
+.workText {
+  font-size: var(--work-text-size);
+  line-height: var(--work-text-lh);
+  color: var(--color-text-secondary);
+}
+
+.metrics {
+  display: flex;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.metric {
+  display: flex;
+  flex: 1 1 0;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+  padding: var(--metric-pad);
+  background: var(--color-surface-subtle);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: 16px;
+}
+
+.metricValue {
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--metric-size);
+  line-height: var(--metric-lh);
+  color: var(--color-accent);
+}
+
+.metricLabel {
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--color-text-secondary);
+}
+
+.items {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: var(--item-size);
+  line-height: normal;
+  color: #111111;
+}
+
+.itemIcon {
+  flex: none;
+  width: 18px;
+  height: 18px;
+}
+
+.link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  align-self: flex-start;
+  font-weight: var(--font-weight-medium);
+  font-size: 16px;
+  line-height: normal;
+  color: #111111;
+}
+
+.linkIcon {
+  width: 16px;
+  height: 16px;
+}
+
+/* ---------- S: 600-899px ---------- */
+
+@media (min-width: 600px) {
+  .work {
+    --copy-gap: 18px;
+    --number-size: 40px;
+    --title-size: 32px;
+    --work-title-size: 20px;
+    --number-lh: 48px;
+    --title-lh: 36px;
+    --work-title-lh: 24px;
+  }
+}
+
+/* ---------- M: 900-1199px ---------- */
+
+@media (min-width: 900px) {
+  .work {
+    --copy-pad: 40px;
+    --copy-gap: 20px;
+    --work-pad: 32px;
+    --number-size: 64px;
+    --badge-pad: 14px;
+    --badge-icon: 28px;
+    --text-size: 16px;
+    --work-text-size: 16px;
+    --item-size: 16px;
+    --metric-size: 40px;
+    --metric-pad: 18px;
+    --number-lh: 77px;
+    --text-lh: 28px;
+    --work-text-lh: 27px;
+    --metric-lh: 48px;
+  }
+}
+
+/* ---------- L: 1200-1439px, side by side ---------- */
+
+@media (min-width: 1200px) {
+  .work {
+    --copy-pad: 32px;
+    --copy-gap: 18px;
+    --work-pad: 28px;
+    --title-size: 40px;
+    --title-lh: 45px;
+    --metric-pad: 16px;
+  }
+
+  .row {
+    flex-direction: row;
+  }
+
+  .row:nth-child(even) {
+    flex-direction: row-reverse;
+  }
+
+  .copy {
+    flex: none;
+    width: 586px;
+  }
+
+  .workPanel {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+}
+
+/* ---------- XL: 1440-1799px ---------- */
+
+@media (min-width: 1440px) {
+  .work {
+    --copy-pad: 40px;
+    --copy-gap: 20px;
+    --work-pad: 32px;
+    --work-title-size: 24px;
+    --work-title-lh: 29px;
+    --metric-pad: 18px;
+  }
+
+  .copy {
+    width: 705px;
+  }
+}
+
+/* ---------- XXL: 1800px and up ---------- */
+
+@media (min-width: 1800px) {
+  .work {
+    --copy-pad: 48px;
+    --copy-gap: 22px;
+    --work-pad: 40px;
+    --badge-pad: 16px;
+    --badge-icon: 30px;
+    --text-size: 18px;
+    --work-text-size: 18px;
+    --text-lh: 32px;
+    --work-text-lh: 31px;
+  }
+
+  .copy {
+    width: 940px;
+  }
+}

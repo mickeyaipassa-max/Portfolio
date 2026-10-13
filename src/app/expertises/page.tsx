@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Navigation } from "@/components/Navigation/Navigation";
 import { ExpertisesHero } from "@/components/ExpertisesHero/ExpertisesHero";
+import { ExpertisesWork } from "@/components/ExpertisesWork/ExpertisesWork";
 
 export const metadata: Metadata = {
   title: "Expertises — Mickey Aipassa",
@@ -20,6 +21,7 @@ export default function Expertises() {
         activeItem="expertises"
       />
       <ExpertisesHero />
+      <ExpertisesWork />
     </>
   );
 }
