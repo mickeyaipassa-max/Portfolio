@@ -83,6 +83,47 @@ export function CaseCarousel() {
     });
   }, []);
 
+  // At the end of the track the last few steps share one scroll position, so
+  // once the track is at its end the counter and indicator show the last step.
+  const shown = canNext ? active : STEPS.length - 1;
+
+  // The scroll position a step snaps to, clamped to what the track can reach.
+  const positionOf = useCallback((index: number) => {
+    const win = windowRef.current;
+    const card = moduleRefs.current[index];
+    if (!win || !card) return 0;
+    const padding =
+      parseFloat(getComputedStyle(win).scrollPaddingInlineStart) || 0;
+    const max = win.scrollWidth - win.clientWidth;
+    const raw =
+      win.scrollLeft +
+      (card.getBoundingClientRect().left - win.getBoundingClientRect().left) -
+      padding;
+    return Math.max(0, Math.min(max, raw));
+  }, []);
+
+  // Arrow buttons move to the next step that actually changes the scroll
+  // position (from the end, "previous" skips the steps that share it).
+  const stepBy = useCallback(
+    (direction: 1 | -1) => {
+      const win = windowRef.current;
+      if (!win) return;
+      const left = win.scrollLeft;
+      for (
+        let i = shown + direction;
+        i >= 0 && i < STEPS.length;
+        i += direction
+      ) {
+        const position = positionOf(i);
+        if (direction === 1 ? position > left + 2 : position < left - 2) {
+          goTo(i);
+          return;
+        }
+      }
+    },
+    [shown, positionOf, goTo],
+  );
+
   useEffect(() => {
     const win = windowRef.current;
     if (!win) return;
@@ -153,7 +194,7 @@ export function CaseCarousel() {
           type="button"
           className={styles.floatingNext}
           aria-label="Next step"
-          onClick={() => goTo(active + 1)}
+          onClick={() => stepBy(1)}
         >
           <svg width="44" height="44" viewBox="0 0 44 44" fill="none" aria-hidden="true">
             <path
@@ -224,9 +265,9 @@ export function CaseCarousel() {
               <button
                 key={step.title}
                 type="button"
-                className={`${styles.indicator}${i === active ? ` ${styles.indicatorActive}` : ""}`}
+                className={`${styles.indicator}${i === shown ? ` ${styles.indicatorActive}` : ""}`}
                 aria-label={`Go to step ${i + 1}: ${step.title}`}
-                aria-current={i === active ? "step" : undefined}
+                aria-current={i === shown ? "step" : undefined}
                 onClick={() => goTo(i)}
               >
                 <span className={styles.marker} />
@@ -236,14 +277,14 @@ export function CaseCarousel() {
           </div>
           <div className={styles.nav}>
             <span className={styles.position} aria-live="polite">
-              {pad(active + 1)} / {pad(STEPS.length)}
+              {pad(shown + 1)} / {pad(STEPS.length)}
             </span>
             <button
               type="button"
               className={`${styles.navButton} ${styles.prev}`}
               aria-label="Previous step"
               disabled={!canPrev}
-              onClick={() => goTo(active - 1)}
+              onClick={() => stepBy(-1)}
             >
               <ArrowIcon direction="prev" enabled={canPrev} />
             </button>
@@ -252,7 +293,7 @@ export function CaseCarousel() {
               className={`${styles.navButton} ${styles.next}`}
               aria-label="Next step"
               disabled={!canNext}
-              onClick={() => goTo(active + 1)}
+              onClick={() => stepBy(1)}
             >
               <ArrowIcon direction="next" enabled={canNext} />
             </button>

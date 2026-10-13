@@ -573,9 +573,13 @@
     scroll-padding-inline: 0;
   }
 
+  /* Trailing space the width of the window minus one card, so the last card
+     can also snap to the grid's left edge and each of the six steps (and the
+     indicators and counter under them) has its own scroll position. */
   .track {
+    --card-width: 470.83px;
     gap: 16px;
-    padding: 0;
+    padding: 0 max(0px, calc(100% - var(--card-width))) 0 0;
     filter: none;
   }
 
@@ -665,6 +669,10 @@
  * vertically on the cards, with a soft shadow. XXL keeps the layout above.
  */
 @media (min-width: 1200px) and (max-width: 1799px) {
+  .track {
+    --card-width: 400px;
+  }
+
   /* 400px cards with a 0.5px border, as tall as the tallest one (step 5 has a
      four-line goal): padding 24/16, then "01 Jouw situatie" centred, the
      screenshot at 224x198 and the goal centred below it. The header with the
