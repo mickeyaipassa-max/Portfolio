@@ -295,21 +295,25 @@
   cursor: default;
 }
 
-.prev {
-  background: #f5f5f5;
-}
-
-.next {
-  background: var(--color-accent);
+/* Both arrows are orange while there is more to scroll in their direction
+   and grey (#f5f5f5, grey arrow) once the track can't go any further. The
+   colours are background-color (not the shorthand) so the L/XL circle clip
+   below is never reset. */
+.navButton {
+  background-color: #f5f5f5;
   transition: background-color 0.15s;
 }
 
-.next:enabled:hover {
-  background: var(--color-accent-hover);
+.navButton:enabled {
+  background-color: var(--color-accent);
 }
 
-.next:enabled:active {
-  background: var(--color-accent-pressed);
+.navButton:enabled:hover {
+  background-color: var(--color-accent-hover);
+}
+
+.navButton:enabled:active {
+  background-color: var(--color-accent-pressed);
 }
 
 /* ---------- S: wider modules, bigger number ---------- */
@@ -644,12 +648,6 @@
     width: 79.2px;
     height: 79.2px;
     padding: 11.6px;
-    background-clip: content-box;
-  }
-
-  /* the hover/pressed backgrounds are shorthands and would reset the clip */
-  .next:enabled:hover,
-  .next:enabled:active {
     background-clip: content-box;
   }
 

@@ -33,7 +33,13 @@ const STEPS = [
 
 const pad = (n: number) => String(n).padStart(2, "0");
 
-function ArrowIcon({ direction }: { direction: "prev" | "next" }) {
+function ArrowIcon({
+  direction,
+  enabled,
+}: {
+  direction: "prev" | "next";
+  enabled: boolean;
+}) {
   return (
     <svg width="56" height="56" viewBox="0 0 56 56" fill="none" aria-hidden="true">
       <path
@@ -42,7 +48,7 @@ function ArrowIcon({ direction }: { direction: "prev" | "next" }) {
             ? "M16.69 28H39.31M32.04 35.27L39.31 28L31.63 20.32"
             : "M39.31 28H16.69M23.96 20.72L16.69 28L24.36 35.68"
         }
-        stroke={direction === "next" ? "#ffffff" : "#b8b8b8"}
+        stroke={enabled ? "#ffffff" : "#b8b8b8"}
         strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -55,6 +61,11 @@ export function CaseCarousel() {
   const windowRef = useRef<HTMLDivElement>(null);
   const moduleRefs = useRef<(HTMLLIElement | null)[]>([]);
   const [active, setActive] = useState(0);
+  // Whether the track can still scroll in each direction. The arrows are
+  // orange while it can and grey once it can't (not tied to the step number:
+  // at the end of the track the last few steps share one scroll position).
+  const [canPrev, setCanPrev] = useState(false);
+  const [canNext, setCanNext] = useState(true);
   // While a button-driven scroll is still animating, scroll events must not
   // overwrite the step that was asked for (at the end of the track the last
   // two steps share the same scroll position).
@@ -76,7 +87,14 @@ export function CaseCarousel() {
     const win = windowRef.current;
     if (!win) return;
 
+    const updateEdges = () => {
+      const max = win.scrollWidth - win.clientWidth;
+      setCanPrev(win.scrollLeft > 2);
+      setCanNext(win.scrollLeft < max - 2);
+    };
+
     const onScroll = () => {
+      updateEdges();
       if (Date.now() < lockedUntil.current) return;
       const atEnd = win.scrollLeft + win.clientWidth >= win.scrollWidth - 2;
       if (atEnd) {
@@ -97,9 +115,14 @@ export function CaseCarousel() {
       lockedUntil.current = 0;
     };
 
+    updateEdges();
+    const resizeObserver = new ResizeObserver(updateEdges);
+    resizeObserver.observe(win);
+
     win.addEventListener("scroll", onScroll, { passive: true });
     win.addEventListener("scrollend", onScrollEnd);
     return () => {
+      resizeObserver.disconnect();
       win.removeEventListener("scroll", onScroll);
       win.removeEventListener("scrollend", onScrollEnd);
     };
@@ -219,19 +242,19 @@ export function CaseCarousel() {
               type="button"
               className={`${styles.navButton} ${styles.prev}`}
               aria-label="Previous step"
-              disabled={active === 0}
+              disabled={!canPrev}
               onClick={() => goTo(active - 1)}
             >
-              <ArrowIcon direction="prev" />
+              <ArrowIcon direction="prev" enabled={canPrev} />
             </button>
             <button
               type="button"
               className={`${styles.navButton} ${styles.next}`}
               aria-label="Next step"
-              disabled={active === STEPS.length - 1}
+              disabled={!canNext}
               onClick={() => goTo(active + 1)}
             >
-              <ArrowIcon direction="next" />
+              <ArrowIcon direction="next" enabled={canNext} />
             </button>
           </div>
         </div>
