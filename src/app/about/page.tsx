@@ -69,7 +69,7 @@ export default function AboutMe() {
         hrefs={{
           "latest-work": "/#latest-work",
           "about-me": "/about",
-          expertises: "/#expertises",
+          expertises: "/expertises",
           contact: "/#contact",
         }}
         activeItem="about-me"
@@ -127,7 +127,7 @@ export default function AboutMe() {
           hrefs={{
             "latest-work": "/#latest-work",
             "about-me": "/about",
-            expertises: "/#expertises",
+            expertises: "/expertises",
             contact: "/#contact",
           }}
         />

@@ -79,7 +79,7 @@ export default function Home() {
         hrefs={{
           "latest-work": "#latest-work",
           "about-me": "/about",
-          expertises: "#expertises",
+          expertises: "/expertises",
           contact: "#contact",
         }}
       />
@@ -123,7 +123,7 @@ export default function Home() {
           hrefs={{
             "latest-work": "#latest-work",
             "about-me": "#about-me",
-            expertises: "#expertises",
+            expertises: "/expertises",
             contact: "#contact",
           }}
         />

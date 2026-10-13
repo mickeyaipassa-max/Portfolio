@@ -1,0 +1,451 @@
+/*
+ * Expertises — first section (navigation + hero), measured from the Figma
+ * "Expertises" page (light concept: XXL 2600:1153 and the XL/L/M/S/XS
+ * frames 2610:*). All offsets are relative to the grid container and to the
+ * bottom of the navigation bar (Figma's frame top is the nav's top, so every
+ * Figma y here is reduced by the nav height 136/128/104/100/100/100).
+ *
+ * XXL..L: three columns — "Areas of expertise" + "Expertise" cards on the
+ * left, the portrait (a transparent cut-out) overlapping the giant word and
+ * both columns, the Skills card on the right. M..XS: one column — word,
+ * portrait, then Expertise, Areas and Skills. The portrait is a crop of one
+ * pre-cropped cut-out (x 26-74%, y 36-100% of the photo): every breakpoint
+ * shows Figma's 47%-wide window starting 36% down, with a per-breakpoint
+ * height (47% at XXL, 59% XL, 63% L, 38% M, 37% S, 39% XS).
+ *
+ * Type per breakpoint follows the rest of the site: body 18/16/16/16/14/14
+ * (XXL..XS), card titles 32/32/24, labels 20/18/18/16, list items 16/14.
+ */
+
+.hero {
+  --pad: 24px;
+  --area-gap: 16px;
+  --skills-gap: 12px;
+  --label-size: 16px;
+  --title-size: 24px;
+  --body-size: 14px;
+  --item-size: 14px;
+  position: relative;
+  padding-top: 313px;
+  padding-bottom: 52px;
+}
+
+/* ---------- Giant word + portrait ---------- */
+
+.word {
+  position: absolute;
+  top: -6px;
+  left: -10px;
+  z-index: 0;
+  font-weight: var(--font-weight-black);
+  font-size: 52px;
+  line-height: 62px;
+  letter-spacing: 2px;
+  white-space: nowrap;
+  color: var(--color-accent);
+  pointer-events: none;
+  user-select: none;
+}
+
+.portrait {
+  position: absolute;
+  top: -20px;
+  left: calc(50% - 150px);
+  z-index: 0;
+  width: 300px;
+  height: 333px;
+  overflow: hidden;
+}
+
+/* the pre-cropped photo, shifted/scaled to Figma's crop window */
+.portraitImg {
+  position: absolute;
+  top: 0;
+  left: -1.06%;
+  width: 102.13%;
+  max-width: none;
+  height: 163.8%;
+}
+
+/* ---------- Layout ---------- */
+
+.cols {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.left {
+  display: contents;
+}
+
+.copy {
+  order: 1;
+}
+
+.areas {
+  order: 2;
+}
+
+.skills {
+  order: 3;
+}
+
+.card {
+  position: relative;
+  z-index: 1;
+  padding: var(--pad);
+  background: rgb(249 249 249 / 0.9);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: 18px;
+}
+
+/* ---------- Areas of expertise ---------- */
+
+.areas {
+  display: flex;
+  flex-direction: column;
+  gap: var(--area-gap);
+}
+
+.label {
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--label-size);
+  line-height: normal;
+  color: var(--color-accent);
+}
+
+.labelTight {
+  letter-spacing: 2px;
+}
+
+.labelWide {
+  letter-spacing: 4px;
+}
+
+.area {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: var(--font-weight-semibold);
+  font-size: 14px;
+  line-height: normal;
+  color: #111111;
+}
+
+.areaNumber {
+  flex: none;
+  color: var(--color-accent);
+}
+
+/* ---------- Expertise card ---------- */
+
+.copy {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.heading {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.title {
+  font-weight: 700;
+  font-size: var(--title-size);
+  line-height: 1.2;
+  color: #111111;
+}
+
+.body {
+  font-size: var(--body-size);
+  line-height: 1.7;
+  color: var(--color-text-secondary);
+}
+
+.buttonsL,
+.buttonsM,
+.buttonsS {
+  display: none;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.buttonsS {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Figma's buttons are 54/51/41px tall (the 1px stroke sits inside the box);
+   the Button component adds the border on top, so pin the heights here. */
+.buttonsL > * {
+  height: 54px;
+}
+
+.buttonsM > * {
+  height: 51px;
+}
+
+.buttonsS > * {
+  height: 41px;
+}
+
+/* ---------- Skills ---------- */
+
+.skills {
+  display: flex;
+  flex-direction: column;
+  gap: var(--skills-gap);
+}
+
+.skillList {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--skills-gap);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.skill {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  font-size: var(--item-size);
+  line-height: 24px;
+  color: #000000;
+}
+
+.skillIcon {
+  flex: none;
+  width: 24px;
+  height: 24px;
+}
+
+/* ---------- S: 600-899px ---------- */
+
+@media (min-width: 600px) {
+  .hero {
+    padding-top: 407px;
+    min-height: 1377px;
+  }
+
+  .word {
+    font-size: 82px;
+    line-height: 98px;
+  }
+
+  .portrait {
+    top: -17px;
+    left: calc(50% - 200px);
+    width: 400px;
+    height: 424px;
+  }
+
+  .portraitImg {
+    top: 0;
+    height: 171.3%;
+  }
+
+  .skillList {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 24px;
+  }
+
+  .buttonsS {
+    flex-direction: row;
+  }
+}
+
+/* ---------- M: 900-1199px ---------- */
+
+@media (min-width: 900px) {
+  .hero {
+    --pad: 32px;
+    --area-gap: 18px;
+    --body-size: 16px;
+    padding-top: 555px;
+    min-height: 1461px;
+  }
+
+  .word {
+    font-size: 121px;
+    line-height: 145px;
+  }
+
+  .portrait {
+    top: 0;
+    left: calc(50% - 260px);
+    width: 520px;
+    height: 555px;
+  }
+
+  .portraitImg {
+    top: 0;
+    height: 170.3%;
+  }
+
+  .skillList {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    column-gap: 16px;
+  }
+
+  .buttonsS {
+    display: none;
+  }
+
+  .buttonsM {
+    display: flex;
+    flex-direction: row;
+  }
+}
+
+/* ---------- L: 1200-1439px, three columns ---------- */
+
+@media (min-width: 1200px) {
+  .hero {
+    --pad: 24px;
+    --area-gap: 18px;
+    --skills-gap: 16px;
+    --label-size: 18px;
+    --item-size: 16px;
+    padding-top: 172px;
+    min-height: 0;
+  }
+
+  .word {
+    font-size: 132px;
+    line-height: 158px;
+  }
+
+  .portrait {
+    top: 14px;
+    left: 174px;
+    width: 514px;
+    height: 922px;
+  }
+
+  .portraitImg {
+    top: 0;
+    left: -0.98%;
+    height: 101.3%;
+  }
+
+  .cols {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 0;
+  }
+
+  .left {
+    display: flex;
+    flex-direction: column;
+    gap: 43px;
+    width: 346px;
+  }
+
+  .copy,
+  .areas,
+  .skills {
+    order: 0;
+  }
+
+  .skills {
+    width: 395px;
+  }
+
+  .skillList {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .buttonsM {
+    flex-direction: column;
+  }
+}
+
+/* ---------- XL: 1440-1799px ---------- */
+
+@media (min-width: 1440px) {
+  .hero {
+    --pad: 32px;
+    --area-gap: 20px;
+    --skills-gap: 20px;
+    --title-size: 32px;
+    padding-top: 204px;
+  }
+
+  .word {
+    font-size: 158px;
+    line-height: 190px;
+  }
+
+  .portrait {
+    top: 18px;
+    left: 209px;
+    width: 616px;
+    height: 1033px;
+  }
+
+  .portraitImg {
+    top: 0;
+    left: -1.06%;
+    height: 108.4%;
+  }
+
+  .left {
+    width: 415px;
+  }
+
+  .skills {
+    width: 474px;
+  }
+
+  .buttonsM {
+    display: none;
+  }
+
+  .buttonsL {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+/* ---------- XXL: 1800px and up ---------- */
+
+@media (min-width: 1800px) {
+  .hero {
+    --area-gap: 22px;
+    --label-size: 20px;
+    --body-size: 18px;
+    padding-top: 267px;
+    min-height: 1124px;
+  }
+
+  .word {
+    font-size: 211px;
+    line-height: 253px;
+  }
+
+  .portrait {
+    top: 26px;
+    left: 279px;
+    width: 822px;
+    height: 1098px;
+  }
+
+  .portraitImg {
+    top: 0;
+    height: 136%;
+  }
+
+  .left {
+    width: 554px;
+  }
+
+  .skills {
+    width: 632px;
+  }
+}

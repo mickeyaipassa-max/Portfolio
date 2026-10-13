@@ -20,7 +20,7 @@ export const metadata: Metadata = {
 const NAV_HREFS = {
   "latest-work": "/#latest-work",
   "about-me": "/about",
-  expertises: "/#expertises",
+  expertises: "/expertises",
   contact: "/#contact",
 };
 
