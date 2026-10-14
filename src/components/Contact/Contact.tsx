@@ -1,6 +1,6 @@
 import styles from "./Contact.module.css";
 
-export function Contact() {
+export function Contact({ phoneText = "+316 15 68 56 38" }: { phoneText?: string }) {
   return (
     <div className={styles.card}>
       <div className={styles.group}>
@@ -15,7 +15,7 @@ export function Contact() {
           <span className={styles.pill}>Call me</span>
           <span className={styles.itemContent}>
             <img src="/contact/phone.svg" alt="" className={styles.icon} />
-            <span className={styles.itemText}>+316 15 68 56 38</span>
+            <span className={styles.itemText}>{phoneText}</span>
           </span>
         </a>
       </div>

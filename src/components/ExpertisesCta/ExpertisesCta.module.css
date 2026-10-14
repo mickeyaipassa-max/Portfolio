@@ -1,0 +1,153 @@
+/*
+ * Expertises — third section: centred call to action followed by the shared
+ * Contact component. Measured from the Figma "Expertises" page (XXL "CTA"
+ * 2600:1453 and the XL/L/M/S/XS "section 3" frames). The frame is full width
+ * with a 1px top border; label + headline, the paragraph and Contact are
+ * stacked with one gap (30/30/26/24/22/20px, XXL→XS). Below 1200px Contact
+ * runs edge to edge (as on the Home page), from L it matches the grid width.
+ * Headline 50/50/40/32/32/28, body 18/16/16/16/14/14; line heights are whole
+ * pixels because Figma rounds each line box. The headline keeps its manual
+ * break down to M and the paragraph down to S; below that they wrap freely.
+ */
+
+.cta {
+  --cta-pad-top: 64px;
+  --cta-pad-bottom: 72px;
+  --cta-gap: 20px;
+  --label-size: 14px;
+  --label-lh: 17px;
+  --title-size: 28px;
+  --title-lh: 30px;
+  --text-size: 14px;
+  --text-lh: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--cta-gap);
+  width: 100%;
+  padding-block: var(--cta-pad-top) var(--cta-pad-bottom);
+  border-top: 1px solid var(--color-border-subtle);
+  text-align: center;
+}
+
+@media (min-width: 600px) {
+  .cta {
+    --cta-pad-top: 72px;
+    --cta-pad-bottom: 80px;
+    --cta-gap: 22px;
+    --title-size: 32px;
+    --title-lh: 35px;
+  }
+}
+
+@media (min-width: 900px) {
+  .cta {
+    --cta-pad-top: 80px;
+    --cta-pad-bottom: 90px;
+    --cta-gap: 24px;
+    --text-size: 16px;
+    --text-lh: 27px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .cta {
+    --cta-pad-top: 90px;
+    --cta-pad-bottom: 100px;
+    --cta-gap: 26px;
+    --title-size: 40px;
+    --title-lh: 43px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .cta {
+    --cta-pad-top: 100px;
+    --cta-pad-bottom: 120px;
+    --cta-gap: 30px;
+    --label-size: 16px;
+    --label-lh: 19px;
+    --title-size: 50px;
+    --title-lh: 54px;
+  }
+}
+
+@media (min-width: 1800px) {
+  .cta {
+    --cta-pad-top: 110px;
+    --text-size: 18px;
+    --text-lh: 31px;
+  }
+}
+
+.copy {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--cta-gap);
+}
+
+.heading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.label {
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--label-size);
+  line-height: var(--label-lh);
+  letter-spacing: 5px;
+  color: var(--color-accent);
+}
+
+.title {
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--title-size);
+  line-height: var(--title-lh);
+  color: #111111;
+}
+
+.accent {
+  color: var(--color-accent);
+}
+
+.text {
+  font-weight: var(--font-weight-regular);
+  font-size: var(--text-size);
+  line-height: var(--text-lh);
+  color: var(--color-text-secondary);
+}
+
+/* Manual line breaks only where Figma has them */
+.titleBreak {
+  display: none;
+}
+
+.textBreak {
+  display: none;
+}
+
+@media (min-width: 600px) {
+  .textBreak {
+    display: inline;
+  }
+}
+
+@media (min-width: 900px) {
+  .titleBreak {
+    display: inline;
+  }
+}
+
+/* Contact: full width below 1200px, grid width from L up */
+.contact {
+  width: 100%;
+}
+
+@media (min-width: 1200px) {
+  .contact {
+    width: min(100% - (var(--grid-margin) * 2), var(--content-max-width));
+  }
+}
