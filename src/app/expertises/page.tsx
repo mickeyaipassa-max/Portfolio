@@ -19,7 +19,7 @@ export default function Expertises() {
           "latest-work": "/#latest-work",
           "about-me": "/about",
           expertises: "/expertises",
-          contact: "/#contact",
+          contact: "/contact",
         }}
         activeItem="expertises"
       />
@@ -33,7 +33,7 @@ export default function Expertises() {
             "latest-work": "/#latest-work",
             "about-me": "/about",
             expertises: "/expertises",
-            contact: "/#contact",
+            contact: "/contact",
           }}
         />
       </div>

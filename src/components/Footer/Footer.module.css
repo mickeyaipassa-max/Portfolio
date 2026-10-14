@@ -80,7 +80,8 @@
 }
 
 .divider {
-  width: 100%;
+  /* Figma's Divider is a fixed 10x1 dash in every Footer variant */
+  width: 10px;
   height: 1px;
   flex-shrink: 0;
   background: var(--color-border-subtle);

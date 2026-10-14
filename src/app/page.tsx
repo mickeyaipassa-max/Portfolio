@@ -80,7 +80,7 @@ export default function Home() {
           "latest-work": "#latest-work",
           "about-me": "/about",
           expertises: "/expertises",
-          contact: "#contact",
+          contact: "/contact",
         }}
       />
       <Hero />
@@ -124,7 +124,7 @@ export default function Home() {
             "latest-work": "#latest-work",
             "about-me": "#about-me",
             expertises: "/expertises",
-            contact: "#contact",
+            contact: "/contact",
           }}
         />
       </div>

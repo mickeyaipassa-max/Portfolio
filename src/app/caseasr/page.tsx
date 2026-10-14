@@ -21,7 +21,7 @@ const NAV_HREFS = {
   "latest-work": "/#latest-work",
   "about-me": "/about",
   expertises: "/expertises",
-  contact: "/#contact",
+  contact: "/contact",
 };
 
 export default function CaseAsr() {

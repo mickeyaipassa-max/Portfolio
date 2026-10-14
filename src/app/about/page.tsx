@@ -70,7 +70,7 @@ export default function AboutMe() {
           "latest-work": "/#latest-work",
           "about-me": "/about",
           expertises: "/expertises",
-          contact: "/#contact",
+          contact: "/contact",
         }}
         activeItem="about-me"
       />
@@ -128,7 +128,7 @@ export default function AboutMe() {
             "latest-work": "/#latest-work",
             "about-me": "/about",
             expertises: "/expertises",
-            contact: "/#contact",
+            contact: "/contact",
           }}
         />
       </div>

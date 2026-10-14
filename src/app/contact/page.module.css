@@ -1,0 +1,4 @@
+/* The Figma footer frame wraps the Footer in 40px block padding. */
+.footer {
+  padding-block: 40px;
+}

@@ -1,0 +1,512 @@
+/*
+ * Contact page — navigation + hero, measured from the Figma "Contact" page
+ * (frames "Contact — XXL/XL/L/M/S/XS"). Offsets are relative to the grid
+ * container and to the bottom of the navigation bar (Figma's frame top is the
+ * nav's top, so every Figma y here is reduced by the nav height
+ * 136/128/104/100/100/100).
+ *
+ * XXL..L: two columns — the "Let's work together" and "Contact details" cards
+ * on the left, the "Send a message" card on the right (as tall as the left
+ * column), with the photo (a transparent cut-out) between them overlapping the
+ * giant word and the cards. M..XS: one column — word, the three cards, then
+ * the photo in the flow, centred. At M the photo runs 16px past the hero's
+ * bottom edge, as in Figma, where the hero frame clips it.
+ *
+ * Type per breakpoint follows the rest of the site: body 18/16/16/16/14/14
+ * (XXL..XS), card titles 32/32/24, labels 20/18/18/16, details 20/18/18/16/14/14.
+ * Line heights are whole pixels because Figma rounds each line box.
+ */
+
+.hero {
+  --pad: 24px;
+  --gap: 16px;
+  --label-size: 16px;
+  --label-lh: 19px;
+  --title-size: 24px;
+  --title-lh: 29px;
+  --body-size: 14px;
+  --body-lh: 24px;
+  --pill-size: 14px;
+  --pill-lh: 17px;
+  --detail-size: 14px;
+  --detail-lh: 17px;
+  --field-size: 14px;
+  --field-lh: 17px;
+  --input-h: 48px;
+  --input-pad: 12px 16px;
+  --msg-h: 140px;
+  position: relative;
+  padding-top: 80px;
+  padding-bottom: 0;
+  overflow-y: clip;
+}
+
+/* ---------- Giant word + photo ---------- */
+
+.word {
+  position: absolute;
+  top: -6px;
+  left: -10px;
+  z-index: 0;
+  font-weight: var(--font-weight-black);
+  font-size: 52px;
+  line-height: 62px;
+  letter-spacing: 2px;
+  white-space: nowrap;
+  color: var(--color-accent);
+  pointer-events: none;
+  user-select: none;
+}
+
+.photo {
+  position: relative;
+  z-index: 0;
+  width: 244px;
+  height: 320px;
+  margin: 24px auto 0;
+}
+
+.photoImg {
+  object-fit: cover;
+  pointer-events: none;
+}
+
+/* ---------- Layout ---------- */
+
+.cols {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.left {
+  display: contents;
+}
+
+.card {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  padding: var(--pad);
+  background: rgb(249 249 249 / 0.9);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: 18px;
+}
+
+.intro {
+  order: 1;
+  gap: 20px;
+}
+
+.details {
+  order: 2;
+  gap: var(--gap);
+}
+
+.message {
+  order: 3;
+  gap: var(--gap);
+}
+
+.label {
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--label-size);
+  line-height: var(--label-lh);
+  color: var(--color-accent);
+}
+
+.labelTight {
+  letter-spacing: 2px;
+}
+
+.labelWide {
+  letter-spacing: 4px;
+}
+
+/* ---------- Intro card ---------- */
+
+.heading {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.title {
+  font-weight: 700;
+  font-size: var(--title-size);
+  line-height: var(--title-lh);
+  color: #111111;
+}
+
+.accent {
+  color: var(--color-accent);
+}
+
+.body {
+  font-size: var(--body-size);
+  line-height: var(--body-lh);
+  color: var(--color-text-secondary);
+}
+
+/* ---------- Contact details ---------- */
+
+.detail {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 24px;
+  border-radius: 90px;
+  background: var(--color-accent);
+  color: #ffffff;
+  font-weight: var(--font-weight-medium);
+  font-size: var(--pill-size);
+  line-height: var(--pill-lh);
+  white-space: nowrap;
+}
+
+.detailItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.detailIcon {
+  flex: none;
+  width: 24px;
+  height: 24px;
+}
+
+.detailText {
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--detail-size);
+  line-height: var(--detail-lh);
+  color: #000000;
+  white-space: nowrap;
+}
+
+/* ---------- Message form ---------- */
+
+.form {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: var(--gap);
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.fieldLabel {
+  font-weight: var(--font-weight-medium);
+  font-size: var(--field-size);
+  line-height: var(--field-lh);
+  color: #111111;
+}
+
+.input,
+.textarea {
+  width: 100%;
+  padding: var(--input-pad);
+  background: #ffffff;
+  border: 1px solid var(--color-border-subtle);
+  border-radius: 12px;
+  font: inherit;
+  font-size: var(--field-size);
+  line-height: var(--field-lh);
+  color: #111111;
+}
+
+.input {
+  height: var(--input-h);
+}
+
+.textarea {
+  height: var(--msg-h);
+  resize: none;
+}
+
+.input::placeholder,
+.textarea::placeholder {
+  color: #8a8a8a;
+  opacity: 1;
+}
+
+.input:focus-visible,
+.textarea:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.buttonsL,
+.buttonsM,
+.buttonsS {
+  display: none;
+  align-items: flex-start;
+}
+
+.buttonsS {
+  display: flex;
+}
+
+/* Figma's buttons are 54/51/41px tall (the 1px stroke sits inside the box);
+   the Button component adds the border on top, so pin the heights here. */
+.buttonsL > * {
+  height: 54px;
+}
+
+.buttonsM > * {
+  height: 51px;
+}
+
+.buttonsS > * {
+  height: 41px;
+}
+
+/* ---------- S: 600-899px ---------- */
+
+@media (min-width: 600px) {
+  .hero {
+    --title-size: 24px;
+    padding-top: 116px;
+    padding-bottom: 2px;
+  }
+
+  .word {
+    font-size: 82px;
+    line-height: 98px;
+  }
+
+  .photo {
+    width: 321px;
+    height: 420px;
+  }
+
+  .detail {
+    flex-direction: row;
+    align-items: center;
+    gap: 24px;
+  }
+}
+
+/* ---------- M: 900-1199px ---------- */
+
+@media (min-width: 900px) {
+  .hero {
+    --pad: 32px;
+    --gap: 20px;
+    --body-size: 16px;
+    --body-lh: 27px;
+    --pill-size: 18px;
+    --pill-lh: 22px;
+    --detail-size: 16px;
+    --detail-lh: 19px;
+    --field-size: 16px;
+    --field-lh: 19px;
+    --input-h: 54px;
+    --input-pad: 14px 20px;
+    --msg-h: 160px;
+    padding-top: 163px;
+    padding-bottom: 0;
+  }
+
+  .word {
+    font-size: 121px;
+    line-height: 145px;
+  }
+
+  .photo {
+    width: 427px;
+    height: 560px;
+    margin-bottom: -16px;
+  }
+
+  .buttonsS {
+    display: none;
+  }
+
+  .buttonsM {
+    display: flex;
+  }
+}
+
+/* ---------- L: 1200-1439px, two columns ---------- */
+
+@media (min-width: 1200px) {
+  .hero {
+    --pad: 24px;
+    --label-size: 18px;
+    --label-lh: 22px;
+    --detail-size: 18px;
+    --detail-lh: 22px;
+    --field-size: 14px;
+    --field-lh: 17px;
+    --input-h: 48px;
+    --input-pad: 12px 16px;
+    padding-top: 172px;
+    padding-bottom: 52px;
+  }
+
+  .word {
+    font-size: 132px;
+    line-height: 158px;
+  }
+
+  .photo {
+    position: absolute;
+    top: 91px;
+    left: 180.21px;
+    width: 564.58px;
+    height: 739px;
+    margin: 0;
+  }
+
+  .cols {
+    flex-direction: row;
+    align-items: stretch;
+    justify-content: space-between;
+    gap: 0;
+  }
+
+  .left {
+    display: flex;
+    flex-direction: column;
+    gap: 43px;
+    width: 346px;
+  }
+
+  .intro,
+  .details,
+  .message {
+    order: 0;
+  }
+
+  .message {
+    width: 395px;
+  }
+
+  .detail {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .fieldMessage {
+    flex: 1;
+  }
+
+  .textarea {
+    flex: 1;
+    height: auto;
+    min-height: 0;
+  }
+
+  .buttonsM {
+    display: flex;
+  }
+}
+
+/* ---------- XL: 1440-1799px ---------- */
+
+@media (min-width: 1440px) {
+  .hero {
+    --pad: 32px;
+    --label-size: 18px;
+    --title-size: 32px;
+    --title-lh: 38px;
+    --field-size: 16px;
+    --field-lh: 19px;
+    --input-h: 54px;
+    --input-pad: 14px 20px;
+    --gap: 24px;
+    padding-top: 204px;
+    padding-bottom: 56px;
+  }
+
+  .word {
+    font-size: 158px;
+    line-height: 190px;
+  }
+
+  .photo {
+    top: 111px;
+    left: 253.22px;
+    width: 606.57px;
+    height: 795px;
+  }
+
+  .left {
+    width: 415px;
+  }
+
+  .message {
+    width: 474px;
+  }
+
+  .buttonsM {
+    display: none;
+  }
+
+  .buttonsL {
+    display: flex;
+  }
+}
+
+/* ---------- XXL: 1800px and up ---------- */
+
+@media (min-width: 1800px) {
+  .hero {
+    --label-size: 20px;
+    --label-lh: 24px;
+    --body-size: 18px;
+    --body-lh: 31px;
+    --detail-size: 20px;
+    --detail-lh: 24px;
+    padding-top: 267px;
+    padding-bottom: 72px;
+  }
+
+  .word {
+    font-size: 211px;
+    line-height: 253px;
+  }
+
+  .photo {
+    top: 150px;
+    left: 446px;
+    width: 589px;
+    height: 771.74px;
+  }
+
+  .left {
+    width: 554px;
+  }
+
+  .message {
+    width: 632px;
+  }
+
+  .detail {
+    flex-direction: row;
+    align-items: center;
+    gap: 24px;
+  }
+}
+
+/* The XXL intro and message cards blur what is behind them (Figma:
+   background blur 14.5, which is 7.25px in CSS) */
+@media (min-width: 1800px) {
+  .blur {
+    backdrop-filter: blur(7.25px);
+  }
+}
