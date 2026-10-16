@@ -63,7 +63,9 @@ export function ProductCard({
 
   return (
     <div
-      className={`flex ${fill ? "w-full" : "w-[var(--product-card-width)]"} flex-col items-center bg-surface-subtle`}
+      // The whole card is one tile: the arrow link is stretched over it, so
+      // hovering anywhere darkens the card and hovers the arrow with it.
+      className={`relative flex ${fill ? "w-full" : "w-[var(--product-card-width)]"} flex-col items-center bg-surface-subtle transition-colors hover:bg-[var(--color-surface-subtle-hover)] has-[a:focus-visible]:outline-2 has-[a:focus-visible]:outline-offset-[-2px] has-[a:focus-visible]:outline-accent`}
       style={{
         gap: "var(--product-card-gap)",
         paddingBlock: "var(--product-card-padding-block)",
@@ -71,11 +73,17 @@ export function ProductCard({
     >
       <div
         className="flex w-full flex-col"
-        style={{ gap: "var(--product-card-inner-gap)" }}
+        style={{
+          gap: "var(--product-card-inner-gap)",
+          paddingInline: "var(--product-card-media-inset, 0px)",
+        }}
       >
         <p
           className="text-center font-semibold text-text-primary"
-          style={{ fontSize: EYEBROW_SIZE_VAR[size], lineHeight: "normal" }}
+          style={{
+            fontSize: EYEBROW_SIZE_VAR[size],
+            lineHeight: "var(--product-card-eyebrow-lh, normal)",
+          }}
         >
           {client}
         </p>
@@ -94,8 +102,10 @@ export function ProductCard({
         style={{ gap: "var(--product-card-inner-gap)" }}
       >
         <p
-          className="text-center font-medium text-text-primary"
-          style={{ fontSize: TITLE_SIZE_VAR[size], lineHeight: "normal" }}
+          className="w-full text-center font-medium text-text-primary"
+          // Figma's title is a fixed 38px-tall box: a longer title wraps and
+          // overflows it instead of pushing the tag down.
+          style={{ fontSize: TITLE_SIZE_VAR[size], lineHeight: "normal", height: "38px" }}
         >
           {title}
         </p>
@@ -104,7 +114,7 @@ export function ProductCard({
         </Tag>
       </div>
 
-      <IconButton size="l" href={href} ariaLabel={`View project: ${title}`} />
+      <IconButton size="l" href={href} ariaLabel={`View project: ${title}`} stretch />
     </div>
   );
 }

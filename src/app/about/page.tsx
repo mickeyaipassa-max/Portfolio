@@ -67,7 +67,7 @@ export default function AboutMe() {
           link destinations, so these are not part of the component's design. */}
       <Navigation
         hrefs={{
-          "latest-work": "/#latest-work",
+          "latest-work": "/latest-work",
           "about-me": "/about",
           expertises: "/expertises",
           contact: "/contact",
@@ -125,7 +125,7 @@ export default function AboutMe() {
       <div className={`grid-container ${styles.photoTextCardToFooter}`}>
         <Footer
           hrefs={{
-            "latest-work": "/#latest-work",
+            "latest-work": "/latest-work",
             "about-me": "/about",
             expertises: "/expertises",
             contact: "/contact",

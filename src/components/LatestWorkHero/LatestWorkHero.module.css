@@ -1,0 +1,96 @@
+/*
+ * Latest work page — navigation + hero, measured from the Figma "Latest work"
+ * page (frames "Latest work — XXL/XL/L/M/S/XS"). Offsets are relative to the
+ * grid container and to the bottom of the navigation bar (Figma's frame top is
+ * the nav's top, so every Figma y here is reduced by the nav height
+ * 136/128/104/100/100/100).
+ *
+ * The giant word sits behind the Product Card Group. At M..XS the word is
+ * smaller than on the other pages (104/73/47px) because "LATEST WORK" is
+ * wider than "EXPERTISES" and would otherwise run off the frame.
+ */
+
+.hero {
+  position: relative;
+  padding-top: 74px;
+  padding-bottom: 48px;
+}
+
+.word {
+  position: absolute;
+  top: -6px;
+  left: -10px;
+  z-index: 0;
+  font-weight: var(--font-weight-black);
+  font-size: 47px;
+  line-height: 56px;
+  letter-spacing: 2px;
+  white-space: nowrap;
+  color: var(--color-accent);
+  pointer-events: none;
+  user-select: none;
+}
+
+.group {
+  position: relative;
+  z-index: 1;
+}
+
+@media (min-width: 600px) {
+  .hero {
+    padding-top: 106px;
+    padding-bottom: 64px;
+  }
+
+  .word {
+    font-size: 73px;
+    line-height: 88px;
+  }
+}
+
+@media (min-width: 900px) {
+  .hero {
+    padding-top: 143px;
+  }
+
+  .word {
+    font-size: 104px;
+    line-height: 125px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .hero {
+    padding-top: 172px;
+    padding-bottom: 52px;
+  }
+
+  .word {
+    font-size: 132px;
+    line-height: 158px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .hero {
+    padding-top: 204px;
+    padding-bottom: 56px;
+  }
+
+  .word {
+    font-size: 158px;
+    line-height: 190px;
+  }
+}
+
+@media (min-width: 1800px) {
+  .hero {
+    padding-top: 267px;
+    padding-bottom: 72px;
+  }
+
+  .word {
+    font-size: 211px;
+    line-height: 253px;
+  }
+}

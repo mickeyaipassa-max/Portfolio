@@ -42,6 +42,11 @@ type IconButtonProps = {
    * :hover/:active.
    */
   forceState?: IconButtonState;
+  /**
+   * Stretches the link over the nearest positioned ancestor, so the whole
+   * parent (a tile) is clickable and hovering it hovers this button too.
+   */
+  stretch?: boolean;
 };
 
 export function IconButton({
@@ -50,6 +55,7 @@ export function IconButton({
   href,
   onClick,
   forceState,
+  stretch = false,
 }: IconButtonProps) {
   const isForced = forceState !== undefined;
   const { size: boxSize, padding } = SIZE_STYLE[size];
@@ -61,9 +67,13 @@ export function IconButton({
     ...(isForced ? { backgroundColor: FORCE_COLOR[forceState] } : {}),
   };
 
+  const stretchClasses =
+    stretch && href
+      ? "after:absolute after:inset-0 after:content-[''] focus-visible:outline-none"
+      : "";
   const className = `inline-flex shrink-0 items-center justify-center rounded-full transition-colors ${
     isForced ? "" : LIVE_CLASSES[href ? "link" : "button"]
-  }`;
+  } ${stretchClasses}`;
 
   const icon = (
     <img

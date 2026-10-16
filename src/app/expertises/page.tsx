@@ -16,7 +16,7 @@ export default function Expertises() {
     <>
       <Navigation
         hrefs={{
-          "latest-work": "/#latest-work",
+          "latest-work": "/latest-work",
           "about-me": "/about",
           expertises: "/expertises",
           contact: "/contact",
@@ -30,7 +30,7 @@ export default function Expertises() {
       <div className={styles.footer}>
         <Footer
           hrefs={{
-            "latest-work": "/#latest-work",
+            "latest-work": "/latest-work",
             "about-me": "/about",
             expertises: "/expertises",
             contact: "/contact",

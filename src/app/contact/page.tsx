@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 };
 
 const HREFS = {
-  "latest-work": "/#latest-work",
+  "latest-work": "/latest-work",
   "about-me": "/about",
   expertises: "/expertises",
   contact: "/contact",

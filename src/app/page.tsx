@@ -6,10 +6,8 @@ import { Contact } from "@/components/Contact/Contact";
 import { Footer } from "@/components/Footer/Footer";
 import { CardGrid, type Service } from "@/components/CardGrid/CardGrid";
 import { SectionHeading } from "@/components/SectionHeading/SectionHeading";
-import {
-  ProductCardGroup,
-  type Project,
-} from "@/components/ProductCardGroup/ProductCardGroup";
+import { ProductCardGroup } from "@/components/ProductCardGroup/ProductCardGroup";
+import { PROJECTS } from "@/components/ProductCardGroup/projects";
 import { LogoCarousel } from "@/components/LogoCarousel/LogoCarousel";
 import styles from "./page.module.css";
 
@@ -40,34 +38,6 @@ const HOW_I_WORK: [Service, Service, Service, Service] = [
   },
 ];
 
-const PROJECTS: [Project, Project, Project] = [
-  {
-    client: "a.s.r. Nederland",
-    title: "Generic purchase flow",
-    discipline: "Ux & Ui Design",
-    href: "/caseasr",
-    mediaSrc: "/product-cards/asr-nederland.webp",
-    mediaAlt: "a.s.r. Nederland project",
-    mediaFit: "contain",
-  },
-  {
-    client: "RocketSourcers",
-    title: "New Website",
-    discipline: "Ux, Ui & Visual Design",
-    href: "#",
-    mediaSrc: "/product-cards/rocketsourcers.webp",
-    mediaAlt: "RocketSourcers project",
-  },
-  {
-    client: "Lotus Cars",
-    title: "Digital campaign",
-    discipline: "Ux, Ui & Visual Design",
-    href: "#",
-    mediaSrc: "/product-cards/lotus-cars.webp",
-    mediaAlt: "Lotus Cars project",
-  },
-];
-
 export default function Home() {
   return (
     <>
@@ -77,7 +47,7 @@ export default function Home() {
           item stays in its default state. */}
       <Navigation
         hrefs={{
-          "latest-work": "#latest-work",
+          "latest-work": "/latest-work",
           "about-me": "/about",
           expertises: "/expertises",
           contact: "/contact",
@@ -121,7 +91,7 @@ export default function Home() {
       <div className={`${styles.contactWrap} ${styles.contactToFooter}`}>
         <Footer
           hrefs={{
-            "latest-work": "#latest-work",
+            "latest-work": "/latest-work",
             "about-me": "#about-me",
             expertises: "/expertises",
             contact: "/contact",
