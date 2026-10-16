@@ -11,11 +11,15 @@ import { CasePrinciples } from "@/components/CasePrinciples/CasePrinciples";
 import { CaseBehaviour } from "@/components/CaseBehaviour/CaseBehaviour";
 import { CaseCarousel } from "@/components/CaseCarousel/CaseCarousel";
 import { CaseResults } from "@/components/CaseResults/CaseResults";
+import { pageMetadata } from "@/lib/seo";
 import styles from "./caseasr.module.css";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Insurance Purchase Flow — a.s.r. Nederland",
-};
+  description:
+    "How I redesigned a.s.r. Nederland's application flow into a scalable, reusable insurance purchase flow, lifting funnel conversion from 6.4% to 9.7% and sales by 50%.",
+  path: "/caseasr",
+});
 
 const NAV_HREFS = {
   "latest-work": "/latest-work",

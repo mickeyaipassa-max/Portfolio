@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { Navigation } from "@/components/Navigation/Navigation";
 import { HeroAboutMe } from "@/components/HeroAboutMe/HeroAboutMe";
 import { MyStory } from "@/components/MyStory/MyStory";
@@ -8,7 +9,15 @@ import { WhatIBring } from "@/components/WhatIBring/WhatIBring";
 import { PhotoTextCard } from "@/components/PhotoTextCard/PhotoTextCard";
 import { BEYOND_THE_PIXELS } from "@/components/PhotoTextCard/beyondThePixels";
 import { Footer } from "@/components/Footer/Footer";
+import { pageMetadata } from "@/lib/seo";
 import styles from "./about.module.css";
+
+export const metadata: Metadata = pageMetadata({
+  title: "About me — Mickey Aipassa",
+  description:
+    "From branding to digital product design: how Mickey Aipassa brings business, human behaviour and design together to create meaningful value.",
+  path: "/about",
+});
 
 const HOW_I_WORK: {
   icon: string;

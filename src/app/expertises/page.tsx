@@ -4,12 +4,15 @@ import { ExpertisesHero } from "@/components/ExpertisesHero/ExpertisesHero";
 import { ExpertisesWork } from "@/components/ExpertisesWork/ExpertisesWork";
 import { ExpertisesCta } from "@/components/ExpertisesCta/ExpertisesCta";
 import { Footer } from "@/components/Footer/Footer";
+import { pageMetadata } from "@/lib/seo";
 import styles from "./page.module.css";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Expertises — Mickey Aipassa",
-  description: "Expertises of Mickey Aipassa",
-};
+  description:
+    "Product strategy, UX and UI design, design systems and AI-driven prototyping: how Mickey Aipassa turns complex challenges into intuitive digital experiences.",
+  path: "/expertises",
+});
 
 export default function Expertises() {
   return (
